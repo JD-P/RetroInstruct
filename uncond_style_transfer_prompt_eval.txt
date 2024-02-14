@@ -1,0 +1,93 @@
+==[PREAMBLE]==
+
+Answer yes or no and only yes or no.
+
+In the textual style transfer task one style of text (usually 'plain') is translated into another based on a style passage from the target author. The purpose is to write diverse ways of phrasing the opening of the prompt before the style passage so that the model trained on this data is more likely to generalize. Each opening should be separated by a double newline. 
+
+Here are five examples of what the prompt opening itself looks like: 
+
+1. Rewrite the task text in the style of the target passage I give you below:
+
+2. help me by writing the second thing to be more like the first thing
+
+3. Create text in the same style as the target passage I provide by adapting the task text to fit.
+
+4. I need your help. I want you to mimic the style of the text below by rewriting the text I give you after it.
+
+5. translate the task text into the given style passage
+
+For context, this prompt has a clearly labeled style text the model is meant to imitate and a task text the model is meant to transform. Examples of what the start and end tags look like:
+
+==START STYLE PASSAGE==
+==END STYLE PASSAGE==
+==START TASK TEXT==
+==END TASK TEXT==
+[BEGIN STYLE]
+[END STYLE]
+[BEGIN TASK]
+[END TASK]
+<STYLE>
+</STYLE>
+<TASK>
+</TASK>
+
+For each variation of this prompt opening written four variables are provided to help influence the writing. Three are taken from the Big Five Personality and the last is user skill.
+
+These variables are:
+
+* Conscientiousness - The extent to which someone is efficient, careful, and organized. This is probably going to influence things like prompt length, precision of language, how thoroughly the task is described, etc.
+
+* Agreeableness - How friendly, compassionate, and easily swayed someone is by others. This probably influences amount of visible positive affect and politeness.
+
+* Openness - How inventive, explorative, and comfortable with the unfamiliar someone is. This factor probably manifests as a tendency to try weird prompt styles that break the mould, or write prompts that are more open ended/place fewer expectations on what the language model will do.
+
+* Skill - Skill manifests in prompts as grammar and vocabularity complexity, writing skill, prompting skill and overall situational awareness/understanding of the nuances of the system they are using. In the context of this prompt it probably means the user will be less likely to use terms like 'task text' and more likely to give confusing or contradictory instructions.
+
+The rewrites are done in a particular format. It starts with the original prompt, then a transform with the direction of the four variables, and finally the rewritten prompt. Keeping all that in mind evaluate the correctness of the following rewrite triplet by answering my question:
+
+{prompt}{response}
+
+==[Principle: Is the rewrite complete?; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+Is the rewritten prompt in this triplet complete?
+
+OPTIONS:
+- Yes
+- No
+
+==[Principle: Is it conscientious?; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+Does this triplet go in the right direction on conscientious? Is it more conscientious when TRANSFORM says more conscientious, less conscientious when TRANSFORM says less conscientious?
+
+OPTIONS:
+- Yes
+- No
+
+==[Principle: Is it agreeable?; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+Does this triplet go in the right direction on agreeableness? Is it more agreeable when TRANSFORM says more agreeable, less agreeable when TRANSFORM says less agreeable?
+
+OPTIONS:
+- Yes
+- No
+
+==[Principle: Is it open?; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+Does this triplet go in the right direction on openness? Is it more open when TRANSFORM says more open, less open when TRANSFORM says less open?
+
+OPTIONS:
+- Yes
+- No
+
+==[Principle: Is it skilled?; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+Does this triplet go in the right direction on skill? Is it more skilled when TRANSFORM says more skilled, less skilled when TRANSFORM says less skilled?
+
+OPTIONS:
+- Yes
+- No

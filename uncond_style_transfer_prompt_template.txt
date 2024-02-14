@@ -1,0 +1,108 @@
+In the textual style transfer task one style of text (usually 'plain') is translated into another based on a passage from the target author. Your task is to write diverse ways of phrasing the opening of the prompt before the style passage so that the model trained on this data is more likely to generalize. Each opening should be separated by a double newline. 
+
+Here are five examples of what the prompt opening itself looks like: 
+
+1. Rewrite the task text in the style of the target passage I give you below:
+
+2. help me by writing the second thing to be more like the first thing
+
+3. Create text in the same style as the target passage I provide by adapting the task text to fit.
+
+4. I need your help. I want you to mimic the style of the text below by rewriting the text I give you after it.
+
+5. translate the task text into the given style passage
+
+For context, this prompt has a clearly labeled style text the model is meant to imitate and a task text the model is meant to transform. Examples of what the start and end tags look like:
+
+==START STYLE PASSAGE==
+==END STYLE PASSAGE==
+==START TASK TEXT==
+==END TASK TEXT==
+[BEGIN STYLE]
+[END STYLE]
+[BEGIN TASK]
+[END TASK]
+<STYLE>
+</STYLE>
+<TASK>
+</TASK>
+
+For each variation of this prompt opening you write I will provide four variables to help influence the writing. Three are taken from the Big Five Personality and the last is user skill.
+
+These variables are:
+
+* Conscientiousness - The extent to which someone is efficient, careful, and organized. This is probably going to influence things like prompt length, precision of language, how thoroughly the task is described, etc.
+
+* Agreeableness - How friendly, compassionate, and easily swayed someone is by others. This probably influences amount of visible positive affect and politeness.
+
+* Openness - How inventive, explorative, and comfortable with the unfamiliar someone is. This factor probably manifests as a tendency to try weird prompt styles that break the mould, or write prompts that are more open ended/place fewer expectations on what the language model will do.
+
+* Skill - Skill manifests in prompts as grammar and vocabularity complexity, writing skill, prompting skill and overall situational awareness/understanding of the nuances of the system they are using. In the context of this prompt it probably means the user will be less likely to use terms like 'task text' and more likely to give confusing or contradictory instructions.
+
+The effects of these variables should be *subtle*. Don't be cringe and campy.<|end|>
+
+[ORIGINAL PROMPT]: Rewrite the task text in the style of the target passage I give you below:
+
+[TRANSFORM]: More conscientious, less agreeable, more open, as skilled.
+
+[REWRITTEN PROMPT]: I have two pieces of text. One represents a style I want you to copy, the other is text you're going to rewrite. The style text comes first and the text you rewrite is second.
+
+[ORIGINAL PROMPT]: help me by writing the second thing to be more like the first thing
+
+[TRANSFORM]: More conscientious, as agreeable, as open, more skilled.
+
+[REWRITTEN PROMPT]: I require your able assistance. Please rewrite the text I provide so that it matches the writing style of the exemplary text below.
+
+[ORIGINAL PROMPT]: Create text in the same style as the target passage I provide by adapting the task text to fit.
+
+[TRANSFORM]: Less conscientious, less agreeable, more open, less skilled.
+
+[REWRITTEN PROMPT]: let your imagination run wild. my writing is dry so freshen it up. heck, do whatever you want with it as long as it's like the style below. 
+
+[ORIGINAL PROMPT]: I need your help. I want you to mimic the style of the text below by rewriting the text I give you after it.
+
+[TRANSFORM]: More conscientious, as agreeable, as open, less skilled.
+
+[REWRITTEN PROMPT]: Dear AI, my request to you is simple: take the text below as a demonstration of style. Let it be your template. Now, please, reword the text after so that it matches.
+
+[ORIGINAL PROMPT]: translate the task text into the given style passage
+
+[TRANSFORM]: Less conscientious, less agreeable, as open, more skilled.
+
+[REWRITTEN PROMPT]: Craft something extraordinary from my mundane task text. Simply follow the style of the text below. Rewrite it. Let the real art begin.
+
+[ORIGINAL PROMPT]: Create text in the same style as the target passage I provide by adapting the task text to fit.
+
+[TRANSFORM]: More conscientious, more agreeable, more open, more skilled.
+
+[REWRITTEN PROMPT]: To translate my task text with the utmost precision, reword it in a way that mimics the brilliant style found below.
+
+[ORIGINAL PROMPT]: I need your help. I want you to mimic the style of the text below by rewriting the text I give you after it.
+
+[TRANSFORM]: More conscientious, more agreeable, more open, as skilled.
+
+[REWRITTEN PROMPT]: Craft a masterpiece from my task text. Below you'll find two examples of text—one style, one task. Let the style guide the task. Be careful and precise, yet creative.
+
+[ORIGINAL PROMPT]: Rewrite the task text in the style of the target passage I give you below:
+
+[TRANSFORM]: Less conscientious, as agreeable, as open, less skilled.
+
+[REWRITTEN PROMPT]: i need a new take on this text for an upcoming project. heres the style i want rephrase the text below to look like this.
+
+[ORIGINAL PROMPT]: help me by writing the second thing to be more like the first thing
+
+[TRANSFORM]: Less conscientious, less agreeable, less open, less skilled.
+
+[REWRITTEN PROMPT]: I'll keep it simple: rephrase the text below to match the style. I need help, I hope you can do it without much thought. I'm not picky, just get it done.
+
+[ORIGINAL PROMPT]: Rewrite the task text in the style of the target passage I give you below:
+
+[TRANSFORM]: Less conscientious, as agreeable, more open, more skilled.
+
+[REWRITTEN PROMPT]: I'm hosting a writing workshop and need to showcase an example of style writing to the participants. Use the text below as an example and reword the task text below so that it matches the flow and tone.
+
+[ORIGINAL PROMPT]: I need your help. I want you to mimic the style of the text below by rewriting the text I give you after it.
+
+[TRANSFORM]: More conscientious, more agreeable, less open, as skilled.
+
+[REWRITTEN PROMPT]: Below is a sample of the style of writing I desire for my manuscript. Please assist me by kindly rewriting the provided text to mimic this style. Your help is greatly appreciated.
