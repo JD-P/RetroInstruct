@@ -6,11 +6,14 @@ import time
 import random
 import hashlib
 import zipfile
+import asyncio
 from contextlib import contextmanager
 from functools import partial
 from itertools import islice
+from multiprocessing import Pool
 from flask import Flask, request, jsonify, make_response
 from tqdm import tqdm
+import requests
 import torch
 import torch.nn as nn
 import peft
@@ -18,6 +21,8 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 from transformers import StoppingCriteria, StoppingCriteriaList
 from transformers import BitsAndBytesConfig
 from transformers.generation.streamers import BaseStreamer
+import datasets
+import datasets.distributed
 from weave import weave_tree_search, generate_outputs, evaluate_outputs
 from weave import make_score_prompt_fn, TreeNode
 from lora_tune import lora_tune_evaluator
@@ -87,7 +92,7 @@ def generate_outputs(generator, text, n_tokens, n=1, batch_size=1):
                 min_new_tokens=16,
                 max_new_tokens=n_tokens,
                 pad_token_id=tokenizer.eos_token_id,
-                eos_token_id=13,
+                eos_token_id=16623,
                 streamer=pbar,
             )
             outputs.append(outputs_batch)
@@ -204,54 +209,136 @@ def gen_epoch(x, n):
                 
                 return combos
         combos.append(combo.copy())
-    
-if __name__ == "__main__":
+
+async def generate_from_vllm(model_name, prompt, n_tokens):
+    payload = {"n":1,
+               "temperature":1,
+               "top_k":50,
+               "repetition_penalty":1.02,
+               "min_new_tokens":16,
+               "max_tokens": n_tokens,
+               # "max_new_tokens":n_tokens,
+               "model":model_name,
+               "prompt":prompt,
+               "stream":False}
+    completion = requests.post("http://localhost:5000/v1/completions/",
+                               data=json.dumps(payload))
+    return completion.json()["choices"][0]["text"]
+
+async def main():
     parser = ArgumentParser()
     parser.add_argument("--generator", default="mistralai/Mixtral-8x7B-Instruct-v0.1")
     parser.add_argument("--evaluator", default="mistralai/Mixtral-8x7B-Instruct-v0.1")
+    parser.add_argument("--preprocessed", default=None)
     args = parser.parse_args()
 
     device = "cuda:0"
-    tokenizer, model = load_generator_evaluator(args.generator, args.evaluator)
-    evaluator = generator = (tokenizer, model)
+    tokenizer = AutoTokenizer.from_pretrained(args.generator, use_fast=True)
+    # tokenizer.pad_token = tokenizer.eos_token
+    # tokenizer, model = load_generator_evaluator(args.generator, args.evaluator)
+    # evaluator = generator = (tokenizer, model)
     # adapter_name = "generator" if "generator" in generator[1].peft_config else None
-    generate_fn = partial(generate_outputs, generator, batch_size=1)
-    evaluate_fn = partial(evaluate_outputs, evaluator)
+    generate_fn = partial(generate_from_vllm, args.generator)
+    # generate_fn = partial(generate_outputs, generator, batch_size=1)
+    # evaluate_fn = partial(evaluate_outputs, evaluator)
 
-    seeds = ["Rewrite the task text in the style of the target passage I give you below:",
-             "help me by writing the second thing to be more like the first thing",
-             "Create text in the same style as the target passage I provide by adapting the task text to fit.",
-             "I need your help. I want you to mimic the style of the text below by rewriting the text I give you after it.",
-             "translate the task text into the given style passage",]
-
-    with open("prompts/uncond_style_transfer_prompt_template.txt") as infile:
-        style_transfer_prompt_template = infile.read()
+    pg19 = datasets.load_dataset("pg19")
+    with open("cond_style_transfer_prompts.json") as infile:
+        cond_prompts = json.load(infile)
     # TODO: Change weave to let me use q_weights and q_signs
-    rubric_score_fns, q_weights, q_signs = prepare_rubric("prompts/uncond_style_transfer_prompt_eval.txt",
-                                                          evaluator)
-    direction = ["less", "as", "more"]
-    variable = ["conscientious","agreeable","open", "skilled"]
-    latents = gen_epoch(4,3)
-    random.shuffle(latents)
-    uncond_openings = []
-    for latent in tqdm(latents):
-        for seed in seeds:
-            original = "[ORIGINAL PROMPT]: " + seed
-            transform = '[TRANSFORM]: '
-            transform_strings = []
-            for i in range(4):
-                transform_strings.append(direction[latent[i]-1] + " " + variable[i])
-            transform += ', '.join(transform_strings).capitalize() + "."
-            
-            prompt = (style_transfer_prompt_template
-                      + "\n"
-                      + original
-                      + "\n\n"
-                      + transform
-                      + "\n\n"
-                      + "[REWRITTEN PROMPT]: ")
-            opening = generate_fn(prompt, 128)[0]
-            uncond_openings.append((latent, opening))
-            print(opening)
-    with open("uncond_transfer_prompts.json", "w") as outfile:
-        json.dump(uncond_openings, outfile)
+    #rubric_score_fns, q_weights, q_signs = prepare_rubric("prompts/uncond_style_transfer_prompt_eval.txt",
+    #                                                      evaluator)
+    prompts = ["Rewrite this passage from {title} in the opposite style to the author.",
+               "Rewrite this passage from {title} in modern contemporary English.",
+               "Rewrite this passage from {title} so that the overall writing quality is much worse, with poor grammar and spelling.",
+               "Rewrite this passage from {title} as though it were a transcribed interview with occasional verbal tics and hiccups.",
+               "Rewrite this passage from {title} into plain and simple English."]
+    prompt_ends = ["Opposite Version:",
+                   "Modern Version:",
+                   "Worse Version:",
+                   "Transcribed Interview:",
+                   "Simple Version:"]
+    if args.preprocessed:
+        with open(args.preprocessed) as infile:
+            generations = json.load(infile)
+    else:
+        generations = {}
+        index = {}
+        for i, title_author in enumerate(pg19["train"]["short_book_title"]):
+            index[title_author] = i
+        book_indices = set()
+        for title_author in cond_prompts.keys():
+            book_indices.add(index[title_author])
+        all_indices = set([i for i in range(len(pg19["train"]["short_book_title"]))])
+        uncond_indices = all_indices - book_indices
+        uncond_indices = list(uncond_indices)
+        random.shuffle(uncond_indices)
+        book_indices = list(book_indices) + uncond_indices[:10000 - len(book_indices)]
+        assert len(set(book_indices)) == len(book_indices)
+        assert len(book_indices) == 10000
+        # Empirical constant for how many Mistral chars = 1300 tokens usually
+        chartoks = 12000
+        # 4096 context window
+        # 1/3 for the style passage, 1/3 for task text, 1/3 for response
+        # Allocate 128 for prompt opening, 24 for the style/task text markers
+        # Round down for breathing room
+        context_third = 1300
+        global tokenize
+        def tokenize(tokenizer, chartoks, context_third, book_text):
+            excerpt_start = random.randrange(len(book_text) - chartoks)
+            passage = book_text[excerpt_start:excerpt_start+chartoks]
+            tokenizer_partial = partial(tokenizer, add_special_tokens=False)
+            passage_tokens = tokenizer_partial(passage)["input_ids"][:context_third]
+            passage = tokenizer.decode(passage_tokens)
+            return passage
+
+        tokenize_partial = partial(tokenize, tokenizer, chartoks, context_third)
+        with Pool(8) as p:
+            for i in tqdm(book_indices):
+                title_author = pg19["train"]["short_book_title"][i]
+                book_text = pg19["train"]["text"][i]
+                if len(book_text) < 12000:
+                    continue
+                generations[title_author] = {"confabulations":[], "grounds":[]}
+                passages = p.map(tokenize_partial, [book_text] * 5)
+                generations[title_author]["grounds"] = passages
+
+        with open("style_grounds.json", "w") as outfile:
+            json.dump(generations, outfile)
+
+    outs = []
+    for title_author in tqdm(generations.keys()):
+        for j in range(5):
+            passage = generations[title_author]["grounds"][j]
+            prompt_stem = prompts[j]
+            end_hint = prompt_ends[j]
+            prompt_template = (prompt_stem
+                               + " When you're done end with ***DONE***."
+                               + "\n\n"
+                               + "{passage}"
+                               + "<|end|>"
+                               + "\n\n"
+                               + end_hint)
+            prompt = prompt_template.format(title=title_author, passage=passage)
+            outs.append(
+                (title_author,
+                 asyncio.create_task(generate_fn(prompt, context_third)))
+                )
+        # Skip until we have a good concurrent batch going
+        if len(outs) < 40:
+            print("skipped")
+            continue
+        for j in range(len(outs)):
+            title_author, out = outs[j]
+            await out
+            out = out.result().strip()
+            if "***DONE***" in out:
+                out = out.split("***DONE***")[0]
+            generations[title_author]["confabulations"].append(out)
+            print(out)
+        outs = []
+    with open("style_confabulations.json", "w") as outfile:
+        json.dump(generations, outfile)
+
+if __name__ == "__main__":
+    asyncio.run(main())
