@@ -1,7 +1,10 @@
+import os
 import random
 import json
+import csv
 import datasets
 import datasets.distributed
+from tqdm import tqdm
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
 pg19 = datasets.load_dataset("pg19")
@@ -95,10 +98,37 @@ def roll_task_marks(style_mark_roll):
 
 chartoks = 12000
 context_third = 1300
-for title_author in bodies:
-    book_text = pg19["train"]["text"][index[title_author]]
+title_authors = [ta for ta in bodies.keys()]
+random.shuffle(title_authors)
+if os.path.exists("style_passages.json"):
+    with open("style_passages.json") as infile:
+        episodes = json.load(infile)
+else:
+    episodes = []    
+for i, title_author in enumerate(tqdm(title_authors)):
+    if i % 1000 == 0:
+        with open("style_passages.json", "w") as outfile:
+            json.dump(episodes, outfile)
+    try:
+        assert pg19["train"]["short_book_title"][index[title_author]] == title_author
+        book_text = pg19["train"]["text"][index[title_author]]
+        if len(book_text) < chartoks:
+            continue
+            with open("log.txt", "a") as outfile:
+                outfile.write(f"{title_author} was less than chartoks")
+                outfile.flush()
+    # Sometimes this does not result in a valid UTF-8 string -_-
+    except:
+        continue
+        with open("log.txt", "a") as outfile:
+            outfile.write(f"Couldn't process {title_author}, please investigate")
+            outfile.flush()
     for i in range(5):
-        cond_prompt_open = cond_prompts[title_author][i]
+        if title_author in cond_prompts:
+            prompt_open = cond_prompts[title_author][i]
+        else:
+            pick = random.randrange(len(uncond_prompts))
+            prompt_open = uncond_prompts[pick][1]
         excerpt_start = random.randrange(len(book_text) - chartoks)
         passage = book_text[excerpt_start:excerpt_start+chartoks]
         passage = tokenizer.decode(
@@ -107,22 +137,42 @@ for title_author in bodies:
         mark_roll, start_style_mark, end_style_mark = roll_style_marks()
         _, start_task_mark, end_task_mark = roll_task_marks(mark_roll)
         
-        episode = (cond_prompt_open
-                   + "\n\n"
-                   + start_style_mark
-                   + "\n"
-                   + passage
-                   + "\n"
-                   + end_style_mark
-                   + "\n\n"
-                   + start_task_mark
-                   + "\n"
-                   + bodies[title_author]["confabulations"][i]
-                   + "\n"
-                   + end_task_mark
-                   + "\n\n"
-                   + bodies[title_author]["grounds"][i])
-        print(episode)
+        episode = [title_author,
+                   prompt_open,
+                   start_style_mark,
+                   passage,
+                   end_style_mark,
+                   start_task_mark,
+                   bodies[title_author]["confabulations"][i],
+                   end_task_mark,
+                   bodies[title_author]["grounds"][i]]
+        episodes.append(episode)
+        # Wonky characters froze the terminal(???)
+        #print(title_author,
+        #      prompt_open,
+        #      start_style_mark,
+        #      passage[:256],
+        #      "...",
+        #      end_style_mark,
+        #      start_task_mark,
+        #      episode[6][:256],
+        #      "...",
+        #      end_task_mark,
+        #      episode[8][:256],
+        #      "...", sep="\n")
 
-
+with open("retro_style_transfer.tsv", "w") as outfile:
+    outwriter = csv.writer(outfile, dialect='excel-tab')
+    outwriter.writerow(["title_author",
+                        "prompt_open",
+                        "start_style",
+                        "style_passage",
+                        "end_style",
+                        "start_task",
+                        "task_passage",
+                        "end_task",
+                        "ground_truth"])
+    for episode in tqdm(episodes):
+        outwriter.writerow(episode)
+    outfile.flush()
 
