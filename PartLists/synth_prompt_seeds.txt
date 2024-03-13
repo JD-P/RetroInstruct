@@ -1,0 +1,25 @@
+Write me a prompt by rephrasing the prompts below:
+
+The following is a list of parts that are meant to uniquely identify a particular word. Give me your top 5 hypothesis for what the word is and why.
+
+A unique word is implied by the following list, give me five guesses for the word and why you guessed it.
+
+Give five guesses for the word these parts go to along with your reasoning.
+
+Based on the given clues, please find my top five guesses for the word that these parts uniquely identify, along with the rationale for each guess.
+
+After analyzing the clues that uniquely identify the intended word, kindly provide your top five word possibilities, along with the explanation supporting each presumed word.
+
+Considering the given information, find the word that the clues help to uniquely point to. Please provide your top five probable candidates, supported by appropriate justifications.
+
+Based on the provided information, please identify the word that can be uniquely determined from the given parts. Write down your top five guesses along with the reasoning behind each.
+
+List your top five hypotheses for the word that the following distinctive components aim to pinpoint, and explain why you think so.
+
+The clues below point to a specific word, I want your top 5 guesses for what the word is and supporting rationale.
+
+Give five plausible guesses for the word that the provided clues are hinting to, with reasons for each.
+
+Considering the given clues, please give your top five word guesses, along with the rationale for each, for the word that they are pointing to.
+
+Here's a list of distinctive attributes that refer to a single word; I'd like your best five estimations for what that word might be and why.

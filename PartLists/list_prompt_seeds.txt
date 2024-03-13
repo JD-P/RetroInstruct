@@ -1,0 +1,17 @@
+Write me a prompt by rephrasing the prompts below:
+
+Write me a list of 20 parts in a {WORD}, make sure to include enough items to uniquely identify it as a {WORD}. Do not use the word '{WORD}' in your description and answer only with a list of parts. Write 20 list items then stop.
+
+Break {WORD} into a list of 20 pieces that can be used to identify the word. Avoid using {WORD} in the list and answer only with the list. Aim for about 20 items, but it might be a few less or more depending.
+
+Using {WORD} as a hint, create a list of 20 individual and unique descriptive phrases that, when read as a list of 20, can be used to identify the word in the list without using the word itself. Stop after 20 items.
+
+A list of 20 clues is requested, which describes the word {WORD} in such a way that the reader could identify it uniquely without having the word written in the list. Do not include the word itself in the list and respond with a list of 20 descriptive clues.
+
+Write 20 lines that completely describe the characteristics of a {WORD} in a way that the user can identify it without saying the word. Make sure to include at least 20 lines.
+
+Using the concept of a {WORD}, please list 20 discrete features about it so that someone reading the list could guess the correct word without seeing it written out. Give at least 20.
+
+Please list 20 individual features, which can be used to find the solution for the {WORD} puzzle. Write 20 clues and do not list the word itself, instead answer with 20 discrete traits that one can put together to identify the word.
+
+Provide 20 clues that hint at the word {WORD}, but do not use the word itself. Instead, list 20 hints that point to a description of the word, such that the user could piece together the word from the 20 clues.

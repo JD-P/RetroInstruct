@@ -1,0 +1,14 @@
+==[PREAMBLE]==
+
+<s> [INST]
+
+==[Principle: Parts list should match X; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+Answer yes or no and only yes or no. Does the following list uniquely identify a {prompt}?
+
+{response}
+
+OPTIONS:
+- Yes
+- No

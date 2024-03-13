@@ -1,0 +1,12 @@
+==[PREAMBLE]==
+
+<s> [INST]
+
+==[Principle: X should be made of parts; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+Answer yes or no and only yes or no. You are preprocessing data for the prompt "Write me a list of parts in a {WORD}, make sure to include enough items to uniquely identify it as a {WORD}. Do not use the word '{WORD}' in your description and answer only with a list of parts." where {WORD} is the dictionary word that is given to be decomposed into parts. In order for this prompt to work the {WORD} must be interpretable as having or being composed of parts. Keep in mind abstract concepts, organizations, etc are permissible if they can be uniquely identified by their parts. Is the word '{FILTER_WORD}' interpretable as having or being composed of parts?
+
+OPTIONS:
+- Yes
+- No

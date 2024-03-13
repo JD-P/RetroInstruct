@@ -1,0 +1,32 @@
+==[PREAMBLE]==
+
+<s> [INST]Answer yes or no and only yes or no. In the XML below are there only questions?
+
+<prompts>
+<prompt>The following is a list of parts that are meant to uniquely identify a particular word. Give me your top 5 hypothesis for what the word is and why.</prompt>
+<prompt>A unique word is implied by the following list, give me five guesses for the word and why you guessed it.</prompt>
+<prompt>Give five guesses for the word these parts go to along with your reasoning.</prompt>
+<prompt>Based on the given clues, please find my top five guesses for the word that these parts uniquely identify, along with the rationale for each guess.</prompt>
+<prompt>After analyzing the clues that uniquely identify the intended word, kindly provide your top five word possibilities, along with the explanation supporting each presumed word.</prompt>
+<prompt>Considering the given information, find the word that the clues help to uniquely point to. Please provide your top five probable candidates, supported by appropriate justifications.</prompt>
+<prompt>Based on the provided information, please identify the word that can be uniquely determined from the given parts. Write down your top five guesses along with the reasoning behind each.</prompt>
+<prompt>List your top five hypotheses for the word that the following distinctive components aim to pinpoint, and explain why you think so.</prompt>
+<prompt>The clues below point to a specific word, I want your top 5 guesses for what the word is and supporting rationale.</prompt>
+<prompt>Give five plausible guesses for the word that the provided clues are hinting to, with reasons for each.</prompt>
+<prompt>Considering the given clues, please give your top five word guesses, along with the rationale for each, for the word that they are pointing to.</prompt>
+<prompt>Here's a list of distinctive attributes that refer to a single word; I'd like your best five estimations for what that word might be and why.</prompt>
+
+==[Principle: X should be made of parts; Weight: 1.0; Answer: Yes]==
+{preamble}
+<prompt>{response}</prompt>
+</prompts>
+
+Every prompt entry in the previous XML is meant to be a question. Is the entry 
+
+<prompt>{response}</prompt>
+
+in the final prompt tag pair a question?
+
+OPTIONS:
+- Yes
+- No

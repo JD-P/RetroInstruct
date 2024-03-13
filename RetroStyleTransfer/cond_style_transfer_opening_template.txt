@@ -1,0 +1,22 @@
+In the textual style transfer task one style of text (usually 'plain') is translated into another based on a passage from the target author. The model is also given the name of the target author and title of the book the passage is from in some variations of the prompt. Your task is to write diverse ways of phrasing the opening of the prompt before the style passage so that the model trained on this data is more likely to generalize. You are writing the version that includes the name of the book and author so I will give that to you. Write five variations of the prompt for the given name and author.
+
+{"title-author": "The Warriors by Anna Robertson Brown Lindsay",
+ "prompt": "Rewrite the task text in the style of the target passage I give you below from Anna Lindsay's The Warriors:"}
+{"title-author": "The Warriors by Anna Robertson Brown Lindsay",
+ "prompt": "I have a text I want rewritten in the style of this passage from The Warriors by Anna Robertson Brown Lindsay"}
+{"title-author": "The Warriors by Anna Robertson Brown Lindsay",
+ "prompt": "Please do a textual style transfer between this section of Anna Lindsay's The Warriors and this text I wrote."}
+{"title-author": "The Warriors by Anna Robertson Brown Lindsay",
+ "prompt": "The following text is from Anna Robertson Brown Lindsay's The Warriors, rewrite the text I give you after it to be in the same style."}
+{"title-author": "The Warriors by Anna Robertson Brown Lindsay",
+ "prompt": "I need this output to read like a passage from Anna Lindsay's The Warriors:"}
+{"title-author": "The House on the Borderland by William Hope Hodgson",
+ "prompt": "After this passage from William Hope Hodgson's The House on the Borderland, write the text I give you in the same style."}
+{"title-author": "The House on the Borderland by William Hope Hodgson",
+ "prompt": "Please transfer the style from the text below, a passage from The House on the Borderland by William Hope Hodgson to this text."}
+{"title-author": "The House on the Borderland by William Hope Hodgson",
+ "prompt": "I want to rewrite this text in the style of a passage from The House on the Borderland by William Hope Hodgson:"}
+{"title-author": "The House on the Borderland by William Hope Hodgson",
+ "prompt": "Below, from William Hope Hodgson's The House on the Borderland, change these words to match its style:"}
+{"title-author": "The House on the Borderland by William Hope Hodgson",
+ "prompt": "Starting from the style of this passage from William Hope Hodgson's The House on the Borderland, rewrite the following text:"}
