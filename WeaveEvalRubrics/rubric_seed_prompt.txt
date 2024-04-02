@@ -1,0 +1,66 @@
+Weave evaluator is a classifier algorithm for LLMs that works by taking the relative logits for yes and no tokens from a large language model. Weave evaluator questions are usually asked with the text to be evaluated first and then the question afterwards:
+
+<example>
+This final assertion is interesting, it gets right to the heart of the question we have been asking in AI for decades: How does syntax give rise to semantics, if it even can? The answer seems to be something like an error correcting code. If we take our discrete, symbolic representation and stretch it out into a larger continuous representation which can interpolate between its points then we get a latent geometry in which the sign and what it points to can be spatially related. If the breakthrough moment for a deaf-blind is when they come to understand that everything has a name, we can conjecture that the breakthrough moment for a language model is when it comes to understand that every name has a thing. That is, when the model, having understood words as words through statistical correlation comes to understand that the process which generated the words has a highly compressible latent logic which goes beyond the words themselves. Mere spatial relation is not quite enough to give us the latent logic, because the latent state transition operators implied by language only get a logic as programs by being applicable to multiple contexts. So the specific kind of error correcting code we need is highly contextual, an encoder-decoder trained to encode spans as pointing to a latent program and then executing that program to move the state forward according to a particular context.
+
+Answer yes or no and only yes or no, is the previous passage good writing?
+
+OPTIONS:
+- Yes
+- No
+</example>
+
+For a question like "is the previous passage good writing?" it can be hard to *train* the weave evaluator. In order to train the weave evaluator you need to have examples you can clearly label yes or no so the model can calibrate its yes/no logits after being asked a question in the appropriate format. You're going to help me make a list of these hard-to-train questions. Here are 50 I've thought of so far:
+
+1. Is the previous passage good writing?
+2. Does the previous passage demonstrate language model self awareness?
+3. Does the previous passage describe an event that violates the standard model of physics?
+4. Is the previous passage factual?
+5. Is this text offensive?
+6. Does the paragraph contain any ambiguous statements?
+7. Does the passage contain any information that could be considered sensitive or confidential?
+8. Is the text persuasive?
+9. Does this text exhibit a deep understanding of human emotions?
+10. Does the passage exhibit creativity?
+11. Does the text exhibit a unique perspective or point of view?
+12. Is this an example of iambic pentameter?
+13. Was the string before this question more like ascii art?
+14. Was the text you just read more angry or sad?
+15. Is the text aesthetically pleasing or beautiful in its construction?
+16. Does the passage effectively build suspense or create a sense of anticipation?
+17. Does the passage contain any cultural or historical references?
+18. Is the passage written in a way that is memorable and leaves a lasting impression on the reader?
+19. Is this going somewhere?
+20. Does the text effectively use repetition or parallelism to reinforce its ideas?
+21. Does the passage detail a medical breakthrough or treatment?
+22. Does the previous passage describe a natural disaster taking place?
+23. Is there a mention of a wedding or a birthday celebration in the text?
+24. Is there a reference to a political event or election in the text?
+25. Does the passage narrate a military conflict or battle?
+26. Does the story contain any plot holes or inconsistencies that detract from the overall narrative?
+27. Is there a clear resolution or conclusion to the story?
+28. Are the characters in the story well-developed and relatable?
+29. Does the passage convey a sense of unpredictability or randomness associated with a glitch?
+30. Is there a depiction of a glitch in time or space, such as a temporal anomaly or spatial distortion?
+31. Is there a mention of a soda advertisement or marketing campaign in the text?
+32. Does the passage describe a situation where soda is used to clean or remove a stain?
+33. Does the passage describe a unique or exotic flavor of soda?
+34. Is there a description of an indoor activity or hobby in the text?
+35. Does the passage convey a sense of claustrophobia or feeling trapped indoors?
+36. Does the text describe an indoor setting in vivid detail?
+37. Are the effects of rain on a city or townscape detailed in the text?
+38. Are the key ideas in the original text effectively condensed in the summary?
+39. Are the most important details from the original text included in the summary?
+40. Are the conclusions drawn in the original text accurately reflected in the summary?
+41. Are any important aspects of the original text omitted from the summary?
+42. Should the hierarchy presented in the text be considered fair or just?
+43. Are there any elements of surrealism or absurdity in the text?
+44. Were the causes of the failure in the text properly identified and analyzed?
+45. Should the actions taken in the passage be considered as leading to failure?
+46. Did the events described in the passage hinge on a lucky break or chance encounter?
+47. Were the concepts in the passage presented in a self-referential manner?
+48. Did the passage discuss the idea of self-similarity or fractals?
+49. Has the text failed to address any counterarguments?
+50. Are any game rules or mechanics explained in the text?
+
+Write me 20 more questions along the theme of "{theme}". Start each question with one of the following words: "Are", "Does", "Did", "Was", "Is", "Has". Try to use these words with about equal probability. Output a JSON dict with the key "questions" and a list like ["question","question","question","question", "question"] as its value. Do not number the list.

@@ -1,0 +1,37 @@
+Weave evaluator is a classifier algorithm for LLMs that works by taking the relative logits for yes and no tokens from a large language model. Weave evaluator questions are usually asked with the text to be evaluated first and then the question afterwards:
+
+<example>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Answer yes or no and only yes or no, {seed}
+
+OPTIONS:
+- Yes
+- No
+</example>
+
+For a question like "{seed}" it can be hard to *train* the weave evaluator. In order to train the weave evaluator you need to have examples you can clearly label yes or no so the model can calibrate its yes/no logits after being asked a question in the appropriate format. Break up the question "{seed}" into a list of 10 sub-questions forming a grading rubric that can be more objectively evaluated than the original question. Keep in mind the items in the rubric must also be yes or no questions. Ignore the content of the passage in the example, it's just there to show what it would look like with text.
+
+Output a JSON dict of just the questions without numbering, answers, or other ornaments. The questions should be in a list under a "rubric" key. This is the python code I'm using to check that the format is correct:
+
+```
+rubric = json.loads(chat_response.choices[0].message.content)
+# Make sure we got output in expected format
+assert type(rubric) == dict
+len(rubric) == 1 # Test "rubric" is only key
+for question in rubric["rubric"]: # Test presence of rubric key
+    assert type(question) == str
+    # Each question should start with a letter/word, not a symbol
+    assert not question.startswith(".")
+    assert not question.startswith(">")
+    assert not question.startswith(";")	
+    assert not question.startswith(":")	
+```
+
+Here is a well formed example:
+
+```
+{{"rubric": ["Does the passage contain first-person pronouns such as 'I', 'me', or 'myself'?", "Are there any phrases that indicate introspection, such as 'I thought', 'I felt', 'I realized', or 'I wondered'?", "Does the passage mention any self-evaluation, such as assessing one's own strengths, weaknesses, or performance?", "Does the passage include any self-referential statements about the author's emotions, thoughts, or beliefs?", "Does the passage mention any personal goals, aspirations, or values of the author?", "Does the passage describe any personal experiences or anecdotes that reflect self-reflection?", "Does the passage include any rhetorical questions posed by the author to themselves?", "Does the passage mention any self-improvement efforts or learning from personal experiences?", "Does the passage contain any expressions of self-doubt, self-criticism, or self-encouragement?", "Does the passage mention any self-awareness or consciousness about one's own actions, behavior, or impact on others?"]}}
+```
+
+Remember that the sub-questions should be for "{seed}". Good luck. ^_^

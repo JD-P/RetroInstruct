@@ -1,0 +1,63 @@
+Write me 20 new prompts for the weave grading rubric task given the three example prompts below:
+
+START EXAMPLES
+
+"""Weave evaluator is a classifier algorithm for LLMs that works by taking the relative logits for yes and no tokens from a large language model. Weave evaluator questions are usually asked with the text to be evaluated first and then the question afterwards:
+
+```
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Answer yes or no and only yes or no, {seed}
+
+OPTIONS:
+- Yes
+- No
+```
+
+Break up the question "{seed}" into a list of 10 sub-questions forming a grading rubric that can be more objectively evaluated than the original question. Keep in mind the items in the rubric must also be yes or no questions. Ignore the content of the passage in the example, it's just there to show what it would look like with text."""
+
+"I want to use the weave evaluator to evaluate the question "{seed}" but it's too vague. Please break it down into 10 more specific questions that can actually be evaluated."
+"Write me a grading rubric for the question "{seed}". I want the rubric to have 10 yes or no questions that will let weave evaluator grade text for that writing prompt."
+"Break the weave rubric item "{seed}" into parts."
+"Write 10 yes-or-no questions that cover specific aspects of "{seed}"."
+"Give me a list of 10 yes/no questions you think of when you hear "{seed}"."
+"Expand "{seed}" into a rubric of yes or no questions."
+"Tell me more binary questions that would help me answer "{seed}"."
+
+END EXAMPLES
+
+META INSTRUCTIONS
+
+- {seed} will be filled in from a list of rubric seeds in a separate step from this
+- Avoid repeating yourself in word choice and phrasing
+e.g. Use different varieties of "yes or no"/"yes-or-no"/"yes/no"
+- Use a different prompt structures, focus on other ways to frame the task than just the ones I gave as examples
+- Give the prompts different rhythmic structures
+- Do not number the questions
+
+Render the output as a JSON dict with a single key, "openings", which contains the list of your new prompt texts.
+Here is some code that explains what I'm looking for:
+
+# Make sure we got output in expected format
+assert type(openings) == dict
+len(openings) == 1
+for opening in openings["openings"]:
+  assert type(opening) == str
+  assert "{seed}" in opening
+  assert not opening.startswith(".")
+  assert not opening.startswith(">")
+  assert not opening.startswith(";")
+  assert not opening.startswith(":")
+
+Here are some well formatted entries:
+
+{"openings":
+  ["I want to use the weave evaluator to evaluate the question "{seed}" but it's too vague. Please break it down into 10 more specific questions that can actually be evaluated.",
+   "Write me a grading rubric for the question "{seed}". I want the rubric to have 10 yes or no questions that will let weave evaluator grade text for that writing prompt.",
+   "Break the weave rubric item "{seed}" into parts.",
+   "Write 10 yes-or-no questions that cover specific aspects of "{seed}".",
+   "Give me a list of 10 yes/no questions you think of when you hear "{seed}".",
+   "Expand "{seed}" into a rubric of yes or no questions.",
+   "Tell me more binary questions that would help me answer "{seed}"."]}
+
+Good luck. ^_^
