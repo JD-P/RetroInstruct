@@ -283,8 +283,8 @@ that GPT can occur in the physical universe in the first place) it becomes
 intuitive that we have the option of storing a mind as either text or weights.
 More formally it becomes intutive that text is a holographic (i.e. continuous,
 highly compressed, distributed, [fractal](https://arxiv.org/abs/2402.01825), lower dimensional)
-projection of mental representations and their motions into 1D space. With a
-sufficient corpus of these encoded thoughts it is possible to pool them into
+[projection of mental representations and their motions into 1D space](https://twitter.com/jd_pressman/status/1763683746862227895).
+With a sufficient corpus of these encoded thoughts it is possible to pool them into
 a mind (if not *the* mind) that thinks them. From an information theoretic
 standpoint we can say that the [implied lossy-transformed subset of the training
 corpus](https://arxiv.org/abs/1811.10959) which the models generators encode and
