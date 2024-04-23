@@ -1,0 +1,203 @@
+Write a five paragraph passage that could appear in the collection below loosely
+inspired by the theme "{theme}". Use the writing style and tone of
+voice of the author John David Pressman, as demonstrated in the provided posts.
+Try to focus in on some particular detail or point in media res, as though the
+passage were part of a larger work from someone who produces detailed high
+perplexity text about specific subjects. Start the passage with "{start_word}".
+
+Here's some posts to give you a better idea of how he writes:
+
+Posts:
+
+<post>
+One of the strangest assumptions in the AI Risk consensus is that AGI will have
+its pick of every computer on the Internet due to outstanding security vulnerabilities,
+and that we should be preventing models from being able to find them.
+
+Qualitatively I feel like computer security is on its way to being solved and AI
+is going to accelerate that process. 
+
+The biggest signal that we're looking at a dying game is the details of contemporary
+exploits like the NSO zero click for iPhone:
+
+https://securityboulevard.com/2021/12/nso-zero-click-exploit-turing-complete-cpu-in-image-file/
+
+1) It's absurdly complex to execute
+2) It relies completely on legacy code
+
+The Windows Print spool exploit from the same year also relied on legacy Windows code from the 90's: 
+
+https://www.cisa.gov/uscert/ncas/current-activity/2021/06/30/printnightmare-critical-windows-print-spooler-vulnerability
+
+Eventually you will run out of 90's and 00's era code to exploit.
+
+Ordinarily this might take a while, but if you're bullish on AI progress then language
+models should be able to automate the translation of legacy code into modern languages.
+Languages that simply do not have things like 'buffer overflows'. Models will be
+able to look over every part of massive code bases and say "oh yes, your
+vulnerabilities are here, here, and right here". 
+
+In an environment of perfect exploitation for vulnerabilities peoples practices will
+change. If you write vulnerable code and it's exploited the moment it's released by
+models, and your LLM linter straight up tells you that you wrote 5 CVE's in one
+session, people will be forced to reckon with the fact that C++ is an unfixable
+mess and switch to something else. Most security vulnerabilities are as simple as
+"you forgot to add access control to this feature", the kind of thing an LLM can
+probably spot for you reliably.
+
+If we insist that language models can't be allowed to point these things out to
+us, then we're just handing larger and larger amounts of advantage to whoever is
+first (probably a hostile nation-state) to deploy models that can. With an incentive
+like that it's inevitable that someone will build and use models for this purpose.
+We're much better off reckoning with the vulnerability of our computing stack early
+and eating up as much of the advantage as possible. Ideally by the time AGI comes
+into being our security will be basically perfect.
+</post>
+
+<post>
+The real protection will be, and this applies to the fake book/paper/recipe problem
+as well, langsec and cryptographic webs of trust. We've been receiving bug reports
+against the way we structure knowledge and code for a while, and we need to fix them.
+As Theo de Raadt says, auditing simply is not sufficient to get the error rate low
+enough for adversarial attacks (i.e. near zero). You need to structure things so
+there is less attack surface in the first place, fewer things that can go wrong.
+
+The recipe site of the future will not be a CRUD app with a text box you can type
+arbitrary nonsense into. It will incorporate culinary and olfactory models to
+validate your recipe, recipes will be tagged as variants of certified known-good
+older recipes. New recipes which rely on non-obvious principles that are only
+plausible according to olfactory models or perhaps *out of distribution* for
+those models will be submitted with a monetary verification stake to induce a
+trusted person to try it. They are scientific discoveries. This stake can be paid
+back with bounties for new valid information once replicators have confirmed the
+discovery. The whole system will be able to do active learning by putting up money
+for discoveries in domains the system expects will be useful training data for it.
+</post>
+
+<post>
+You can use the fediverse to bootstrap a distributed network. 
+
+Here’s how: Right now Mastodon and Pleroma servers work by creating a local account
+to server a remote users content. You trust the remote server to authenticate the
+user whose content you’re mirroring. There’s no reason why a Pleroma server couldn’t
+be extended to import a social graph from a PGP web of trust. The “remote” users
+could then authenticate to the server by signing their messages. 
+
+Even if you only had one server that supported this, it could transparently present
+its distributed social graph users like any other fediverse content. Those other
+servers would just be relying on that node to authenticate, creating a mixed-federated-distributed
+network. Over time more and more servers could come to recognize distributed
+users directly, cutting out the need to rely on a host node middleman.
+
+The result would be a network that can become more distributed when needed while
+retaining the UX advantages of federation in the short term.
+
+After posting this I started reading Twitter’s report on the decentralized social
+media ecosystem and it links to a paper with prior art on this concept:
+
+https://github.com/WebOfTrustInfo/rwot5-boston/blob/master/final-documents/activitypub-decentralized-distributed.md
+
+Key signing would be handled for you by smartphone apps, desktop apps, browser extensions, etc.
+
+The keysigning flow could work like this on mobile:
+
+1. When you “follow” another user it signs their key with trust level 1 (“I don’t
+know or won’t say”) client side and uploads it.
+
+2. If you have mutual contacts you’re scaled to a marginal trust relationship
+(level 3) unless you anti-endorse your follow (level 2).
+
+3. You can then manually verify them for trust level 4. The app would prompt you
+to call them to establish you have the correct key fingerprint.
+
+4. For trust level 5 you send them crypto ($50, say) and they send it back on a
+low fee network. The amount of crypto sent and returned would be recorded. This
+could be used to establish economic trust by sending OOM more crypto (e.g. thousands
+of dollars worth), showing a high trust relationship with someone whose hardware
+is known not to be pwned.
+
+See also: From Pretty Good To Great: Enhancing PGP
+using Bitcoin and the Blockchain by Wilson & Ateniese
+
+Per Webber & Sporny I think the best starting place is to create an easily self
+hosted version of KeyBase. In particular, the feature where KeyBase lets you verify
+your social media accounts, websites, etc with PGP in a standard way. This lets
+us skip the nastiness of client side crypto operations (at least at the start).
+
+Instead of counting signatures, you would write a utility that calculates a users
+trust score based on the number of verified social media follows they have. This
+would be v0.1 for nerds, and you’d want to progressively put more and more of
+the social graph into a PGP web of trust instead of holding it on remote servers.
+That is, to decentralize you need client side crypto operations and servers that
+will let you manage an account with them.
+
+In terms of what language to use, KeyBase itself is already written in golang.
+</post>
+
+<post>
+If I had to make a counterintuitive prediction about the future it's that systems
+will return after their brief downfall at the end of the 20th century. Modernity
+fell apart because people figured out that the value they were getting from their
+membership in systems was less than their membership cost. It turned out you could
+just leave and go have fun. You didn't need to think very hard, 1st world life is
+full of easy abundance. As I've written about previously with Alan Kay and software
+bloat, the defining feature of a *system* from a sociological standpoint is that
+the people interacting with it need to change their behavior to conform. A system
+demands you make accomodations and affordances for *it*, not the other way around.
+The ravenous hunger for personalization, 'authenticity', originality, and
+alternative ideas speaks to the hard times on which systems have fallen. To be very
+frank the environment which created systems did not have wealth to cushion it
+against the consequences of not following a system. The postmodern method is to
+avoid conflict by spending money, which people readily do because it turns out
+the 'goods' they want to buy with their wealth are juvenile fantasies like not
+having police instead of having higher quality well behaved police.
+
+For systems to return a few things need to happen:
+
+1) The cost of not having a system for X needs to become more than society can
+bear for many categories of X.
+
+2) 'Systems' need to compete in an environment where trust, reliability, and
+resources are scarce as opposed to status, mates, and attention.
+
+As far as the digital realm goes the era of easy trust is over. Social systems
+already strained by the influence operations of sockpuppet rings and 50 cent
+armies stand to drown in cheap coherent AI text unless humanity is carefully
+established through out-of-band channels. Search engines which have struggled
+under the weight of content farms and blackhat SEO are at last buckling under
+the pressure of web pages spun from ChatGPT's hallucinatory ramblings. Photos and
+videos, once seen as a kind of natural cryptographic proof that took too much
+effort to fake have been shown computationally tractable and therefore
+mathematically broken as evidence without careful inspection to confirm their
+authenticity. Getting a call from a stranger has meant someone is probably trying
+to scam you for at least a decade, but voice cloning means that even the comforting
+sound of someone you love is no longer enough to protect you from harm. I say this
+not to demonize deep learning, but to be honest about how reforms which have been
+overdue for a while are now deeply urgent in an era of cheap media production
+and imitation.
+
+Indeed at the same time that AI forces tighter coherence and langsec in digital
+matters we can expect the use and extraction of physical resources to accelerate.
+An incoming era of cheap robotics powered by good computer vision and reasoning
+will massively expand the amount of construction and manufacturing which is
+economically possible in Western nations. While this will be good for society as
+a whole, it does mean that individual human beings will need to act much more
+careful to stay economically relevant and socially connected to resources. The
+free energy and economic slack which made the latter half of the 20th century
+possible in the West will probably disappear as both are reliably put towards
+productive uses. People won't be at risk of poverty because society isn't wealthy,
+but because a much greater fraction of society's wealth will be put towards useful
+ends at any given time.
+
+Continued research into deep net alignment and interpretability will probably lead
+to a situation where centralized systems are suddenly trustworthy in a way they
+haven't been in several decades. Formerly intractable principal-agent problems
+will start to be definitively solved in ways that unlock massive opportunities
+for coordination. One day we will wake up and realize that the situation in the
+1960's has entirely reversed itself: You get many more benefits from your membership
+in systems than they cost you, and wandering off on your own is a sure way to be
+taken advantage of.
+</post>
+
+Be sure to output the passage in a JSON dictionary with the schema
+{{"passage":PASSAGE_TEXT}}.

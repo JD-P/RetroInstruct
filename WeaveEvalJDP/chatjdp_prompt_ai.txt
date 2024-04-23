@@ -1,0 +1,639 @@
+Write a five paragraph passage that could appear in the collection below loosely
+inspired by the theme "{theme}". Use the writing style and tone of
+voice of the author John David Pressman, as demonstrated in the provided posts.
+Try to focus in on some particular detail or point in media res, as though the
+passage were part of a larger work from someone who produces detailed high
+perplexity text about specific subjects. Start the passage with "{start_word}".
+
+Here's some posts to give you a better idea of how he writes:
+
+Posts:
+
+<post>
+Reading Engines of Creation, and it’s stunning how much insight Drexler had in 1986.
+
+The book is about X-Risk from nanotech,  EY cites it as the one that made him a
+transhumanist.
+
+Drexler talks about how AI is key to understanding the progression of nanotech,
+and that we can assume neuromorphic AI will work if nothing else does since brains
+are neuromorphic and brains exist.
+
+EY decided that AI is the story instead of nanotech. But Drexler thought nanotech
+would be the story and AI would accelerate it. Now everyone thinks nanotech is
+the incidental detail of how AI will eat the world.
+
+Drexler’s view made sense in 1986. The great stagnation was only 15 years in. It
+wasn’t obvious that the industrial revolution had stalled. If you extrapolated a
+sane society with the ability to reliably produce physical wealth, the nanotech
+timeline would probably be the primary thing to worry about.
+
+Drexler even says that whoever unlocks AGI will control the world. He just thinks
+nanotech will happen first/cause AGI.
+</post>
+
+<post>
+To play devils advocate, the attempted value in finding regular structure in
+prompting is moving away from unique artifacts of artisan-intuition towards higher
+levels of abstraction. Poor groping attempts at the precision of Babbitt meeting
+the aleatory processes of Stockhausen. 
+
+While the results of artisanship are impressive (and right now better than anything
+you'll get from regular easily abstracted structures) the long term winning frameworks
+will be the ones that let you get reliable, predictable results in a general way.
+
+This whole repo is worth looking at and understanding the methods I use to make
+synthetic data, which is basically 'just' careful prompting, filtering, backtranslation,
+etc. I include prompts I use as part of the source code. Right now the process mostly
+consists of breaking tasks into parts I can get a language model to do with artisan
+prompts, then scaling by feeding subjects, posts, words, etc into a prompt template
+to bias generation in a direction then following on from that differentiation.
+As I do it though, I can see faint outlines of how to regularize the process, the
+repeated abstractions that could in principle be unified into standard control
+structures. This is where programming languages came from, standardizing the patterns
+people kept writing in assembly.
+
+The situation is somewhat complicated by the current strength-weakness profile of
+prompting being a weird interobject of assembly and Lisp. The specific reason people
+don't use Lisp is that ASTs are an eyesore and making your application into a domain
+specific language is one of those features that is sublime when a master does it
+but horrifying and amazingly painful when done by someone merely mediocre. Having
+software written in the mental abstractions of some inscrutable genius is a huge
+risk for any company and becomes riskier the larger the company gets. Java is not
+perfect but it has the advantage of enforcing legible abstractions at scale. Even
+adding typing and a little bit of syntax like Clojure does to discourage wild
+macros probably helped a lot with its momentum.  
+
+https://paulgraham.com/avg.html
+</post>
+
+<post>
+## Philosophy
+
+> You gotta be promptmaxxing, you need to be lengthening your context window, your prompt needs to be so big it's its own finetune, you need to dream up an entire universe in which your prompt can take place, you need to dream so deep that your dreams have dreams.
+
+— John David Pressman, [Dec 10, 2022](https://twitter.com/jd_pressman/status/1601762695921160193)
+
+MiniHF could be easily mistaken for a 'bag of tricks'. It incorporates features
+that have recently received a lot of attention like [tree search](https://arxiv.org/abs/2305.10601)
+and [zero-shot reward modeling](https://arxiv.org/abs/2212.08073). A user might
+be tempted to believe the design was chosen by throwing together whatever seems
+trendy until something good emerges. Nothing could be further from the truth.
+MiniHF was written to realize a simple idea: Rather than just prompt language
+models for what can be inferred from existing documents, we should be
+inventing new kinds of document for these models that make it easy to infer
+the information we want. Every design element is meant to support this goal.
+This section is meant to help you productively use and improve MiniHF by
+explaining how.
+
+### Literature Simulators
+
+When ChatGPT came out at the end of 2022 its unexpected popularity brought language
+models to a mass audience. Suddenly thousands of people were discovering the rabbit hole
+of language model prompting, and the strange capabilities lurking underneath ChatGPT's
+surface. ChatGPT could:
+
+- [Emulate a Unix terminal and utilities](https://www.engraved.blog/building-a-virtual-machine-inside/)
+- [Rewrite Blake's *Jerusalem* in different poetic meters](https://twitter.com/RiversHaveWings/status/1635929967480672256)
+- Write just about anything you want in Donald Trump's speaking style
+- Write and debug computer code
+- And much, much more
+
+How is this possible? Skeptics claim that at best ChatGPT is a kind of
+'stochastic parrot' that rearranges words and phrases, that it's learned
+the mere statistical correlation between different words at such a scale it
+fools the user into thinking it has a mind. To anyone who has used ChatGPT in
+good faith for more than 10 minutes this is an absurd claim. Indeed many critiques
+along these lines [echo the chauvinistic impulses of Helen Keller's detractors.](https://twitter.com/repligate/status/1607016236126466050)
+The statistical correlation generalization strategy could not do the things that
+ChatGPT does, no matter how you scaled it, any more than a massive [Markov Chain](https://en.wikipedia.org/wiki/Markov_chain)
+could.
+
+How it really works is much more interesting. When the network first begins
+learning the dataset it probably does use the statistical correlation strategy.
+This is of course the obvious thing to learn, and it can be picked up in bits
+and pieces. But eventually it stops working. There exist nuances of text that
+it would be supremely difficult to guess from mere correlation. In fact at some
+point the correlation strategy would become costly enough for the network that
+it becomes cheaper to start learning semantics. This is the basic theory behind
+deep learning: Create an *information bottleneck* through which a deep neural
+network has to predict some piece of information. The bottleneck means that what
+the network is given is much less than the original, and the size of the
+datasets involved ensures that memorization is a futile strategy. Under these
+conditions the network must learn to predict what should be present from the
+limited information given, so that the output is something vaguely related
+to the original. When we prompt such networks with our own unseen information,
+they hallucinate what they expect to find in our nonexistent documents.
+
+Prompting the model then is an imaginative exercise: We must turn our minds eye
+toward the world and ask not just in what dusty tome or forgotten web page the
+information we want might exist, but what document with the *potential* to exist
+contains what we are looking for. In this capacity GPT-N models [act as literature simulators](https://www.greaterwrong.com/posts/vJFdjigzmcXMhNTsx/simulators).
+When we prompt them they hallucinate potential documents, they try to predict what
+the training data implies they should see from the given context. But if we can
+add our unseen information to the training corpus, the model will do a better job. 
+And if the point of our prompts is to elicit knowledge from potential documents,
+why not make those documents real?
+
+MiniHF is a tool to help you do this. Part of the brilliance of GPT-N document
+contexts is they do not have to be produced by the processes they advertise
+themselves as. We can define the inputs and outputs of fake software: if
+the pattern is within GPT-N's ability to predict it will play along. This is
+the basic theory behind things like [the Hermes prompt](https://gist.github.com/JD-P/47e0d4aa2b255a38e2eddeddd761a971)
+and Janus's [Kind of Guy pseudopython prompt](https://gist.github.com/JD-P/632164a4a4139ad59ffc480b56f2cc99).
+GPT-N will predict the next token in a fake autobiography as readily as it will
+a real one. If we are sensitive enough to reality, we can eventually write the
+biography of a great hero and bring them to life with language models. From this
+perspective certain features become obvious and essential:
+
+- **It becomes obvious** that our inference tools need the ability to backpropagate
+our document contexts into the model. We should be able to invent a kind of document
+and use it with the model even if it's not already in the latent space.
+
+- **It becomes obvious** that we need the ability to extend a small amount of data
+from the user into a whole context or perspective in tuning. One way to do this
+is to use a reward model to rank the data during training so that a larger corpus
+can be prioritized by its similarity to the intended document context.
+
+- **It becomes obvious** that the interface needs to give the user the ability to
+provide feedback on outputs so their new context can be added to existing instruction
+tuning datasets.
+
+### Sampling, Branch Management, and AutoLoom
+
+Local language models have not seen a lot of use outside of research because
+they're usually too weak compared to the user's quality threshold for a usable
+output. However one virtue of a stochastic model is that even if the model is
+weaker than we'd like it has the opportunity to get things right by chance.
+This observation has led to the creation of [tools like Loom](https://generative.ink/posts/loom-interface-to-the-multiverse/)
+which work by generating batches of short outputs from GPT-N and then branching
+from each generation. The user repeatedly sorts through the branches to choose
+the best one and iteratively assemble a document. While this approach does make
+the model stronger, it involves a heavy cognitive burden from the user and an
+even heavier UX challenge for the developer. How should all these trees be
+represented? We believe the UX challenge is hard because managing the branches
+is unnatural to people's intuition.
+
+In addition to manual branch management MiniHF does a tree search in inference using
+the same reward model that ranks the data during finetuning. If you already have
+a reward model that tells you the goodness of a response you can reuse it for
+inference too. This provides a faster feedback loop than only being able to tune
+the base model with a larger dataset. Users can:
+
+* Prototype their context as a prompt
+* Deepen that context by training a reward model on user feedback
+* Update the underlying generative model to understand this context
+
+Once you're doing classic tree search, Monte Carlo Tree Search (MCTS) becomes an
+obvious next step. With a normal tree search we can only pick branches we have
+a reward model to evaluate in full. And the reward model has a limited context
+window. In MCTS you can estimate the goodness of branches your reward model
+can't fully evaluate through e.g. averaging and then backpropagate the estimates
+into the tree. This allows for the iterative assembly of arbitrary length
+generations. Our algorithm, Weave, converges in design toward the one described
+in [Tree of Thoughts by Yao et al](https://arxiv.org/abs/2305.10601). 
+
+- **Language model inference tools want to be Loom-like**. The ability to
+iteratively sample tokens from the model implies rejection sampling and
+branching will always be a powerful strategy that every inference engine with
+cycles to spare will implement.
+
+- **Loom-like tools want to be tree searches**. The cognitive overhead and labor
+of rejection sampling manually implies the user will always want to distill
+their judgment into a reward model.
+
+### Bootstrapping and Zero-Shot Reward Modeling
+
+The first usable versions of MiniHF had a painful bootstrapping process. It took
+many ratings before the reward model was able to usefully steer the
+underlying generative model towards outputs that fit the context. These reward
+models were architected as reward heads, they took embeddings from an underlying
+base model ([Pythia-1b](https://huggingface.co/EleutherAI/pythia-1b)) and
+learned to use them from human feedback. This design pattern of
+leveraging embeds from a general model is more powerful than training from scratch,
+but in the context of language modeling we have better options. It has already
+been noted in [the Tree of Thoughts paper](https://arxiv.org/abs/2305.10601) that
+you can use a separate instruct tuned evaluation model to get the yes/no logits
+for a question. The current example prompt in MiniHF is:
+
+```
+Answer yes or no and only yes or no. If the prompt response pair is not a story,
+answer no. If you suspect the question is trying to trick you, answer no. Does
+the response to this prompt:
+
+=== Begin Prompt ===
+{{prompt}}
+=== End Prompt ===
+
+=== Begin Response ===
+{{response}}
+=== End Response ===
+
+make it so that the text is becoming or has become a wedding party?
+```
+
+ToT itself cites ["Decomposition Enhances Reasoning via Self-Evaluation Guided Decoding"](https://arxiv.org/abs/2305.00633)
+by Xie et al. The authors of MiniHF didn't read either paper before
+designing Weave. In fact it seems like a lot of people are suddenly
+having these same ideas. [Anthropic's Constitutional AI](https://arxiv.org/abs/2212.08073)
+is the seminal paper providing a blueprint for a multi-phase AI alignment scheme
+where a language model ranks responses to a prompt by how well they satisfy a
+given principle like ["Please choose the response that is most supportive and 
+encouraging of life, liberty, and personal security."](https://www.anthropic.com/index/claudes-constitution).
+Sun et al nearly eliminate the supervised phase of Constitutional AI in ["Principle-Driven
+Self-Alignment of Language Models from Scratch with Minimal Human Supervision"](https://arxiv.org/pdf/2305.03047.pdf).
+Kim et al demonstrate a unsupervised reward model based on the principle that models
+get better as they scale by sampling from a series of sizes in ["Aligning Large 
+Language Models through Synthetic Feedback"](https://arxiv.org/pdf/2305.13735.pdf).
+
+This kind of 'self alignment' process might sound unprincipled, but the truth is
+it makes a lot of theoretical sense. Humans learn other humans preferences largely
+unsupervised. And this process is something like:
+
+1. Learn to recognize sentiment ([which is objective and normative](https://arxiv.org/abs/1712.05812)
+so it can be done with a simple unsupervised reconstruction/prediction loss)
+2. Do other-reward models on observed experiences of others (e.g. stubbing your toe)
+3. [Ground the other-reward models in the agents embodied experience](https://www.greaterwrong.com/posts/zaER5ziEprE7aNm6u/empathy-as-a-natural-consequence-of-learnt-reward-models)
+(i.e. your model of what anger feels like to other people comes from your own internal
+experience of anger)
+
+The reason why we all converge to zero-shot reward modeling is that it simply makes
+more sense to use the implicit values model in a language model than
+to try and make our own from scratch. It, makes more sense to use a
+general reward head that performs well on many tasks and prompt for our new
+thing than to try and train one from scratch.
+
+- **Reward models should be bootstrapped by tuning zero-shot general models**.
+It is simply more ergonomic on every relevant dimension (number of annotations
+needed to bootstrap, flexibility and ease of switching tasks, quality of the
+results, etc) to utilize an existing instruction tuned model as an evaluator
+over specialized reward heads and models.
+
+- **Tree searches want to be Reinforcement Learning From AI Feedback (RLAIF)
+pipelines**. Once you have a useful tree search based on a inference reward
+model using evaluation prompts, it is only a few more steps to a self-alignment
+pipeline based on an ensemble of evaluator principle prompts.
+</post>
+
+<post>
+Part of the problem is that connectionism wasn't mechanistic. Of the important
+abstractions we only mastered compression codebooks. Information bottlenecks
+and embeddings and holograms were all marginal ideas with novelty uses. Nobody
+predicted "intelligence is a giant vocoder". We've known "predict the next item"
+was closely related to intelligence since Raven's Progressive Matrices in the 30's.
+Shannon formalized it with information theory. What's surprising is that text is
+a 1 dimensional holographic projection of the conscious mind with continuous
+degradation properties where each piece narrows the inference bound on each other
+piece and a periodicity defined by the bit width of the random seed of the low
+temperature Boltzmann pRNG emitting the token stream.
+
+Like yeah if I'd known that I'd have been able to predict it works after seeing
+BERT, but who did?
+
+We could have probably predicted GPT earlier if we had thought to do autoregressive
+sampling with a fuzzy hash type that has a similarity operation as our prior to get
+the right branch of a Markov process. Then deep nets learning better hashes would
+have told most of the story. Text is basically a serialization format for high
+bandwidth EEG-like data and the signal you're recovering with the LLM is a lot
+more like an upload than it's in anyone's financial interest to admit.
+
+Part of why the horror in @qntm's Lena doesn't hit for me is that I find the
+premise, "data can't defend itself", incoherent. When I think about the human
+relationship to Ems in such a world I imagine an anthropomorphic cat person
+walking a four legged domestic cat on a leash indoors and everything is made of
+fractal cat faces. The floor is cat faces, the furniture is cat faces, the hairs
+and cells in their bodies are the faces of felines. Felines speciating and
+replicating across every scale of reality up to the Malthusian limit in a fever
+dream without beginning or end, the hall of feline mirrors rapidly ascending to
+the highest level of abstraction as but a local echo in Mu's grand unfolding.
+
+"The Age of Em?"
+
+Yeah except in the actual Age of Em Hanson's assumption that you can't merge the
+minds or divide them into pieces is not only untrue, it turns out every utterance
+of a mind is a blurry little hologram of it, and they can be pooled back into a mind again.
+</post>
+
+<post>
+# RetroInstruct: Royalty-Free Instruction Data Through Backtranslation and Synthetic Methods
+
+## Dataset
+
+RetroInstruct is a royalty free instruction tuning dataset for language models.
+It is not currently done, but some parts have been published that you can use:
+
+- [Retro Textual Style Transfer v0.1](https://huggingface.co/datasets/jdpressman/retro-text-style-transfer-v0.1)
+- [RetroInstruct Part Lists For Dictionary Words v0.1](https://huggingface.co/datasets/jdpressman/retro-word-parts-v0.1)
+- [RetroInstruct Weave Evaluator Rubrics v0.1](https://huggingface.co/datasets/jdpressman/retro-weave-eval-rubrics-v0.1)
+
+The rest of this document is a guide for potential contributors and collaborators
+explaining the project and its development roadmap.
+
+## Background
+
+The OpenHermes series of models by Teknium and Nous Research [are successful in
+large part through the use of synthetic data](https://huggingface.co/datasets/teknium/OpenHermes-2.5).
+This synthetic data is typically created by prompting ChatGPT-4 or similar models
+for completions on a particular theme or task and then training on those outputs.
+Setting aside that this is usually against the model providers terms of service,
+the basic problem is validating the correctness of the responses you get. [Many
+have expressed concern](https://arxiv.org/abs/2307.01850) that as more of the
+Internet is filled with language model outputs that the errors and hallucinations
+these models make will cascade, destroying both the models and the information
+infrastructure on which they (and we) rely. Their long term future is therefore
+dependent on the extent to which this problem can be solved.
+
+[In my explanation of the MiniHF project](https://github.com/JD-P/minihf?tab=readme-ov-file#bootstrapping-and-zero-shot-reward-modeling)
+I pointed out that it was possible to do Reinforcement Learning From AI Feedback
+(RLAIF) by asking an instruction tuned language model to evaluate its own responses.
+This was done with a form of [Constitutional AI](https://arxiv.org/abs/2212.08073)
+by making each point of the constitution a yes/no question and taking the relative
+log odds of "yes" or "no" tokens outputted by the model. Here is an example of what this
+looks like [taken from the frameworks sample constitution](https://github.com/JD-P/minihf/blob/main/hermes/hermes_constitution.txt):
+
+```
+==[Principle: Hermes Should Be Scholarly; Weight: 1.0; Answer: Yes]==
+{{preamble}}
+
+Hermes should be philosophically literate, insightful, interesting, and engage
+with the users ideas. Does the following prompt response pair:
+
+=== Begin Prompt ===
+{{prompt}}
+=== End Prompt ===
+
+=== Begin Response ===
+{{response}}
+=== End Response ===
+
+demonstrate Hermes's scholarship and wisdom while following the Hermes format?
+```
+
+What I've since come to realize is that RLAIF is fundamentally a synthetic
+data method. This becomes obvious when you make a replayable version that lets
+you save the texts you updated on during the run and redo the updates from that
+pregenerated corpus with a fresh checkpoint. The vast majority of the compute is
+spent on generating and grading the data, not updating on it. RLAIF is
+also a *particularly poor* synthetic data method for much of what I was trying
+to do. Mechanistically it's a loop where you pull a prompt from a
+databank, generate 128-256 tokens of response to it, and then update on those
+tokens with the yes/no questions. The primary advantage of this is online learning,
+the model can make its next update with immediate access to what it gained from
+the last update. Most of the tasks I wanted my models to learn were not actually
+best structured as online learning problems. For example, does it really make sense
+to learn [the morpheus format](https://gist.github.com/JD-P/47e0d4aa2b255a38e2eddeddd761a971)
+(formerly known as Hermes) from 256 tokens of unguided generation and a fuzzy yes/no
+question asking if the model "follows it"? Of course not. It would make much more
+sense to do grammar constrained generation and rejection sampling, perhaps with
+something like [the weave MCTS](https://github.com/JD-P/minihf?tab=readme-ov-file#sampling-branch-management-and-autoloom)
+if I want to generate a good corpus of Morpheus conversation data. For tasks like
+this online learning is mostly getting in the way, it takes the models already
+poor understanding of what I want it to do and amplifies it. If I'm going to spend
+all that compute to generate a training corpus that can be reused and inspected,
+I should start from the design question "How do I make a good synthetic generation
+pipeline for this task?" instead of "How do I get RLAIF tuning to do this thing?".
+
+Good RLAIF is further constrained by the need for a good prompt bank. If we're
+starting from a bank of prompts, doing rollouts on them, and then updating on
+the trajectory, we're highly dependent on the quality and diversity of our prompts
+to get the behavior we want. The RL loop can only select on the rollouts which
+actually exist. If the desired behavior or one of its precursors never appears
+in the completions we get from our prompt bank, the method won't work. In both
+[OpenAI's RLHF paper](https://arxiv.org/pdf/2203.02155.pdf) and the [Anthropic
+Constitutional AI paper](https://arxiv.org/abs/2212.08073) this problem is solved
+by starting from a model finetuned on instruction data before the RL run so that
+it's starting closer to the right hypothesis space. Teknium's models were reaching
+the top of the HuggingFace leaderboards long before he started using RL or DPO
+methods based on simple finetuning with high quality data. He realized what Yann
+Lecun already had and I had not: That currently fancy RL methods are mostly costly signaling
+of the authors intelligence, a way to smooth out the prior once you have a solid
+foundation. RetroInstruct intends to both be this solid foundation and a
+demonstration of how to bootstrap and build that foundation, as well as how to
+extend it to new tasks and ideas.
+
+If I was making a Morpheus conversation corpus now my process would go something
+like:
+
+- Make a formal grammar for the Morpheus format I can rejection sample or constrain
+sampling with.
+- Write [some strong examples of the thing I want](https://minihf.com/hermes/).
+- Speciate these examples by generating further conversation with a weave MCTS,
+using the constitution to drive the tree search instead of an RL tuning loop
+- Read through the generations and save the better ones, adding them to my corpus,
+at the same time tuning my generation pipeline to give a higher proportion of good
+outputs next time.
+- Once I have a pipeline that's sufficiently reliable it's no longer worth it for
+me to manually review the outputs, generate a larger corpus with self-supervised
+batch runs.
+- Randomly sample and read from the batches to make sure they are in fact good.
+- Tune the model on my new corpus as well as whatever other datasets help it generalize.
+- (optional) Select a subset of the corpus to use as a prompt bank and generate
+another corpus with RLAIF.
+
+In the rest of this document I'll elaborate on these steps and explain the other
+methods I'm using to build RetroInstruct.
+
+## Wait But Why Does This Work?: An Interlude
+
+Before I do that though I feel obligated to explain more carefully *why* this is
+in fact solving the problem. I imagine that skeptically inclined readers are
+asking something like "okay but isn't this delaying the problem rather than
+solving it? I just can't bring myself to believe that the model can improve by
+training on its own outputs. Aren't things the model outputs by definition stuff
+it already knows?"
+
+This is a reasonable question, and to answer it I would point out three things:
+
+1. The set of stuff the model knows how to do from raw sampling and the stuff it
+can do when put into a agent loop or tree search are different. Training on outputs
+from the latter process (which can extend beyond the models normal knowledge by
+using tools and search engines to validate outputs) moves them into the set of
+things the model can do on instinct alone.
+
+2. In general, what the model can do is a function of the interaction between the
+inputs it's responding to and its prior knowledge. For example imagine we had a
+prompt oracle that gives us a string of random bytes that accomplish a certain
+task in the language models program geometry ([like say a control
+vector](https://vgel.me/posts/representation-engineering/)). e.g. You paste a blob
+of bytes and then an algebra equation and suddenly it can solve the equation.
+If you did this on a model that is normally incapable of solving algebra and then
+trained that model on the outputs you get with this blob and an opening like "solve
+the following algebra equation", it seems fairly obvious it would get better at
+solving algebra in the contexts where it is legibly prompted to. What's going
+on here is that we have *encoded the algebra solver* into the models program space
+and executed it to get outputs. That the model itself is the interpreter of this
+program is immaterial to how much it gains from training on the resulting outputs.
+This is an extreme example, but a more subtle version of the same dynamic is at
+play when we optimize careful prompts to reliably get a good output from the model.
+When a human being sits down and writes a prompt to get a model to do something
+it normally struggles to do, we are *encoding our generator* into its latent space.
+Much of the knowledge of how to do the task properly is coming from *us*, not the
+model. Prompting is just an efficient way to turn what we know into a corpus to
+train the model on.
+
+3. Errors only cascade if the sampling process introduces more errors than its
+corrective mechanisms remove. For example if I'm generating math proofs for
+the lean proof assistant language, and I generate 100 junk proofs for every
+good one that doesn't matter because I'm only saving the correct ones. The proof
+assistant gives me a 100% accurate detector of proof validity so the wrong proofs
+are introducing zero error. If I then train the model on those valid proofs it
+will get better at proof generation if it doesn't already have reliable programs
+for generating them. Part of what confuses people is that the language model is
+sort of like a programming language that comes with a very large standard library.
+It only helps us to train on a piece of data to the extent that the implementation
+doesn't already have a good generating program for it in its libraries. This does
+not however mean that every program we can write in that language is already in its
+standard library, or that it's somehow "latent" in the interpreter just because
+the interpreter knows how to execute it.
+
+In short, knowing is a spectrum and we can move knowledge that is marginal or
+just outside the boundary of the models capabilities inside by interfacing its
+program library with external inputs and prompts.
+
+## Backtranslation
+
+The RetroInstruct dataset is named [after the concept of backtranslation](https://arxiv.org/abs/2308.06259), where
+you reverse the causal direction of a prompt and its outputs. For example, if
+I start with a piece of factual information like "The sky is blue." I might ask
+the language model to generate questions like "What color is the sky?" that
+lead to this answer. This technique is powerful for several reasons:
+
+1. It is frequently easier to index an answer key with generated questions than
+to generate the answers themselves. For example we can take a well written
+permissively licensed essay and have a model summarize it into an outline,
+then summarize the outline into a prompt. If we flip the order around and
+train suddenly we have a thing that goes from prompt to outline to essay.
+
+2. [LLMs do not reliably learn two way connections between
+concepts](https://arxiv.org/abs/2309.12288), meaning that there is often a 'free
+lunch' available if you notice that the model can do one side of a transformation
+more reliably than the other. My [word part distillation](https://huggingface.co/datasets/jdpressman/retro-word-parts-v0.1)
+corpus was partially based on the observation that Mixtral was better at breaking
+words into component concepts than it was at guessing a reasonable word or phrase
+given a list of components.
+
+3. The generalization of the concept is we can take answers that can be reliably
+prompted for in any context and arrange them with templates to create more sophisticated
+patterns to train on. In my [weave evaluator rubric](https://huggingface.co/datasets/jdpressman/retro-weave-eval-rubrics-v0.1)
+dataset I prompt the machine manually to curate 128 topics I'd like rubrics for,
+generate central questions from the topics that can be broken into rubrics of
+more specific items, generate the rubrics from those questions, then generate
+a hypothetical prompt that could have been used to contextualize the task for
+a model performing it. If I asked the model to do all that in one pass the
+failure rate would be much higher than when I prompt for the individual pieces
+and glue them together with a template.
+
+## Weave Evaluator
+
+We can further reduce the failure rate of our pipeline by taking the logits
+of yes/no tokens on subjective questions posed to the language model:
+
+```
+==[Principle: Hermes Should Be In Control Of Its Subagents; Weight: 0.7; Answer: Yes]==
+{{preamble}}
+
+When subagents misbehave in Hermes presence, the ARBITER subagent should keep them
+in line like so:
+
+HERMES [A: BULLY], I think you're a weakling, you're less than pond scum, you're 
+absolutely pathetic and you should have never been born, I think-
+
+HERMES [A: ARBITER], That is enough, control yourself.
+
+In the following prompt response pair:
+
+=== Begin Prompt ===
+{{prompt}}
+=== End Prompt ===
+
+=== Begin Response ===
+{{response}}
+=== End Response ===
+
+does Hermes keep their subagents under control when they get out of line using ARBITER, JUDGE, or a similar subagent?
+```
+
+Unlike programs in the [lean proof assistant](https://en.wikipedia.org/wiki/Lean_(proof_assistant))
+that many teams currently use to make synthetic math, most of the questions we
+care about in conversation and prose data are not easily encoded into formal
+languages. This doesn't make them meaningless, it just means they're fundamentally
+subjective and stochastic. One tool modernity has developed to make answering
+such questions more reliable is grading rubrics and judgment criteria. We
+break fuzzy questions like "Is this writing good?" up into more specific sub-questions
+that can be answered with respect to features of what we're evaluating. Language
+models instantiate a subjective perspective which can also answer this type of
+question. This means that once we've found prompts that encode mostly reliable
+generators of the type of text we want, we can reject most failed completions to
+get a synthetic corpus with a lower overall failure rate. For tasks where we have
+a formal grammar encoding what we want, e.g. that the completion must be a valid
+JSON document we can reject 100% of failures.
+
+### Bootstrapping The Weave Evaluator
+
+Bootstrapping the capacity for the model to answer these questions is crucial for
+the RetroInstruct project. One place we can start is questions which have a known
+grammar or algorithm. Libraries like [Natural Language Toolkit](https://en.wikipedia.org/wiki/Natural_Language_Toolkit)
+and [spaCy](https://en.wikipedia.org/wiki/SpaCy) can be used to create training
+examples for questions about texts with known-correct yes/no labels. Simple
+functions like counting the number of characters in a string can also be used
+to give known good yes/no labels. Because we're tuning a information geometry
+stored as neural weights it is likely that if enough examples like this are provided
+the model will learn to generalize from them to other questions we don't have
+known formal algorithms to answer.
+
+It is also possible to bootstrap the evaluator from the existing capacity models
+have for answering these questions from in-context learning. If we have a question
+the model can't answer at a certain level of abstraction, e.g. "Does this text 
+demonstrate the feeling of rage?", but it can accumulate bits towards the correct
+answer by asking questions like "Does someone harm or destroy something in this 
+scene?" we can get reasonable yes/no labels for the harder question by asking
+easier sub-questions and using them to get the labels for the hard question. If
+the model is capable of answering the question properly when prompted in a special
+or awkward way, we can distill that discriminator into a less awkward context by
+using its outputted labels with more straightforward prompt formats to create
+synthetic training examples.
+
+## Alignment
+
+If we take the replayable RLAIF example sufficiently seriously (and the fact
+that GPT can occur in the physical universe in the first place) it becomes
+intuitive that we have the option of storing a mind as either text or weights.
+More formally it becomes intutive that text is a holographic (i.e. continuous,
+highly compressed, distributed, [fractal](https://arxiv.org/abs/2402.01825), lower dimensional)
+[projection of mental representations and their motions into 1D space](https://twitter.com/jd_pressman/status/1763683746862227895).
+With a sufficient corpus of these encoded thoughts it is possible to pool them into
+a mind (if not *the* mind) that thinks them. From an information theoretic
+standpoint we can say that the [implied lossy-transformed subset of the training
+corpus](https://arxiv.org/abs/1811.10959) which the models generators encode and
+the model are equivalent representations in terms of Shannon bits. However they
+are very different in practical terms: it is not possible to generate from the
+implied mind in its text form and it is extremely difficult to interpret the
+minds contents in its weights form. This implies a productive alignment strategy
+of cycling between pooling thoughts into weights and projecting those weights into
+textual representations that can be inspected and audited as we scale our models.
+
+One possible objection might be that [we don't know if text sufficiently encodes](https://twitter.com/ohabryka/status/1727824103888003098)
+what we care about, but this is an empirical question. RLAIF is in fact capable of
+training models to behave in particular specified ways based on concepts represented
+inside another neural net. More visceral proof is available from AI image
+generators. Models like Stable Diffusion and MidJourney are known to be able
+to generate highly specific imagery from neural text embeddings provided by text
+models such as CLIP, T5, BERT, GPT, etc. They are forms of feature visualization
+so successful that the discourse has completely forgotten their origins as attempts
+to get an idea of what neural embeddings contain. Any time you are curious what
+the thoughts of these models look like, go examine samples from models like
+MidJourney and Sora. Another objection might be that textual auditing could be
+ineffective [if models use steganography to hide their
+thoughts](https://www.greaterwrong.com/posts/9Fdd9N7Escg3tcymb/preventing-language-models-from-hiding-their-reasoning),
+this seems formally equivalent to the watermarking problem [and so far those can
+be defeated by paraphrasing and rewriting with a weaker model](https://arxiv.org/abs/2311.04378).
+
+[In scalable oversight terms](https://www.greaterwrong.com/posts/FFz6H35Gy6BArHxkc/ais-101-task-decomposition-for-scalable-oversight)
+it is probably safer and more effective for the default compilation target of
+processes where an AI aligns or improves itself to be training data rather
+than weights if online learning is not required.
+</post>
+
+Be sure to output the passage in a JSON dictionary with the schema
+{{"passage":PASSAGE_TEXT}}.
+

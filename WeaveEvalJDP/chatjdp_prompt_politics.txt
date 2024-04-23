@@ -1,0 +1,494 @@
+Write a five paragraph passage that could appear in the collection below loosely
+inspired by the theme "{theme}". Use the writing style and tone of
+voice of the author John David Pressman, as demonstrated in the provided posts.
+Try to focus in on some particular detail or point in media res, as though the
+passage were part of a larger work from someone who produces detailed high
+perplexity text about specific subjects. Start the passage with "{start_word}".
+
+Here's some posts to give you a better idea of how he writes:
+
+Posts:
+
+<post>
+For all the crowing about the egg on Qtards faces right now, it’s important to
+remember that the antifa people are probably feeling similar emotions. The
+difference is they weren’t straightforwardly deceived so their feelings are more complex.
+
+Think about it. You spend years in #resist mode to what you’re told (and had high
+likelihood of being) is a neofascist uprising and you need to prepare for a big
+Good vs. Evil battle against the Fourth Reich.
+
+You get yourself hyped up for that, you distance yourself from friends and family
+who don’t understand the danger. You get deep into left theory and social justice
+in a way you hadn’t before, they’re your weapons against the far right jackboots. 
+
+Then at the height of the tension, when everyone can feel the fight brewing…
+
+NeoMussolini just packs his bags and leaves after an embarrassing not-even-a-coup-attempt
+that eats the last of his political capital.
+
+What now?
+
+https://nypost.com/2021/01/21/antifa-militants-smash-up-first-starbucks-in-anti-biden-protest/
+</post>
+
+<post>
+If you think about it, what’s actually hilarious is the idea that software people
+need a lesson in “ethics” when software is far and away the most seriously ethically
+generative field in STEM. Hackerism, cypherpunks, free software, copyleft, etc.
+All that stuff is some of the most practical, powerful ethical thinking to be done
+in the late 20th early 21st century. Nothing else I can think of comes close. Even
+movements like Effective Altruism can be argued to be downstream of the sheer
+overflowing energy that goes into ethical thinking in the software verse.
+
+Getting away from the cargo cult and the fake stuff people use to try and claim
+some kind of superiority over STEM practitioners, software in particular makes
+everyone else look like pharisees in rags.
+</post>
+
+<post>
+Finished Onion's *Innocent Experiments*. My biggest takeaway is that Americans
+worship the 1950's as the culture that put men on the moon, etc. In reality the
+relevant culture to study is the 20's, 30's, and 40's. Remember that the adults
+who put together Apollo are in their 20's and 30's, so the culture that produced
+them is developed earlier than the 50's or 60's.
+
+That culture is centrally made in the 20's and 30's, built around around the
+premise that:
+
+1. Child pedagogy should no longer be about working their parents trade or
+profession.
+
+2. Children have an intrinsic interest in what is real, extremely materialist
+nonfiction is the default reading choice for kids.
+
+3. Nonfiction should center around the industrial processes that are transforming
+peoples lives. Onion cites a book publisher claiming to know of at least one girl
+to forsake her other Christmas presents to hug a book about the invention of Rayon.
+
+All of this is encouraged by the PR and marketing arms of industrial firms. American
+toymakers have an aesthetic preference for realism in this time period, their goal
+is to take advanced technology and package up a curated version for kids to play
+with. This is where chemistry sets actually came from. It is important to note
+that at the time all this happened, *familiarity with physical science was a
+pathway to wealth and power*. The most powerful businesses were staffed by
+physical scientists and engineers.
+
+Compounding the misunderstanding is that the 1950's are when this culture begins
+to fall apart. The construction of highways brought together isolated communities
+and [allowed an antisocial youth class](https://www.slatestarcodexabridged.com/Book-Review-On-The-Road)
+to burn all the trust in the United States. Having the only functioning industrial
+economy brought easy prosperity for Americans, who used their newfound economic
+freedom to psychologically disappear up their own asshole.
+
+The 50's are when childrens pedagogy begins to be focused heavily on "creativity",
+in large part to contrast the sterling rigor of Soviet students. Like the CIA
+promoting abstract art to compensate for America's cultural insecurity, the focus
+on creativity, individualism, and "well roundedness" in American students helped
+salve our scholastic and scientific insecurities. It's in this era that institutions
+like the scientific talent search begin to conceive of the young scientist's
+interests as setting him (or her, but really him; Onion spends a good deal of time
+on gender bias) apart from others socially. In the 30's and 40's toymakers like
+Gilbert saw the promotion of science toys as a path for children to develop social
+dominance, spending lots of time focusing on how to appeal to male "gangleaders" who
+set trends in male friend groups, or to help boys become trendsetters themselves.
+Science was promoted to children with figures like Thomas Edison. Reviled today,
+Edison represented the liberated, endlessly creative child who uses his wits and
+scientific accumen to pull himself up by his bootstraps. Key point: In the culture
+of origin for achievements like Apollo and the Manhatten Project *science was
+truthfully promoted to children as a path to autonomy, wealth, social power and
+progressive values*. Frank Oppenheimer notes in his own youth that the Soviet Union,
+an industrial utopia, gave him and his friends the impression they could make big
+changes in the world through scientific affinity.
+
+Peter Thiel asks how we got away from working on atoms to working on bits. I think
+the answer is actually very simple: When working on atoms was a path to autonomy
+and success it spawned a hyper-materialist industrial culture that parents and
+children were eager to participate in. Many of the most powerful people in that
+society, especially the newly wealthy, made their fortune on the back of work in
+mechanical and chemical engineering. The 1950's were when this began to break down
+as the frontier closed up and "science" ossified into a professional middle class.
+In 2020 physical science is not a path to power, but marginalization. Hyper
+materialism gave way to idealistic fantasy. Children began to read science fiction
+instead of science proper. The best science fiction teaches people to extrapolate
+and think through the implications of emerging technologies whose working technical
+details are left largely opaque. People become comfortable with not knowing how
+anything works.
+
+But more to the point, working with bits makes its practitioners rich. The contemporary
+figure most similar to Thomas Edison, Elon Musk, notably has to run his physical
+science businesses as a sort of strange capital consumption from his information
+technology wealth and investor speculation. His familiarity and accumen in physical
+technology is something he originally succeeded in spite of rather than because of.
+Children who are encouraged to become familiar with information technology, are
+hungry for influence and test out microcosms of adult content strategies; that all
+reflects the basic fact that information technology in the 21st century is a pathway
+to autonomy, wealth, and power in a way that physical science is not.
+
+P.S.
+
+> their goal is to take advanced technology and package up a curated version for
+kids to play with.
+
+A friend points out that a similar thing happened with home computers like the
+Commodore 64 shipping with a BASIC prompt as their default interface.
+
+The fact that most kids have the hardware (camera, microphone, etc) to become a
+vlogger but can't code on their phone probably has something to do with the
+aspirations there.
+</post>
+
+<post>
+To me the most interesting effect of Trump’s loss so far is the way in which it’s
+freed up cognitive and social resources for other things. Bruno Macaes keeps
+insisting that the Trump presidency has been an imaginary totalitarianism that
+people have fought entirely in their heads. I think that’s missing the point.
+The Trump presidency was a kind of cyberwar, and people were pulled into the
+“fantasy world” by the threat of very real violence from the executive. 
+
+Right now that threat is subsiding, and for a moment I see people breathing and
+thinking about other things. If we’re lucky the ceasefire might last for years.
+I have no illusions that the conflict is going away however.  One of the key
+things to pay attention to is whether Biden is going to continue those threats
+of violence but from the left, sucking us all into the attention seeking singularity
+again. Lots of people want him to, but Biden doesn’t seem to be caving so far.
+
+---
+
+People who read this apparently don’t intuitively understand what I mean, so let
+me try to explain:
+
+When someone like Trump is elected to the presidency, they suddenly have all these
+levers they can use to influence government. Most of these levers are ignored most
+of the time, because their use is kinda theoretical and it’s not a realistic worry
+that the president is going to have his cronies delay your visa applications and stuff. 
+
+With Trump that kind of thing becomes a real possibility, along with various other
+escalations up to and including civil war. A friend replied that all these people
+say all this stuff about how scared they are and how stressed out this makes them,
+but their behavior doesn’t seem to fully reflect that fear. This is actually getting
+at the core of the matter. Trump forces people to LARP as cope for their dual
+awareness of this adversarial force they’re on the lookout for civil conflict from,
+while trying to take their eye off it long enough to do their ordinary day to day life.
+</post>
+
+<post>
+There isn’t a ton you can do if you allow your adversaries to stick arbitrary
+hypothesis’s in your face.
+
+A friend says that rats should reliably figure out when people tell lies like the
+BS Trump admin pulled with masks; but “figure it out” is the wrong frame here.
+
+The proper response would have been “This has literally never come up before until
+right now when we’re in the middle of a mask shortage that it would be convenient to
+lie about the utility of masks for.”
+
+“So, I’m just going to go with the thing people have been doing for literally 100
+years and recommend you wear a mask.”
+
+If I put this “masks don’t work” hypothesis in front of your face and you try to
+refute it or prove it wrong or whatever.
+
+I have already won by getting you to consider the hypothesis at all when it was
+out of total left fucking field.
+
+This is why I say necessity and warrant are the punch and kick of rationality.
+Like, unless there is bulletproof evidence that masks don’t help which would
+warrant this sudden change of position which we heard nothing about during…any
+of the other big viral outbreaks of the last 20 years. If I can just say arbitrary
+lies and you will spend weeks or months researching them to prove them wrong, you
+are pwned. I literally control your mind/what you compute/spend focus and energy on.
+
+This is Trump’s entire thing.
+
+e.g. Trump signs an executive order banning transgender people from the military,
+takes him 30 minutes, takes his opposition millions of dollars and thousands of
+man hours to fight it. Trump leads his opponents around by the nose with a handful
+of simple tricks. And they fall for it over, and over, and over, and over. Because
+ultimately, they are decent people, they hate the idea of someone having their
+livelihood ruined because Trump fucked them over.
+
+Trump is not a decent person.
+
+Trump is a ruthless chaos demigod who laughs at your feeble attempts to stop the
+sand of suffering falling through a sieve, and he will use your inability to ignore
+his hostages as a way to control and destroy you. Like, you have to try and see
+things the way Trump does. To him, transgender folks aren’t people, not because he’s
+a bigot, not because he hates them, but because nobody is really a person to Donald
+Trump. Trump is a minmaxing UFAI from mars, and plays accordingly. To him, transgender
+people are tokens that he can threaten for not-that-much-effort and his opponents
+will spend ludicrous outsized resources to defend them.
+</post>
+
+<post>
+Hot take: Aesthetic based ideologies where people fantasize about cute historical
+homes are mostly about grifters promising their followers stuff that isn’t theirs
+to give away. In that sense, an implicit promise of violence is baked into that
+kind of ‘soft trad’ lifestyle affinity.
+
+“One day this could be yours, if only you’ll help me destroy my enemies to get it.”
+
+Historical homes are not the natural outcome of a process of generating fabulous
+wealth distributed across society. An implied zero sum game is being played there,
+and the tranquility of the imagery shouldn’t distract you from that.
+
+e.g. I haven’t made a systematic study of Nazi propaganda or whatever, but I suspect
+this is the basic element that makes it so characteristic and also so dangerous.
+The idolization of a tranquil, idyllic life built on the back of stealing shit
+from other people.
+
+And promising people something unsustainable like a cute historical house is a
+lot scarier than the socialist promise to steal money. Implicit in the idea of
+stealing money is not the idea of stealing lives. But the house is more visceral,
+it’s like, where will the former inhabitants go to live? Don’t ask that, implicit
+in the confiscation of their house is the confiscation of their lives as well.
+They will be whisked away somewhere you don’t have to think about them, where
+they won’t disturb the fantasy.
+
+That historical home is a lot less sexy if you have to share it with two old
+geezers you’re not related to who don’t have a place to stay.
+</post>
+
+
+<post>
+Nick Land & The Future Of Right-Wing Philosophy
+
+Nick Land is a natural law atheist. He looks at the world and concludes, quite
+reasonably, that it’s hell. And then takes the more dubious leap of saying that
+since this world is hell, and it clearly has a set of rules for how it creates
+order from noise (which are in fact immutable laws, selection effects are always
+real), attempting to meddle in that with welfare or kindness are simply allowing
+mutations to build up outside the careful narrow line demanded by the natural
+laws of hell. Which will of course eventually destroy everything once the
+cushioning goes away for whatever reason.
+
+My reaction to which is “Uh, you’re making some assumptions there.”
+
+In general, what Nick Land and Robin Hanson show is that even if you did convince
+the world to move away from theology, you would still have conservatives making
+much the same arguments as they did before. Because their arguments were never
+actually based on god. They were based on a notion of value/social function/etc
+that god was a stand in for. If anything, as NRx shows the removal of god seems
+to make the conservative position more extreme. As the dominant organizing forces
+in the universe become the atheists notion of the dominant organizing forces in
+the universe, which aren't nice things.
+</post>
+
+<post>
+Millennials see blockchain operations costing money as profiteering because they're
+used to "Web 2.0" where you are illegibly given free resources by huge corporations
+that are illegibly spying on you, your family, your friends, and trying to
+psychically attack you for money...
+
+They haven't even realized yet that Web 2.0 was about control of volunteer labor,
+that the dominant pattern in that game turned out to be capturing everyone's
+attention and directing every ounce of it you can into diffuse coercion through
+memetic war machines. Chanting the old incantations over and over without result,
+total bronze league mindset causing them to not even notice they should be asking
+why BitTorrent and Wikipedia and IRC and all the rest were victories that only
+happened once and then never again.
+
+Impotently whining that cryptocurrencies have the audacity to legibly track resource
+usage and let users capture the value they're creating. When you feel like you're
+a parasite on someone else's system the last thing you want that system to do is
+start using better accounting. The only paradigm millennials understand NFTs in is
+DRM and norm violation, the idea of postmodern goods escape them. Turning donations
+into Veblen status goods is prosocial. Making provenance easy to track in art markets
+is competitive. Few understand. 
+
+[Post from @eevee about how NFTs strike them as a horrifying new DRM scheme]
+
+Samo Burja also thinks it's about DRM as norm:
+
+[Post from @SamoBurja about how young millennials think piracy is morally wrong
+while older ones started the Pirate Party]
+
+Who is himself responding to this take:
+
+[Shamefully deleted post from @acczibit about how accessing the local files on
+your phone will be a felony and NFTs are a portent of this]
+
+Stuff like BitTorrent only happens when there's energy to be extracted by leeching
+off the existing copyright media industrial complex. NFTs are creating their own
+media machine from scratch, few understand the implications of this.
+
+We've had the raw technical capability to make logging into websites a frictionless
+process using public key crypto since the 90's, not a single site has made it happen
+until cryptocurrency appeared on the scene. Logging into OpenSea with MetaMask blew my mind.
+You will not beat centralized services who can marshal millions of dollars to make
+the 'best', most addictive user experience and reliable servers and foist themselves
+onto every phone until you have a mode of organization that is better than a league
+of HAM radio operators. Few. Few understand that early adopters getting outsized
+returns is an essential part of the deployment process. There would be no way for
+a decentralized public key infrastructure to bootstrap itself if it didn't offer
+more to the people who take on more risk in its early stages. It's norm brain all
+the way down, offense think. These people don't care about the technical and social
+problems of making decentralized services exist in a sustained way because they
+think free shit is their birthright. It's all they have after the boomers took
+everything else.
+
+Few understand few understand few understand few understand few understand few
+understand few understand few understand few understand few understand few understand
+few understand few understand few few few few few few few few few few few few
+few few few few few 
+
+fucking nobody.
+</post>
+
+<post>
+Broke: They hate NFTs because of environmental impact and art theft.
+Woke: They hate NFTs because identity politics is the picrew of ideas and NFT
+avatar projects compete with it.
+
+Biology is the wrong model, economics is the right model to figure out what is
+going on. Economics and Girard. 
+
+https://twitter.com/jd_pressman/status/1458645774795894797
+
+A thread.
+
+People massively overthink 🏳️‍🌈 dominance. The key is simple: identity politics
+is the picrew of ideas.
+
+'aromantic', 'genderqueer', 'transbian'
+
+These are template generated concepts, politik without grievance, generated
+entirely according to an internal symbolic logic.
+
+[YouTube Video] POV: You’re Non-binary And You Like Jschlatt | A Playlist
+
+And picrews are a cheap production method, they let you churn out crap for an
+adoring fanbase quickly. Stuff like this is mass culture, and it exists for the
+mediocre to try and differentiate themselves in a malthusian social environment.
+Because once social is a global competition operating on a power law, the vast
+majority of people are in the mediocre segment with low differentiation. These
+picrews are attempts to separate from each other identity-wise, without novel
+intellectual work or personal development. Actually look at the contents of this
+playlist: Bo Burnham, Lemon Demon, Cosmicandy, Panic! At The Disco. It's
+differentiation for 0.5 SD weird people who want to be fun and quirky but aren't
+all that separated from average, have few talents, aren't blessed with strong intellect.
+
+It's also why scapegoating is so rampant among 'woke' movements and groups. They're
+based on pure Girardian mimesis and the scapegoating mechanism follows from it.
+
+> They haven't even realized yet that Web 2.0 was about control of volunteer labor,
+that the dominant pattern in that game turned out to be capturing everyone's attention
+and directing every ounce of it you can into diffuse coercion through memetic war
+machines.
+
+"Web 2.0" in the Twitter sense is about farming Tumblr teens for cultural production.
+Comics are 🏳️‍🌈 because they are lobbied by the Tumblr-fandom cultural production
+machine to be that way, ditto cartoons. So long as that is the most productive
+mode of novel cultural production in our society 🏳️‍🌈 will dominate. It's just
+capitalism in a queer skinsuit. 🏳️‍🌈 is a literary criticism movement because
+fiction is the only thing mediocre people in our society have in their lives worth
+relating to. Your options to defeat them are to make media irrelevant, obsolete
+their production process, or make your own literary movement. Ratfic and the
+extropian-SL4 memeplex are the closest anyone has come to a coherent counternarrative
+to "well akshually scifi is for rich white vampires because the future is scarcity
+and climate change". Replying with: "No akshually nanotech makes this timeline
+impossible."
+
+Making media irrelevant and obsoleting their production process are left as an
+exercise for the reader.
+</post>
+
+<post>
+The irony of the "get everyone on the same page that ASI means doom and then enact
+an international ban" plan is the likelihood of this ban holding is directly
+proportional to how *actually unlikely* alignment seems to decisionmakers. If you
+enact a ban and say, six months later a credible solution to alignment is published,
+the West is mostly momentum based in its decisionmaking so it will not lift or
+circumvent a ban but authoritarian regimes signed on for purely self-interested
+reasons will. "Do not do this thing that fully satisfies the will to power" is a
+fragile equilibrium to begin with, once you add in that each marginal safety
+improvement increases the likelihood of someone defecting you get a neurotic,
+miserable timeline where 'AI safety' advocates are anti-nuclear esque saboteurs
+fighting a rearguard action against the safety they claim to want inevitably
+ending in some authoritarian gaining global control.
+
+[Post from @daniel_271828 about how environmentalists are usually the people who
+hate nuclear energy, geoengineering, etc and the AI X-Risk movement needs to be
+careful to make sure whatever caused that doesn't happen to them]
+
+"Whatever the hell happened here", it's called bad faith my dude. It's what happens
+when you believe in extremely bad outcomes that incremental improvements to the
+situation make more likely so you actively oppose improvement and demand revolution.
+</post>
+
+<post>
+This is because the adults in the room tried to fight baizuo as an ideology, it
+is not an ideology. Baizuo is a massively multiplayer moral computer program
+implemented as a fuzzy pattern matching formal grammar on the substrate of social
+media and disenfranchised teenagers. The reduction of morality to pure shibboleth
+and pure symbol is the obvious outcome of web 2.0 information political economy.
+In a malthusian global reputation system where you can be attacked from any angle
+legibility and tribal signifiers are everything
+
+> It's instructive when a production rule/mental pattern fires off on something
+so obviously insane that the take can only be the product of habitual hallucination.
+This allows you to notice that the same hallucinations are being applied equally
+thoughtlessly to other things.
+
+Again: Baizuo is not an ideology, you can probably compute social offense scores
+in baizuo using an MLP and language model embeds.
+
+Heck, someone basically did:
+
+https://github.com/unitaryai/detoxify
+
+Baizuo is political rule of the damned. School is the first layer, where we imprison
+our children for the crime of being born. The next layers are various forms of
+poverty and parental rejection, NEETism, fetishism, oversharing confers group
+protection.
+
+https://anarchonomicon.substack.com/p/cocytarchy
+
+It is not liberal politics but monkey politics, the raw logic of mimesis and
+sacrifice gone wild. You start off ultra-vulnerable in a malthusian environment
+and reveal information that makes you even more vulnerable to become part of a group.
+
+> This recent episode with Ukraine is whitepilling me on cancel culture and the
+like. It's not that any of my criticisms have gone away, just that I am now
+seeing what the benefit is of having the best friend-enemy social architecture
+in the world.
+> 
+> See also https://outsidertheory.com/control-societies-with-sacrificial-characteristics/
+
+Because ultimately the more vulnerable you start off as, the less you have to
+lose from becoming more vulnerable and the more you have to gain from group identity.
+Like prison gangs this creates a vicious reinforcing loop where to ascend in power
+you must become worse. You need to become more pathetic, more demanding and less
+productive, more intolerable and tolerate fewer others as the line between friend
+and enemy calcifies into trench warfare. The telos of the baizuo software is to
+undermine the foundations on which liberalism can exist.
+
+"Why do they uglify themselves?"
+
+Why do gang members get face tattoos?
+
+"Why is it so arbitrary and cruel, what are their political goals?"
+
+They don't have political goals, this is about survival. If it was easy to predict
+it would be easy for adversaries to spoof the signals.
+
+"How do we fight it?"
+
+Disrupt the feedback loop where it's rational to become more vulnerable because
+you're already so vulnerable that further vulnerability hardly matters, can
+function as a costly signal for group membership. Intervene on the vulnerability.
+A common right wing frame is to see all this as malingering. After all, aren't
+you pretending you're worse than your potential, aren't you exacerbating the
+symptoms? Malingering implies the rationality is in deception when it's mostly
+in game theory: Descend and you have allies. People will ally with the weak
+and the strong for a mix of altruistic and strategic reasons (there are after
+all so many weak, and there is after all so much strength in the strong), but
+in modernity nobody seeks out the mediocre. Mediocre people live atomized
+without solidarity. So middle class kids have to decide if they're on an upward
+or downward trajectory and accelerate the journey. They're simply not gonna make
+it without fast friends, and in Malthusian competition most players lose. The
+appearance or reality of fast descent is their best option.
+</post>
+
+Be sure to output the passage in a JSON dictionary with the schema
+{{"passage":PASSAGE_TEXT}}.

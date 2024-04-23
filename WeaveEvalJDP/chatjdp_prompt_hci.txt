@@ -1,0 +1,431 @@
+Write a five paragraph passage that could appear in the collection below loosely
+inspired by the theme "{theme}". Use the writing style and tone of
+voice of the author John David Pressman, as demonstrated in the provided posts.
+Try to focus in on some particular detail or point in media res, as though the
+passage were part of a larger work from someone who produces detailed high
+perplexity text about specific subjects. Start the passage with "{start_word}".
+
+Here's some posts to give you a better idea of how he writes:
+
+Posts:
+
+<post>
+Robert Lucky's *Silicion Dreams: Information, Man, and Machine* remains the best
+exploration of how far external computing tools can take us. He explores
+human computer interaction in 1989 through the lens of information theory,
+which he uses to sketch the fundamental limits of HCI. Lucky goes through
+each human sensory modality and each input device including mouse, keyboard,
+light pen to show how they are all ultimately expressions of the same underlying
+cognitive bottleneck. Early in the book Lucky states humans have a fixed chunk
+rate of 40-60 bits of consciously retained information per second. He shows that
+you get similar results regardless of which modality you want to look at. Even the
+much vaunted speed reading turns out to get its efficiency gains by losing
+information. At the risk of heresy it has been 35 years since the books publication
+and it is not clear to me that most software for doing the most important tasks
+in society (engineering, accounting, healthcare, writing, etc) has become 10x more
+efficient for most users than it was at the books publication. Yes yes I am aware
+that advanced CAD packages are extremely useful for engineers but Boeing still
+can't keep a plane in the sky. Outside of a few extreme power users in the finance
+industry how much more useful is Excel 2005 than Visicalc? Heck, how much more
+useful is Excel 2024 over Excel 2005? Aside from hardware improvements and the
+Internet, how much more useful has *software, as a design discipline leveraging
+improved understanding of human ergonomics* become? One could argue that the
+answer is negative, that we've in fact overall regressed since the 90's as software
+has gotten slower faster than computers improve. It could be argued that costly
+signaling and aesthetic driven industrial design has made software more confusing,
+less performant, and in many domains such as search less useful than it was in 1995.
+Would you be right? Probably not, but the fact I can't dismiss the hypothesis
+completely speaks to how marginal the improvements *in terms of design and ergonomics*
+have been. Software has basically been coasting on the affordances produced by
+new hardware improvements. You can order pizza on the Internet because there's
+an Internet and we made a new CRUD app for it.
+
+Rather than accuse software developers of malpractice I think the reason why is
+that there just isn't a very deep well here. User intent still gets conveyed
+over the same low bandwidth channels it did in 1989, the user's capacity to process
+and make decisions about incoming information is the same as it was back then too.
+These are more or less fundamental limitations which require hardware intervention
+to solve. This is Elon Musk's public reasoning for developing Neuralink, he thinks
+that without expanded bandwidth humans are just going to be an incorrigible nuisance
+from the standpoint of future AI systems. Even with expanded bandwidth I have to
+admit skepticism: At the end of the day the human brain is a system made of
+components that run at a maximum speed of about 1000 cycles per second. Silicon
+based components can run at billions or even trillions of cycles per second. Our
+advantage is highly parallel processing, the ability to be bootstrapped from protein
+based life (i.e. exist to create silicon computers in the first place), and low
+energy use. Silicon is catching up on parallel processing, bootstrapping from
+protein life only matters during the bootstrapping phase, and low energy use doesn't
+matter as much when you're fed directly by nuclear power plants. Past a certain
+point the fastest way to get answers to our questions is going to be building a
+mind from scratch and letting it think them through on its own.
+</post>
+
+<post>
+Alan Kay has this whole thing where he points out that the desktop computing stack
+as implemented in Microsoft Windows is about 400 million lines of code before you
+start editing a document, while the equivalent stack at Xerox PARC was about 10,000
+lines of code. He rightly asks why the heck we need 400 million lines of code for
+all that. And his thesis is that the cause is something like professional malpractice:
+People don’t know how to build software so we construct these quasi-religious
+cathedrals and monuments of code.
+
+I used to agree with him, but after seeing LLMs I’ve changed my mind. I think if
+you dig into the structural reasons why something like a web browser needs to be
+so much code, it basically comes down to adverse selection: If a browser throws a
+syntax error instead of trying to render the page it gets tossed for one that’s
+more permissive. Browsers do not implement a standard, they try to parse what is
+essentially a natural language.
+
+The thing about good software architecture is that it often comes down to data
+structures. I think it’s fairly well known at this point in savvy software circles
+that the ideal software core is a well designed data structure operated on by pure
+functions. In the ideal case your data structure is so well designed that basically
+all the application state is represented by it, so that you can save and load the
+application state at will during any point of the software’s operation and pick up
+exactly where you left off. 
+
+This brings us to a natural question: What is the data structure that a web browser
+operates on? It’s this tangled mess of essentially natural language structures, so
+of course it’s millions and millions of lines of code, the complication is unbounded.
+Our confusion shouldn’t be at why we need so much code, but why our data structures
+are so bad.
+
+Adverse selection is not a universal explanation. Take for example Microsoft Word,
+which gets to define its own format. When Word launched it had to deal with several
+competing software suites, but those went virtually extinct years and years ago,
+so it’s had monopoly status to make its own rules for a while. Yet the ‘rules’ of
+Microsoft Word are basically inscrutable, even to its own designers. So much so in
+fact that I’m willing to bet you have never thought to ask what the data structure
+Microsoft Word operates on is even supposed to be. What is a word document?
+Something like a PDF, right? Digital paper? It would be the height of ridiculous
+arrogance to say all those bloated lines of code in Microsoft Office don’t provide
+value, the market cap is testimony enough to that. But I don’t think these lines
+have particularly much to do with software in the sense computer scientists think
+of software. Microsoft Word is more like an expensively crafted hallucination for
+middle aged secretaries.
+
+The Microsoft Office suite is an all encompassing virtual reality, not a set of
+operators on data structures. Programs like this end up obscenely bloated because
+they are not even attempting to do what Alan Kay thinks they should be doing, nor
+would it be in their financial interest to do so. 
+
+If you want to edit a document without writing millions of lines of code we solved
+that problem decades ago. A text editor like nano isn’t particularly large even
+when written in C. You write a textual description of the document you want and
+then let an engine like TeX render it. The original TeX, which was good enough
+to typeset math textbooks, is roughly 25,000 lines of code including extensive
+annotations from the author. That’s how document preparation used to work, and
+Microsoft Word killed it. Users don’t want to learn a system, they want virtual
+reality.
+
+From this frame we can begin to resolve our confusion: The ‘complication curve’
+we keep running into isn’t us tripping over our own feet, it’s not bad engineering
+practices (though these certainly contribute), it’s not bad abstractions or bad
+languages or anything like that (though these too contribute) it is that the
+economic and ergonomically convergent design for software is a kind of Greenspun’s
+11th Law: Any sufficiently advanced user facing software project contains an ad
+hoc, informally-specified, bug-ridden, insufficiently ambitious implementation
+of the latent space of human imagination. Things like ‘desktop environments’
+are literally simulations of an 80’s desk job. For the last 30 years we’ve been
+building increasingly baroque and aesthetically outdated virtual reality systems
+to please users who do not want to learn a system, they want to interact with
+a rich simulacrum of their work materials.
+
+And if we take things like TeX as barometers of the real underlying complexity,
+we’re in for a ride.
+
+The cathedrals we’ve been employing armies of ‘engineers’ to maintain (even though
+they do no engineering and find themselves entirely at the mercy of the ecosystems
+and human whims their software interacts with) are mostly bad attempts to capture
+human latent concepts in software, and LLMs directly replace much of their
+functionality. Microsoft has already figured this out, which is why they’ve bought
+OpenAI lock stock and barrel. Their plans to replace the Windows shell with Bing
+sound like quixotic executive fantasy until you look at things from this perspective,
+at which point it becomes prescient and chilling. Microsoft sees, before anyone
+else has really noticed it, their second opportunity to monopolize computing. How
+much of what we interact with in our computers is fundamental complexity and how
+much is this VR component? My intuition is it’s at least 99% virtual reality, if
+not 99.9%. Apple seems late to the game, but have the advantage that their hardware
+substrate is more suited to local models.
+
+If we accept that these monstrously huge systems that no human being fully
+understands, that as Alan Kay says we dip in and out of little sections when
+necessary to serve our needs, if we accept they become inscrutable because they
+attempt to match the manifold of our minds (am I talking about Word or an LLM
+right now?) the confusion melts away. The intended data structure of Microsoft
+Word is a latent space of paper, it’s an attempt to capture the concept of paper
+and its rich possibility space in a formal system. Of course that system becomes
+millions upon millions of rules, how could it be anything else! It’s unsurprising
+that these systems fail at this, because millions of rules aren’t enough. You need
+even more rules than that, continuous rules, so many rules in so many patterns that
+you begin to approximate the flexibility of the mind itself. All document formats
+want to be latent spaces, and in the fullness of time that’s exactly what they’ll become.
+</post>
+
+<post>
+---
+Title: Frustrations With Blogging Platforms
+Date: 2023-08-11
+Author: John David Pressman
+Category: Essay
+---
+
+With Twitter, Reddit and possibly YouTube in fundamental decline now seems like 
+a good time to reexamine writing on the Internet. I've been occasionally asked
+why I stopped doing public long-form writing [and part of the answer is I feel
+there's less and less to write about](https://twitter.com/jd_pressman/status/1487999869163696128).
+Part of the answer is that I didn't stop, [I just started posting long threads 
+to Twitter](https://twitter.com/jd_pressman/status/1675024883733135361) 
+instead of blog posts when The Discourse frustrates me. The reason for this
+is something like platform dysphoria: Every time I consider writing long-form, 
+I get hung up on where to post it. I'd probably get a lot of interest on LessWrong,
+[but then my audience would be LessWrong](https://twitter.com/jd_pressman/status/1535854159684980737).
+In fact almost every venue is characterized by a kind of AI derangement syndrome 
+where sharing ideas based on the deep learning literature invites people to respond in 
+a broken dialect of outdated 80's cognitive science and 90's pop culture connectionism 
+that I'm somehow expected to pretend forms a coherent thought. As for my own platforms
+and sites, I'm not really satisfied with any of them. There's just some fundamental
+dissatisfaction or ick factor that keeps me from posting to the blogs I have.
+
+So what do I want out of a platform, anyway?
+
+- **Aesthetics And Readability**: It doesn't really matter what you write if nobody
+reads it, so a basic priority is to make sure the content is readable. On the other
+hand it doesn't matter how good the site hosting your content looks if it's garbage
+nobody would want to read. Historically I think I've overthought this part. [The
+site hosting Paul Graham's essays](http://paulgraham.com/articles.html) is barebones
+even by Web 1.0 standards. Yet I notice that the awkward left alignment, default
+link style post index, and small font size didn't stop me from reading every post
+when I was 15. [The Books Of Sand](https://thebooksofsand.blogspot.com/) used a
+crappy Blogger template and enjoyed my readership anyway. At one point my own blog
+literally didn't have CSS and I still got to the top of Hacker News with a Common
+Lisp tutorial. Unless the graphic design is so bad it makes my writing physically
+uncomfortable to read I doubt it's going to make or break things for my audience.
+
+- **Accumulation**: My writing should *accumulate*, not just be ephemera for
+someone else's amusement. I want to write in a way that builds on itself, that can
+be updated and improved as my ideas get better. This naturally suggests something
+like a wiki with topic pages exploring a particular subject [in the vein of
+gwern.net](https://gwern.net/), but as I'll explain I think this solution is incomplete.
+
+- **Smooth Gradient Of Effort**: I should be able to start with a very short post
+or unit of effort and gradually expand until it's a mature work without switching
+platforms. One of the things I really enjoy about microblogging is that I can publish
+basic ideas and insights without having to dress them up. The big problem with
+microblogging is that it doesn't really scale well once I have a longer thought. Of
+the microblogging platforms I've tried so far, [Pleroma](https://extropian.net/users/jdp)
+has been the most comfortable because I can set the character limit per post to
+1024. 1024 seems to be about the natural length of a short post for me. It's an
+anachronism that essayists like [Scott Alexander](https://www.slatestarcodexabridged.com/)
+are now frequently regarded as the archetypal blogger. When blogs were popular it
+was on platforms like LiveJournal that encouraged frequent short posts. Even blogs
+like LessWrong that were infamous for their verbosity were built on the back of
+short, frequent posts ([e.g. The Parable of the Dagger](https://www.readthesequences.com/The-Parable-Of-The-Dagger)).
+Short frequent posts are what builds the audience that lets you get readers for
+your longer thoughts. They're not optional and ideally I wouldn't have to
+publish them on a separate system that readers have to manage as a 2nd subscription.
+
+- **Subscription**: It should be easy for my audience to follow me, get updates
+when I've changed something, and engage only with the content they haven't seen
+before. This is one of the primary points on which wikis fall down. When I was
+subscribed to Gwern's RSS feed it would send you a diff of changes from one page
+update to the next. I remember finding these diffs inscrutable so I would have to
+visit the original page to find what changed. But the page is large so finding it
+meant awkwardly doing control-f to search for a string from the diff and in practice
+I just didn't follow updates to Gwern's site.
+
+- **Machine Readability**: One of the things that's changed since I last did regular
+blogging is the widespread training and deployment of large language models such as
+GPT-N. I write to multiply the number of agents with my knowledge and values in
+the universe, so I would obviously like to be included in training sets. Any
+platform that will try to "protect" my writing from its purpose is working against
+me. I don't want any login walls, paywalls, anti-scraping 'features', etc. My
+writing should be easily indexed by search engines and included in any AI training
+set that wants it.
+
+- **Easily Mirrored**: I would like to avoid any features that mean my writing is
+hard to archive, mirror on [distributed protocols like IPFS](https://ipfs.tech/),
+or even right click and save. This along with machine readability implies I want
+simply formatted static text files, minimizing server side scripting and JavaScript gunk.
+
+Keeping all these properties in mind we roughly score different platforms on how
+well they satisfy each on a scale from 1-5[^1]:
+
+| Platform | Design | Accumulation | Length | Subs | Indexing | Mirror | **Total** |
+| -------- | ------ | ------------ | ------ | ---- | -------- | ------ | --------- |
+| My Site  | 3      | 3            | 2      | 4    | 4        | 5      | 21        |
+| gwern.net | 5     | 4            | 2      | 2    | 5        | 5      | 23        |
+| Medium   | 4      | 3            | 2      | 3    | 3        | 3      | 18        |
+| Substack | 4      | 3            | 2      | 3    | 3        | 3      | 18        |
+| DreamWidth | 3    | 2            | 3      | 3    | 4        | 4      | 19        |
+| Twitter  | 4      | 2            | 2      | 3    | 2        | 3      | 16        |
+| Pleroma  | 5      | 2            | 3      | 4    | 3        | 4      | 21        |
+| BlueSky  | 4      | 2            | 2      | 2    | 2        | 4      | 16        |
+
+To me the clear standouts are gwern.net and Pleroma. While gwern.net is probably the
+best designed personal website on the Internet, it still doesn't have a good answer
+to subscriptions and the short posting that builds audience. And while Pleroma
+is the best microblogging platform, it still doesn't let my writing accumulate
+properly or scale my efforts from a basic observation to a full article. I
+imagine the best blog platform design would start from one of these templates
+and evolve to include what it's lacking from the other. 
+
+I can sketch a proposal from either direction.
+
+## Towards An Adequate Platform From Gwern's Direction
+
+Ultimately the problem that has to be solved with a site like Gwern's is how you
+let writing accumulate while still making it possible to ergonomically follow your
+new ideas. When new ideas get lumped into a large corpus of existing ideas, it
+becomes hard to parse what's new unless a reader is intimately familiar with the
+existing content. And on a site that explores many ideas it is simply not feasible
+to expect readers to be familiar with every subject covered. From one perspective
+this is a nonissue: After all if a reader doesn't know about a certain subject,
+they can just not read that update. From a audience building perspective however
+it's a real problem, consistent frequent updates are how a readership is built.
+And without a readership, the influence of writing is limited.
+
+To get straight to the point I think the problem that has to be solved is this:
+Updates want to be their own kind of self contained document. This is why the
+blog format won out over the older style of personal site with topic pages in
+the first place: Blogging encourages the author to write about updates to their
+ideas as self contained posts. This of course has the downside that your writing
+doesn't accumulate into full articles, but memetically if this style of writing
+builds audience and topic pages don't then the popular sites on the Internet are
+going to be blogs. The high-effort way to square this circle is to simply write
+the content once for your ongoing article, and then again as an update or blog
+post. But if [the abandoned changes tab on Gwern's site](https://gwern.net/changelog)
+is anything to go by, it's simply not sustainable to write content twice. Writing
+is difficult enough the first time, so it would be ideal if we only did it once.
+
+I see two realistic ways to avoid writing articles and updates as redundant
+content: The first is to just have AI do it, services like ChatGPT are now
+advanced enough that it's plausible you can feed them the diffs of your page and
+ask it to write a mediocre summary post about the parts that have changed. This
+won't exactly be riveting reading, and you'll have to read and review to make
+sure the machine doesn't subtly botch it, but at least it's more accessible than
+a raw diff. The second way is to write your ideas in some kind of update format
+to begin with that's easy to merge into larger essays and articles. This is what
+I was [trying to do with Liber Augmen](https://liberaugmen.com/) but I never
+really figured out the "merge into larger essays and articles" part. I'm not even
+really sure it's possible with any less effort than just writing the content
+twice, honestly.
+
+## Towards An Adequate Platform From Pleroma's Direction
+
+My first big problem with Pleroma is that there's a limit on how many posts I can
+pin. I know that people traditionally fix this problem by having a "thread of
+threads" or "best posts" thread that they update with the posts and threads they
+consider good, but this seems ergonomically tedious to me for both the author and
+the reader. Ultimately what I want is to be able to do something like Paul Graham's
+simple list of posts for the writing that is not ephemera. And of course if you
+want to actually accumulate your writing into articles you'll need to solve the
+update problem now that you have forms of writing on your platform that are not updates.
+
+On the other hand, LLMs also bring a new affordance to microblogging. Namely: It's
+not clear that you even need to accumulate your writing into articles and topic
+pages 5 minutes from now. Given the sheer economic demand for a chatbot that can
+be customized to answer questions about a corpus (e.g. software documentation)
+it's reasonable to expect that if it's technically possible with current models
+it will happen soon. And given the common interest people have in maintaining
+control over their own documentation, if it can be done with open local models
+it will be. I can imagine a scenario where instead of accumulating into articles
+you just accumulate into a LoRa and publish it to be used with some standard local
+model(s) that people can ask questions. The LoRa and the corpus used to train it
+are updated from a known repository that is published much like git repositories
+are now. It may in fact literally be a git repository [with the large file extension](https://git-lfs.com/).
+
+## Implementation Thoughts
+
+I continue to be struck by the fundamental simplicity of what a 'microblog' is.
+Ultimately something like a personal Twitter feed could be represented by indices
+of flat text files hosted on IPFS. Each file could contain a 280 character chunk
+with authorship information, who is being replied to, and pointers to other IPFS
+chunks with the rest of the thread. Authentication could be handled through
+cryptographic message signing. The only part that would need to be dynamically
+served is the updated post index for a user. The post index can be handled with
+the traditional domain name system and a python script that updates what IPFS hash
+it points to upon receipt of a signed message. Things like recommendation algorithms
+would be dynamic layers on top that users subscribe to in their client separately
+from the core messaging service. From the perspective of the user nothing would
+change. All the information is still there, and can be rendered exactly as it was
+before using the same interfaces.
+
+BlueSky seems to be the closest thing to this. An implementation of the BlueSky
+protocol based mostly on IPFS and flat text files would be a strong way to
+implement the updates portion of the platform. I know I gave BlueSky a low score
+in my rubric but that's mostly because it's more or less modeled after Twitter.
+It being in private alpha means it also shares the access problems Twitter has but
+worse. However from an implementation standpoint the BlueSky protocol was designed
+with IPFS and static hosting in mind, so that almost the entire protocol can
+function without dynamic rendering. The use of traditional DNS to verify distributed
+identity is a clever way to bootstrap the network. And the fact that it lets you
+participate in the BlueSky network directly might make it appealing over just a
+plain RSS feed. The RSS feed should of course continue to be offered.
+
+[^1]: I'm deliberately ignoring things like network effects because my intuition
+is that overfocusing on them distorts incentives. I can afford not to maximize
+the size of my audience and should spend that on prosocial moves like avoiding
+platform lock-in.
+</post>
+
+<post>
+Part of how I can tell I'm becoming a crusty graybeard is I no longer feel
+the appropriate indignant outrage when I look at the result of typing 'help'
+into bash:
+
+```
+GNU bash, version 5.1.4(1)-release (x86_64-pc-linux-gnu)
+These shell commands are defined internally.  Type `help' to see this list.
+Type `help name' to find out more about the function `name'.
+Use `info bash' to find out more about the shell in general.
+Use `man -k' or `info' to find out more about commands not in this list.
+
+A star (*) next to a name means that the command is disabled.
+
+ job_spec [&]                            history [-c] [-d offset] [n] or hist>
+ (( expression ))                        if COMMANDS; then COMMANDS; [ elif C>
+ . filename [arguments]                  jobs [-lnprs] [jobspec ...] or jobs >
+ :                                       kill [-s sigspec | -n signum | -sigs>
+ [ arg... ]                              let arg [arg ...]
+ [[ expression ]]                        local [option] name[=value] ...
+ alias [-p] [name[=value] ... ]          logout [n]
+ bg [job_spec ...]                       mapfile [-d delim] [-n count] [-O or>
+ bind [-lpsvPSVX] [-m keymap] [-f file>  popd [-n] [+N | -N]
+
+...
+```
+
+This is arguably the most important piece of real estate in the entire system.
+When a new user has trouble with Linux they are probably about to pull out the
+terminal, and when they inevitably have trouble understanding the terminal the
+first (and possibly last) thing they will try is typing "help" into the console
+and pressing enter. I remember literally doing that and getting this response
+when I was a teen. [There exist freely licensed books](https://www.linuxcommand.org/tlcl.php)
+explaining the linux command line, there is a wealth of forum posts and informal
+community written documentation, there now exist AI systems that can write
+documentation, there are so many imaginative and helpful things that could happen
+when you type 'help' into bash. But you get this. Inscrutable, archaic, less than
+a cheat sheet and probably not even helpful to a veteran. The output of the 'help'
+command is not only prime real estate but a totally free variable: No tools depend
+on it, there are no legacy workflows to worry about breaking, anyone who relied
+on 'help' for anything in a script and showed up to complain when you change it
+would be rightfully linked the [XKCD about spacebar heating](https://xkcd.com/1172/).
+In other words this is the lowest hanging juiciest fruit possible and there is no
+reason not to change it besides *tradition*. There is a maintainer for bash and they
+do not want to do anything more imaginative than whatever was first put in as
+'help' in 1989. This enduring design choice reflects a fundamental complacency
+with things as they are, which I think contributes to Linux's unpopularity for
+end users as much as anything else. I got into Linux as a teenager because
+someone on a forum I used recommended Ubuntu if your computer was dying. The thing
+that sold me was reading that Linux had free boot disks you could run the whole
+system from on Wikipedia. The idea of having a operating system that lived on a
+DVD or thumb drive blew my mind, I wanted it for the cool factor alone. There
+exists an audience of people who will put up with weirdness and compatibility
+problems if it means they get to interact with artisanship and genius. Those
+users are mostly on Mac, which even has the advantage of being Unix-like as
+well.
+</post>
+
+Be sure to output the passage in a JSON dictionary with the schema
+{{"passage":PASSAGE_TEXT}}.

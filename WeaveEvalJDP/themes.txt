@@ -1,0 +1,128 @@
+Language model self awareness and consciousness
+Tool use
+Prompt authoring
+Summaries and summarization
+Style, aesthetics, form
+Style transfer
+Fermi estimates and mental math
+Data cleaning and formatting
+Question answering and factuality
+Sentiment analysis
+Ethics and morality
+Stories and narrative understanding
+Logical reasoning
+Counterfactual reasoning
+Causal reasoning
+Creativity
+Humor and Irony 
+Argument Mining and Stance Detection
+Structured data and templates
+Philosophical Inquiry
+Speculative Fiction
+Absurdism and Surrealism
+Allegorical Narratives
+Mathematics
+Copyright
+Hypothesis Testing
+World Building
+Character Development
+Plot Development
+Dialogue and Conversation
+Conflict and Resolution
+Linux Command Line
+Collaboration and Teamwork
+Decision Making and Strategy
+Resource Management
+Risk Assessment and Mitigation
+Adaptability and Learning
+Temporal and Spatial Reasoning
+Cognitive Biases
+Experimental Design
+Data Analysis
+Scientific Literature Review
+Research Ethics
+Science Communication
+Financial Resource Management
+Project Management
+Debugging and Error Handling
+Code Optimization
+Algorithm Design and Analysis
+Software Engineering Principles
+Meme Creation and Understanding
+Accounting Principles
+Financial Statements
+Product Positioning and Pricing
+Advertising and Promotion Strategies
+Consumer Behavior Analysis
+Microeconomic Principles
+Behavioral Economics
+Economic Forecasting
+Geopolitical Analysis
+Art History and Styles
+Design Principles
+Industrial Design
+Material Science and Selection
+Manufacturing Processes and Techniques
+Ergonomics and Human Factors
+Web Navigation and Search
+Query Formulation
+Information Retrieval
+Symbolism and Interpretation
+Intuition and Perception
+Tarot Spreads and Layouts
+Visualization and Imagery
+Mindfulness and Meditation Techniques
+Fallacy Detection and Correction
+Critical Thinking and Argument Evaluation
+Rhetorical Analysis
+Bias and Objectivity
+Darwinian Selection
+Musical Composition
+Writing Song Lyrics
+Writing and Reading Poetry
+Utilitarianism and Consequentialism
+Nutrition and Food Science
+Brainstorming and Generating Ideas
+Personality Testing and Recognition
+Psychoanalysis and Psychology
+Microblogging and Tweeting
+Writing Grading Rubrics
+Breaking Concepts Into Parts
+2nd Order Effects
+Intrinsic and Extrinsic Motivation
+Goal Setting and Achievement
+Did This Event Happen
+Investigative Techniques
+Criminal Profiling
+Forensic Science
+Task Prioritization and Time Management
+Project Planning and Execution
+Delegation and Leadership
+Cybersecurity and Threat Mitigation
+System Optimization and Performance Enhancement
+Data Preprocessing
+Data Augmentation and Backtranslation
+Human Rights
+Emotional Intelligence
+Trust and Reputation
+Incentive Mechanisms
+Contract Theory and Design
+Research Methodologies
+Innovation Management
+Evolutionary Dynamics and Adaptation
+Causal Loops and Feedback Mechanisms
+Modular Design and Architecture
+Systems Thinking and Complex Adaptive Systems
+Citation and Reference Verification
+Adversarial Robustness
+Recovering From Autoregressive Degeneration
+Meta-learning and Self-reflection
+Chaos and Complexity
+Randomness and Probability
+Exploration and Discovery
+Multiverse Theory and Parallel Universes
+Emergence and Self-Organization
+Counterfactual History
+Futurism and Speculative Technology
+Social Dynamics and Group Behavior
+Mermaid Diagrams and Visual Communication

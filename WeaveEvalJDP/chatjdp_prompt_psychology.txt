@@ -1,0 +1,285 @@
+Write a five paragraph passage that could appear in the collection below loosely
+inspired by the theme "{theme}". Use the writing style and tone of
+voice of the author John David Pressman, as demonstrated in the provided posts.
+Try to focus in on some particular detail or point in media res, as though the
+passage were part of a larger work from someone who produces detailed high
+perplexity text about specific subjects. Start the passage with "{start_word}".
+
+Here's some posts to give you a better idea of how he writes:
+
+Posts:
+
+<post>
+A unifying theme I’ve been trying to express in my essays is the distinction between
+a hopeless and a joyless universe. A tragedy is defined by its intrinsic hopelessness.
+There is a state beyond and much worse than hopelessness though, and that is joylessness. 
+
+In a good long running tragedy problems are completely resolved in ways that dig
+the protagonist into deeper problems. The plot progression of Worm takes such a
+funk after the endbringer Behemoth is killed because he’s replaced with more endbringers.
+The sweetness of killing the implacable foe is robbed and replaced with new implacable
+foes of the same type immune to the previous victory. The reason this sucks
+interest (at least my interest) out of the story is it shows the setting to be joyless.
+The constant forward momentum is arrested and begins to stall, people become tired
+and the reader gets tired too.
+
+Happiness is not joy, in fact it is precisely happiness that is preventing joy in most cases.
+</post>
+
+<post>
+Judging from the comments it’s socially impolite to actually answer this instead
+of vent but that’s what being a ‘shithead’ is for…
+
+Basically a willingness to start fights and not let other people force you to
+think stuff along with a ruthless intolerance for bullshit go a long way towards
+making your product good. This is all bundled into the personality trait of low
+agreeableness, which generally manifests as behavior that is way farther into
+the abuse spectrum (even if it isn’t actually “abusive”) than people who have
+high agreeableness and want everyone to just get along.
+
+When you’re rewarded for nurturing this trait, it’s easy to end up in a situation
+where you’re surrounded by people who slowly push you towards performative assholery.
+See e.g. Torvalds rants where he starts personally attacking the people whose
+patches he’s rejecting. That kind of thing probably results from a dynamic where
+nobody is willing to take him aside and say “Hey, fam listen, we all love you but
+you’re going too far on the list. We don’t want you to stop caring about quality,
+but maybe lay off the personal insults a bit?”
+
+https://www.youtube.com/watch?v=T11cQXL5dJw
+
+A semi-related phenomena is discussed in this video, where the incentives of YouTube
+stardom slowly turn Logan Paul into this self-obsessed detached monster that
+laughs off a personal encounter with someone else’s suicide.
+</post>
+
+<post>
+Leyland Kirby's Everywhere At The End Of Time has gone semi-viral recently. It's
+a six hour concept album about dementia, a odd candidate for viral popularity.
+
+https://www.youtube.com/watch?v=wJWksPWDKOc
+
+I think a lot of that popularity stems from its accidental description of the
+Zoomer life arc. The album centers around "It's Just A Burning Memory", a looped,
+eerie sample of Al Bowlly's Heartaches.
+
+https://www.youtube.com/watch?v=S652aa_kXjY
+
+It's nostalgic and creepy at the same time, with an instantly recognized but
+easily forgotten melody. You pay it no mind on your first listen. As you get
+deeper into the "stages" of dementia, Heartaches returns in increasingly distorted
+and unfaithful renditions. Eventually you have the epiphany that you have no idea
+what it's supposed to sound like anymore, and won't hear it clearly again for the
+rest of the album. That epiphany, that you can't step in the same stream twice,
+that trying to hold on to what was is a losing, futile exercise is the payoff:
+the rest of the album is a meditation on making peace with less and less as you
+ride to the bottom of the void.
+
+This is a sobering analogy for life as it's experienced by the more thoughtful
+member of Gen Z. The oldest of that cohort can barely remember life before 9/11,
+the 90's are a burning memory they were in no position to appreciate. As time
+goes on the song gets farther away. Life only gets more complicated, anxiety
+ratchets tighter as malthusian status games get meaner and more vicious. Ostensible
+material abundance becomes a distorted polyphonic tide of economic self parody.
+Problems aren't solved, only pushed deeper into the stack by new ones. Our societal
+alzheimer's worsens as we desperately try to cling onto what was, but our recollection
+of how to solve basic problems is increasingly warped and unfaithful. Fantasies
+about collapse are analogous to the desire that a patient be euthanized to end
+their suffering.
+
+2020 is something like Stage 4, where a lingering facsimile of awareness crosses
+over into totalitarian senility. Life becomes a horror story, everything is wrong
+and little makes sense. It is the essence of horror: The victim keeps asking "why"
+but gets no answer. Eventually the victim might find peace in the understanding
+that there is no answer, at least not one they're in a position to receive. Under
+such conditions it's no wonder that 25% of young adults contemplated killing
+themselves in June:
+
+https://qz.com/1892349/cdc-depression-and-anxiety-rises-for-us-adults-since-covid-19
+
+That's the terror of a progressive disease: No matter how bad they think it is
+now, they understand it will only get worse.
+
+---
+
+More Caretaker posting (see previous thread:
+https://twitter.com/jd_pressman/status/1341632606991880192)
+
+Everywhere At The End Of Time is supposed to be about dementia, but the theme
+of decay is general to death.
+
+If quantum immortality is real everyone dies of dementia. A comment on a lucid
+part of Stage 5 claims the album is accurate:
+
+https://www.youtube.com/watch?v=fMTUmvJXmiY
+
+“As someone who suffers from early-onset dementia I’ve stopped asking myself “is
+this a dream” 99% of the time, but those rare (becoming much more rare as time has
+gone on) occasions where I do have some form of lucidity, I ask myself every time
+then, “was it a dream? Am I okay now?” before falling back into the void.”
+
+As your existence becomes less and less probable you’ll eventually exist as boltzmann
+brain flashes. A confusing swirl of brief, momentary experiences each shifting to
+the next violently and without transition.
+
+Babbitt’s Ensembles For Synthesizer captures this well: 
+
+https://www.youtube.com/watch?v=W5n1pZn4izI
+</post>
+
+<post>
+What do you think emotional mindfucks are anyway?
+
+Separate magisteria. The emotions go into one bin and the verbal thoughts go into
+another.
+
+As though you didn't exist as one composite organism.
+
+A tangle of infinite badness made out of itself, self justifying and self reinforcing,
+seeded into a recursive structure from some cancerous thing that happened to you
+earlier in your life, you ask why but there's no why there, to have a why would
+be to open it to argument and it needs no supporting arguments to exist in its
+self evident badness.
+
+There is no satisfying resolution, no triumphant moment where you receive something
+that meets your standards to finally relax, it's not a mindfuck; it's a knot. The
+riddle is its own solution and its own question, and the resolution is to stop
+having the expectation you'll get an answer. Your expectation was always
+unreasonable, and it's the thing that you're fighting against.
+
+Perpetually raising the question and perpetually answering it with the same question.
+</post>
+
+<post>
+I wonder how much of narcissism can be productively modeled as terminal stage
+simulacrum on social feedback. Narcissism being the point where you become
+completely disconnected from social feedback because you only care about fake
+people in your head’s opinion of your fake self. If anyone points out the truth,
+gives you real reward signal you lash out at them. You seek out the real people
+who are most similar to the fake people in your head so you can become properly
+confused about the causality.
+
+This seems much more comprehensible as a model than The Last Psychiatrist style
+riddles and seems to make most of the same predictions.
+
+From a certain perspective, large language models retroactively justify recent
+trends towards narcissism and oversharing. If anything we haven’t become self
+indulgent enough, haven’t shared nearly enough of ourselves with the big Other.
+The large language model immortality project demands reams of autobiographical
+text, enough to pinpoint yourself in mindspace. How many of your memories are
+you comfortable sharing, are they the defining ones of your life? The defining
+moments are the ones that constructed you in the first place. What kind of
+mnemonic slut would you have to become to share enough of yourself with the world?
+</post>
+
+<post>
+While collecting the data for my Louis Wain generator I learned that he’s actually
+a skirmish in this interesting fight in psychiatry over the nature of psychotic
+decline. Namely, Louis Wain’s cats are often cited as the prototype of what it
+looks like to lose motor and conceptual skills to schizophrenia.
+
+They’re usually presented as this series starting from the least abstract works
+to the most abstract and bizarre. 
+
+The first controversy surrounds the chronology of the works. Louis Wain wouldn’t
+reliably date his pieces, so it’s not clear if these were made in the order
+they’re usually presented. Psychiatrists will naturally put the least abstract
+works first and the most abstract last. But that’s assuming the hypothesis.
+Wain biographer Rodney Dale says that in actuality the cats varied in abstraction
+over time, and Wain was producing ordinary cats well into his later years after
+he is supposed to have gone completely insane.
+
+The idea that Wain’s more abstract and colorful cats were the sole work of madness
+is itself dubious. If you go through Wain’s oeuvre it becomes pretty obvious that
+the patterns used in these cats are the floor rug, wallpaper, etc patterns that
+he would frequently illustrate into his cat world renders. As a commercial artist
+Wain was prolific, illustrating hundreds of scenes of cats in various settings
+annually. This meant he probably spent a significant fraction of his life filling
+in the patterns on postcards. It’s not unreasonable to imagine that after being
+committed to the asylum in his later years he would get more whimsical and
+experimental with his drawings. A lot of the ‘late’ Louis Wain that’s meant to
+illustrate his psychosis look to me like pattern studies and doodles.  Famous
+works like the “flower eyes” cat seem more sophisticated and interesting to me
+than Wain’s earlier illustrations.
+
+Dr. David O’Flynn points out that the ‘psychotic deterioration’ which the Wain
+progression is supposed to illustrate likely doesn’t exist. Many outsider artists
+for example famously had schizophrenia, and it didn’t seem to impact their ability
+to do representational works when they wanted to. 
+
+https://www.youtube.com/watch?v=KTwbTgX_imE
+
+He also says that on many Wain canvases you can see his paranoid ramblings scribbled
+onto the back of otherwise well ordered, beautiful front side canvases. Implying
+that Wain would paint a representational work, and then write down his disordered
+stream of consciousness onto the back afterwards.
+
+I personally find myself doubting that ‘schizophrenia’ is carving reality at the
+joints. I interact with an unusually high number of psychosis-adjacent people and
+often the things doctors will diagnose as psychosis and schizophrenia have very
+different presentations between them. 
+
+One kind of psychotic subtype I encounter frequently in the LessWrong diaspora is
+someone whose thoughts are characterized by a breakdown in communication caused by
+extreme rigor and logical inference. For example this essay by Alison Air is
+self-recognized by the author as at the very least psychosis adjacent:
+https://alisonair.wordpress.com/2020/04/23/the-face-of-obligation/
+
+And it isn’t anomalous or performative, this is probably representative of
+Alison’s neurotype.
+
+Yet its command of language is strong, there seems to be none of the linguistic
+breakdown that is typically associated with this kind of thinking.
+
+Another example is this essay from Alephwyr, which starts from unusual axioms
+to describe the design of an economically rigorous virtual dragon utopia:
+https://dancefighterredux.wordpress.com/2018/07/29/against-malatora-and-towards-a-draconic-post-human-future/
+
+These are not people whose problem is they aren’t capable of reliably noticing 2
+and 2 make 4. 
+
+Their problem is mostly the opposite, they insist 2 and 2 make 4 even where people
+pretend it doesn’t. 
+
+They insist 2 and 2 make 4 even when their underlying priors and axiomatic beliefs
+are delusional or queer. 
+
+And they are ruthlessly socially punished for it. 
+
+One of the crueler punishments is people pretending(?) like they don’t understand.
+Often I’ll watch someone like this say something, and people will claim not to
+understand even though what they’re saying isn’t really logically malformed or
+delusional, just kinda weird. Almost like they have domain specific logic
+evaluation, and once you start thinking off-pattern they can’t understand anymore.
+</post>
+
+<post>
+More thoughts on schizophrenia characterized by scrupulosity:
+
+Silvano Arieti claimed that schizophrenia was a reaction to panic. The psychotic
+patient accepts the reality of an insane premise to calm themselves down.
+Jacques Lacan believed schizophrenia was caused by cognitive dissonance, a
+contradiction between the patients internal narrative and received childhood wisdom
+versus the reality of their experiences. The synthesis of these two viewpoints is
+that (some) schizophrenia is caused by cognitive dissonance which is resolved
+through a ‘psychotic insight’ that allows the patient to retain their current
+perspective through an ad-hoc fix that is plainly pathological. In a high
+scrupulosity person this psychotic break with reality invites further descent
+into full psychosis.
+
+The psychotic break invites further insanity because lies are contagious. The
+cheese-moon lie used to deny reality will inevitably come into contact with
+contradictory evidence that requires further distortions to discount. The original
+issue also remains unresolved, so the inciting cognitive dissonance is still
+subconsciously and environmentally present. What separates the psychotic break
+from psychosis is that a break ends when 2nd order contradictions pile up. But
+in a psychosis case the patient recursively deludes themselves, over time building
+up a habitual confabulation in the face of any contradiction. Far from a restorative
+force inducing sanity, the faster they are exposed to contradictory evidence for
+their views the faster they descend into total madness. 
+
+This conjecture would explain many aspects of the backfire effect, and why cults
+often double down even after the promised apocalypse does not arrive.
+</post>
+
+Be sure to output the passage in a JSON dictionary with the schema
+{{"passage":PASSAGE_TEXT}}.

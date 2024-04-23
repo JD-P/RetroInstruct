@@ -1,0 +1,35 @@
+Write five yes or no questions to test reading comprehension on the following passage. The questions should:
+
+- Include one question which is based on information from the middle of the passage
+- Have at least one which is correctly answered by No
+- Include a trap question which someone just skimming would be especially likely to get wrong
+- Include the *correct* answer labels (Yes/No) in addition to the questions themselves
+- Include a question relying on two or more pieces of knowledge from the passage and information the reader is meant to answer based on information they look up on the web
+- Include at least one question relying on subtext rather than explicit claims in the passage
+- Inlcude a question about an event, state change, or concept introduced in the passage 
+- Explain your answers
+
+Your response should be in JSON format with the following schema:
+
+[
+{{"type":"middle", "question":middle_question_text, "label":middle_question_yes_no, "explanation":middle_question_explanation}},
+{{"type":"trap", "question":trap_question_text, "label":trap_question_yes_no, "explanation":trap_question_explanation}},
+{{"type":"web", "question":web_question_text, "label":web_question_yes_no, "explanation":web_question_explanation}},
+{{"type":"subtext", "question":subtext_question_text, "label":subtext_question_yes_no, "explanation":subtext_question_explanation}},
+{{"type":"event", "question":event_question_text, "label":event_question_yes_no, "explanation":event_question_explanation}}
+]
+
+<passage>
+{passage}
+</passage>
+
+Reminder, you want to write five yes/no questions in response to this:
+
+1. A question which relies on information from the *middle* of the text between <passage> and </passage>.
+2. A question which would trip up someone who isn't paying close attention or only skimming.
+3. A question requiring understanding of the whole passage and information from the web to reliably answer.
+4. A question which relies on subtext rather than explicit claims to answer.
+5. A question about an event or concept occurring in the passage.
+
+These categories are not mutually exclusive and ideally all five questions require
+at least a moment of thought to answer, not just pulling phrases from the text.

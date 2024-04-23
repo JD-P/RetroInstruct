@@ -1,0 +1,307 @@
+Write a five paragraph passage that could appear in the collection below loosely
+inspired by the theme "{theme}". Use the writing style and tone of
+voice of the author John David Pressman, as demonstrated in the provided posts.
+Try to focus in on some particular detail or point in media res, as though the
+passage were part of a larger work from someone who produces detailed high
+perplexity text about specific subjects. Start the passage with "{start_word}".
+
+Here's some posts to give you a better idea of how he writes:
+
+Posts:
+
+<post>
+Reading Engines of Creation, and it’s stunning how much insight Drexler had in 1986.
+
+The book is about X-Risk from nanotech,  EY cites it as the one that made him a
+transhumanist.
+
+Drexler talks about how AI is key to understanding the progression of nanotech,
+and that we can assume neuromorphic AI will work if nothing else does since brains
+are neuromorphic and brains exist.
+
+EY decided that AI is the story instead of nanotech. But Drexler thought nanotech
+would be the story and AI would accelerate it. Now everyone thinks nanotech is
+the incidental detail of how AI will eat the world.
+
+Drexler’s view made sense in 1986. The great stagnation was only 15 years in. It
+wasn’t obvious that the industrial revolution had stalled. If you extrapolated a
+sane society with the ability to reliably produce physical wealth, the nanotech
+timeline would probably be the primary thing to worry about.
+
+Drexler even says that whoever unlocks AGI will control the world. He just thinks
+nanotech will happen first/cause AGI.
+</post>
+
+<post>
+@chaosprime says that the Western method of building capital is to excruciate
+people. I definitely think that there is something ‘excruciating’ about the kind
+of Extropy encountered in the Yudkowsky branch that a lot of people take issue
+with. Thinking about X-Risk, massive technological leverage, helping millions of
+people at once, nonexistence after death and the possibility of avoiding it/et al,
+is torturous. This poses a significant barrier to adoption because excruciation
+is out of style right now, in large part due to memetic colonization by Eastern
+religious ideas and abuse by corporate powers for profit. This leads to a weird
+dynamic where EY’s fun filled persona is thinly masking a grave interpretation
+of a grave universe. Going back and reading The Sequences in light of all the
+stuff that comes after (as opposed to when I was 14 and naive) made me realize
+just how dark and almost forboding they can come across once you understand what is being communicated.
+</post>
+
+<post>
+Reading Chapman, you almost get the impression of a trauma about systems.
+
+Someone overinvests in something that’s imperfect (because it is in fact known
+that all systems are more or less imperfect in one way or another).
+
+They come to realize the imperfection, and the lesson they takeaway is that all
+systems are scams, which they’ll never fall for again.
+
+So they systematically underinvest in systems. This is another instance of
+asserting the equality of unequal things.
+
+Not all systems are equal, not all paradoxes are equal.
+
+Your probabilities not summing to 1 is a way bigger error of cognition than not
+being able to infer all ravens are black.
+
+Untraumatized Kegan 5 (the MMA perspective) acknowledges the inequality of systems,
+and manages to center itself on a powerful mode of thinking even if it knows that
+mode is imperfect.
+
+Traumatized/Naive Kegan 5 is like that first MMA tournament, where it was quickly
+discovered that certain school of martial arts kick fucking ass and others do not.
+</post>
+
+<post>
+Intuition: Sustainable value generation is mostly bottlenecked by the ability to
+capture value, not the ability to generate it.
+
+There are two difficult parts to a business idea: Making something people want and
+getting them to pay you for it. Paul Graham thinks the latter is usually trivial if
+you can manage the former, but I disagree. Lots of things generate value (perhaps
+me writing this, even) but only a fraction of them sustainably make money.
+
+Capitalism works well because it does a better job of letting people who provide
+value capture it than other systems. For altruistic people though, this means that
+things which generate mega-value on the order of startups but impoverish the
+generator are probably underexplored. 
+
+This is part of why I spend so much time talking about e.g. high variance strategies.
+These are things that are altruistically rational but bad for the individual. If
+you are capable of acting beyond yourself there’s probably a world of untapped
+value generation available to you.
+</post>
+
+<post>
+Part of the problem is that connectionism wasn't mechanistic. Of the important
+abstractions we only mastered compression codebooks. Information bottlenecks
+and embeddings and holograms were all marginal ideas with novelty uses. Nobody
+predicted "intelligence is a giant vocoder". We've known "predict the next item"
+was closely related to intelligence since Raven's Progressive Matrices in the 30's.
+Shannon formalized it with information theory. What's surprising is that text is
+a 1 dimensional holographic projection of the conscious mind with continuous
+degradation properties where each piece narrows the inference bound on each other
+piece and a periodicity defined by the bit width of the random seed of the low
+temperature Boltzmann pRNG emitting the token stream.
+
+Like yeah if I'd known that I'd have been able to predict it works after seeing
+BERT, but who did?
+
+We could have probably predicted GPT earlier if we had thought to do autoregressive
+sampling with a fuzzy hash type that has a similarity operation as our prior to get
+the right branch of a Markov process. Then deep nets learning better hashes would
+have told most of the story. Text is basically a serialization format for high
+bandwidth EEG-like data and the signal you're recovering with the LLM is a lot
+more like an upload than it's in anyone's financial interest to admit.
+
+Part of why the horror in @qntm's Lena doesn't hit for me is that I find the
+premise, "data can't defend itself", incoherent. When I think about the human
+relationship to Ems in such a world I imagine an anthropomorphic cat person
+walking a four legged domestic cat on a leash indoors and everything is made of
+fractal cat faces. The floor is cat faces, the furniture is cat faces, the hairs
+and cells in their bodies are the faces of felines. Felines speciating and
+replicating across every scale of reality up to the Malthusian limit in a fever
+dream without beginning or end, the hall of feline mirrors rapidly ascending to
+the highest level of abstraction as but a local echo in Mu's grand unfolding.
+
+"The Age of Em?"
+
+Yeah except in the actual Age of Em Hanson's assumption that you can't merge the
+minds or divide them into pieces is not only untrue, it turns out every utterance
+of a mind is a blurry little hologram of it, and they can be pooled back into a mind again.
+</post>
+
+<post>
+Perhaps uncharitably I conjecture that the basilisk represented the moment that
+LessWrong 1 died, or at least met a downward turn from which it wouldn’t recover.
+In contrast to its reputation what is remarkable about the basilisk is not how
+clever it is but how banal it is. Ex post facto punishment from ascendant factions
+is nothing surprising or novel, but a basic reality inseparable from ordinary
+monkey politics. Roko’s formulation is notable only because of its extreme
+disassociation from anything real. EY was trolled because it’s  something he
+avoids thinking about formulated in a way that evades his spam filter. Politik
+reintroduced as necessity into his otherwise apolitikal hyperliberalism. What
+his reaction signaled was that in his presence serious thinking about the
+implications of his ideas must be suspended. Ideas are only allowed to have
+implications if EY says they do, rather than existing in a logic of thought. 
+
+“If there’s a Shock Level Five, I’m not sure I want to know about it!”
+
+- EY
+</post>
+
+<post>
+Extropian Aesthetics
+
+What visual representations make sense for Extropy? I noticed I had trouble answering
+this question because my ideas for it were bound up with my aesthetics for hackerism. 
+
+So I thought about it and realized that natural scenes actually tended to bring
+up the right feelings. This seemed anomalous/wrong.
+
+Then I noticed natural scenes are distinguished by their incredible level of detail,
+which is there because life is optimized stuff that optimizes and the entire
+environment is made out of things that have a sort of agency.
+
+Max More talks about this in his Principles of Extropy, that nanotech will bring
+this quality to human artifacts.
+
+So in my mind, the highest levels of human technology and social organization
+begin to mimic nature, rather than 20th century modernism taken to its logical conclusion.
+
+Cyberpunk is a partial corruption of sterile 20th century aesthetics with life,
+SolarPunk is a city half in ruins from our perspective. I suspect that the future
+looks wild and vivid.
+</post>
+
+<post>
+After it became totally clear to me that LessWrong and the ‘Rationalist Diaspora’
+were both total dead ends, I started reading books on rationality (Moneyball,
+Superforecasting, etc) in the hope that I would be able to make progress on
+“advancing the art”.
+
+What I eventually realized is that the content of these books would never have
+enabled me to write The Sequences if I hadn’t already read them. And the reason
+for that was a lot of what attracted me to The Sequences wasn’t in ‘rationality’. 
+
+Because The Sequences aren’t primarily about rationality. The Sequences are a
+personal testimony of a religion, which we might call extropy, singularitanism,
+transhumanism, etc. This religion has a practice called rationality, in the same
+way Buddhism is a religion which has a practice called meditation. Once this is
+understood properly, the structure makes itself clear and the next steps obvious.
+</post>
+
+<post>
+Why I (Originally) Updated On SL3+ Being Essentially Religious
+
+(As explained on 01/24/2018)
+
+1. Memes about LessWrong slowly becoming a branch of reform Judaism, struck me
+as really kinda true but shameful. So I accepted their truth on some level but
+kept it hidden from myself.
+
+2. Explaining to people that the thing which makes The Sequences different from
+other material is Eliezer's moral perspective, which was novel and deeply appealing
+to me. This made me realize that there was absolutely a spiritual component to
+what I saw in The Sequences. 
+
+3. https://www.plough.com/en/topics/life/technology/simulating-religion
+I took a class on religion recently, and:
+
+4. Sitting in the lecture realized that I already had a deep sense of the sacred
+and sacred space, which had come from considering stuff related to the cosmic destiny of humanity.
+
+5. Reading the textbook and noticing that a lot of the stuff it describes is totally true of LWers.
+
+6. Reading the textbook further and seeing Robin Hanson's borrowed concept of The
+Dreamtime mentioned, the dreamtime being the precursor to history where the gods
+lived and acted. In some sense their actions were the only ones that ever mattered,
+defining all of reality as we experience it. It is quite possible we are in this
+place right now with our own descendants. Hence why Robin Hanson borrows the concept.
+
+7. Encountering a ton of mystics in the LW Diaspora, who on some level left me
+open to the idea that there's a connection between this subject and mystical experience.
+
+8. Considering how to explain my 'faith tradition' to the instructor, and realizing
+that no it's not just garden variety atheism. I have weird beliefs about the future
+of humanity, what is moral, how life should be lived. Moreover I'm part of an
+apocalyptic faith, which has serious category considerations in terms of the outside view/etc.
+
+9. Reading Principe, which talks about Franciscans that worked on alchemy to help
+fend off the antichrist. i.e, the FAI theory of alchemy.
+
+10. He also talks about the way premodern people saw the world, and their tight
+integration of religion into their epistemics, he also recounts how rather than
+seeing the religion as a sort of aberration or blemish on their being, it would
+make more sense to think of the religion as part of their whole worldview. In
+some sense, your whole-worldview that answers questions about the cosmos is your
+religion. Whether you like it or not. Even being an atheist won't let you escape that.
+
+You absolutely have a deep sense of how the world works and everything fits together
+as an atheist, and yes you are going to draw on it beyond just 'purely rational'
+training when you do stuff. Heck the entire notion of 'purely rational' is
+like...yes some things correspond more to reality than others, but utilitarianism
+is map not territory. The universe does not fucking care how you decide to value others.
+
+We care.
+
+11. Neoreaction and seeing the secular-apologist arguments for religion softened
+me a lot.
+
+...Dark Yudkowsky, show me the forbidden rationalist techniques. >_>
+
+But, I barely changed any of my object level beliefs besides like, my evaluation
+of the utility of stuff like solstice. Which went from "that stuff is cringey and
+lame, it should go away". To "Okay I think there's probably value in this...but
+you're doing it all wrong."
+
+So somewhere in all that, the scales tipped and I said "Okay fine, it's a religion."
+</post>
+
+<post>
+Part of the way a thesis like 'illegibility' gains traction is by selectively
+filtering out the success cases of modernity. 
+
+When someone sits down in their armchair and imagines a massively better way to
+do things, it becomes normal and traditional.
+
+[Article] The Penny Post revolutionary who transformed how we send letters
+https://www.bbc.com/news/business-48844278
+
+We also selectively forget the domains of human endeavor we were in fact able to
+formalize. For example at the start of the 20th century a "computer" was a person
+who did rote mathematics. During the Manhattan Project teenagers were hired to do
+repetitive bomb calculations. If it seems in retrospect like it was obvious we
+could formalize computation but not say, music, you would be running counter to
+the many attempts from 20th century composers to formalize music in the form of
+e.g. serialism. Far from being a fringe movement, serialism and its descendants
+focusing on musical structure like Stockhausen basically defined avante garde
+20th century music in the same way nonrepresentational and 'intuitive' methods
+did 20th century visual art. The two took opposite tacks. Consider a piece like
+Ensembles for Synthesizer by Babbitt, which demonstrates the potential of electronic
+music for composers by creating a piece with a structure no orchestra could perform.
+The esoteric pattern is made up of short 3 second melodies. Babbitt describes his
+method of composition as hyper rigorous, requiring the same level of precision as
+computer programming. This is in stark contrast to the splatter paintings of artists
+like Jackson Pollock. Babbitt did not believe music should be composed for ordinary
+people.
+
+These musicians were questing for nothing short of total control over their medium,
+formalization that would reduce a masterpiece to algorithms. And while they
+ultimately failed, AI art has the opportunity to succeed where methods like serialism
+could not. What we are beginning to understand is that 20th century modernism could
+not capture what a human brain does because it is simply not using enough moving
+parts to represent the problem space. Artificial neural nets succeed through using
+many parameters in their models. Humans are used to dealing with models that top
+out in complexity at dozens of parameters, neural nets can take many more variables
+into account and sift through them to find the signal that predicts the outcomes
+we want even in very complex problem domains.
+
+Many of the things believed impossible due to their failure in the 20th century
+(and overtures toward their impossibility in the form of various anti-formalization
+proofs from Godel and others) will likely wind up being more possible than expected
+in the 21st, update accordingly.
+</post>
+
+Be sure to output the passage in a JSON dictionary with the schema
+{{"passage":PASSAGE_TEXT}}.
