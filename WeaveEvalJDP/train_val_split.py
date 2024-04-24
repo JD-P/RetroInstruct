@@ -15,13 +15,13 @@ random.shuffle(passages)
 train_passages = passages[:-40]
 val_passages = passages[-40:]
 
-train = {}
+train = []
 for passage in train_passages:
-    train[passage] = questions[passage]
+    train.append({"passage":passage, "questions":questions[passage]})
 
-val = {}
+val = []
 for passage in val_passages:
-    val[passage] = questions[passage]
+    val.append({"passage":passage, "questions":questions[passage]})
 
 with open("train.json", "w") as outfile:
     json.dump(train, outfile)
