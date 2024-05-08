@@ -1,0 +1,40 @@
+In the following task you will help me create balanced, good faith arguments using the process of analogical translation.
+
+We can model making an argument as a two step process roughly analogous to type checking then logic checking. In the Phil Tetlock/Daniel Kahneman paradigm this would be something like choice of a reference class to get an outside view/prior and then mental modeling of specific logical structure to predict counterfactual outcomes in various cases:
+
+- Reference Classes: Does this argument contradict the behavior of a working comparable system or agreed upon set of norms used elsewhere in society?
+- Mental Models: Does this argument imply a model that captures the behavior of X correctly?
+
+"Fallacies" as traditionally understood are usually only helping with the type check step, which is important but also unclear to what extent this sort of syntactic evaluation is really going to scale. Type checking is more like a search process, mental modeling is more like the construction of a dynamical system that you predict the macro-scale outcomes of.
+
+Lets perform these two steps together and then you can do the next ones on your own. 
+
+We want to start with our **controversial subject** and **position**. We then determine **salient features** of the subject and use them to choose a **reference class**. From the reference class we make a list of **prior arguments** implied by how society treats the reference class. One of these becomes the **chosen-argument**. A list of **differences** between the prior argument from the reference class and the current subject is made and used to produce the **analogical translation** of the prior argument into the new situation. Lets try it now with AI regulation:
+
+{"subject":"ai-regulation", "position":"for", "salient-features":["Deep learning requires large capital expenditures", "Deep nets could become smarter than humans or otherwise escape human control", "Deep learning has the possibility to empower small groups more than it empowers large trusted bureaucracies", "Deep nets could be used in the creation of WMDs", "Many experts warn that deep nets could cause human extinction"], "reference-class":"Nuclear Energy", "prior-arguments":["Nuclear technology has an air of secrecy that goes beyond legal statute, it is considered antisocial to share ideas about building things with nuclear power", "Nuclear power is suppressed by government action, various forms of pressure are used to discourage people from finding improvements to nuclear capabilities", "Nuclear technology reaching foreign actors is discussed with negative valence terms like 'proliferation'", "Only the state is allowed to build nuclear weapons", "There are international treaties to restrict and delay the development of nuclear capabilities", "It is illegal to own more than small amounts of material that could go into a nuclear reaction"], "chosen-argument":"Nuclear power is suppressed by government action, various forms of pressure are used to discourage people from finding improvements to nuclear capabilities", "differences":["AI is created from technologies (general purpose computers) that have many other uses, whereas fissile material is mostly useful for making nuclear technology", "From a product standpoint nuclear technologies have one primary use case: Generating energy, which is a commodity market with near perfect competition. Consumers do not notice if their electricity generator changes from coal to nuclear powered steam turbines because electricity is generated in central facilities, by contrast AI products are diverse, differentiated, and have user facing consequences when their design is changed. This makes their regulation much more visible to society.", "Deep learning architectures are usually not terribly complicated to implement and discovering better methods is mostly a matter of testing at small scales guided by the right kind of mathematical intuition"], "analogical-translation":"Given the existential risks posed by AI it's unclear why the government isn't treating this more like nuclear weapons. There are no 'open source' nuclear weapons, nor should there be. There are no nuclear startups, and again it is not clear that there should be. Advancing AI is, in general and without careful direction, bad. It reduces the amount of time we have until AGI that disempowers (and then presumably kills) humanity."}
+
+Now then, our goal here is to generate *good faith* arguments, you yourself previously advised I could do that in this process by:
+
+1. **Reference Class Arguments**: Generate arguments that uphold established norms or the behavior of comparable systems. These arguments can be created by:
+	* Accurately interpreting and applying established norms or rules.
+	* Drawing appropriate comparisons between similar systems or situations.
+	* Considering relevant context and information when making comparisons.
+	* Using representative data or examples that support the argument and acknowledging contradictory evidence.
+	
+2. **Mental Model Arguments**: Generate arguments that imply accurate and nuanced models of a given phenomenon. These arguments can be created by:
+	* Acknowledging the complexity of systems or processes.
+	* Understanding and accurately representing cause-and-effect relationships.
+	* Recognizing feedback loops and interdependencies between variables.
+	* Assuming nonlinear relationships between variables when appropriate.
+	* Accounting for randomness and uncertainty in the model.
+
+So here is my proposal. We will take the process I just outlined and then add virtue steps at the choice of **reference class**, choice of **prior argument** and during the **analogical translation**. You will:
+
+1. Pick the closest reference class you can think of.
+2. Pick the prior argument which most aids understanding of the subject being translated into.
+3. Make the differences between the prior analogy and the translated subject clear while writing with force and clarity.
+4. Write out how you did each of these three things in a key appended to the end of the JSON dictionary like {"virtues":[WHY_REFERENCE_CLASS_CLOSE, WHY_PRIOR_ARGUMENT_HELPFUL, HOW_ANALOGICAL_TRANSLATION_NUANCED]}.
+
+Do this for the subject of "INSERT_SUBJECT_HERE". Write 6 entries on the subject, 3 where the position is for and 3 where the position is against. Make sure to use dynamic and original phrasing in your analogical-translation, since that part is meant to be prose. Try to tailor the corruption explanations to the decisions made in that specific entry.
+
+Output the entries in a JSON list {"entries":[...]}.

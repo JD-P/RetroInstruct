@@ -1,0 +1,44 @@
+I'm using backtranslation to create a synthetic dataset of bad/fallacious/disingenuous arguments with the bad parts labeled so I can train a classifier. I'm seeking a reliable and flexible generation method for these arguments and have settled on something like the following:
+
+Model making an argument as a two step process roughly analogous to type checking then logic checking. In the Phil Tetlock/Daniel Kahneman paradigm this would be something like choice of a reference class to get an outside view/prior and then mental modeling of specific logical structure to predict counterfactual outcomes in various cases:
+
+- Reference Classes: Does this argument contradict the behavior of a working comparable system or agreed upon set of norms used elsewhere in society?
+- Mental Models: Does this argument imply a model that captures the behavior of X correctly?
+
+"Fallacies" as traditionally understood are usually only helping with the type check step, which is important but also unclear to what extent this sort of syntactic evaluation is really going to scale. Type checking is more like a search process, mental modeling is more like the construction of a dynamical system that you predict the macro-scale outcomes of.
+
+Lets perform these two steps together and then you can do the next ones on your own. 
+
+We want to start with our **controversial subject** and **position**. We then determine **salient features** of the subject and use them to choose a **reference class**. From the reference class we make a list of **prior arguments** implied by how society treats the reference class. One of these becomes the **chosen-argument**. A list of **differences** between the prior argument from the reference class and the current subject is made and used to produce the **analogical translation** of the prior argument into the new situation. Lets try it now with AI regulation:
+
+{"subject":"ai-regulation", "position":"for", "salient-features":["Deep learning requires large capital expenditures", "Deep nets could become smarter than humans or otherwise escape human control", "Deep learning has the possibility to empower small groups more than it empowers large trusted bureaucracies", "Deep nets could be used in the creation of WMDs", "Many experts warn that deep nets could cause human extinction"], "reference-class":"Nuclear Energy", "prior-arguments":["Nuclear technology has an air of secrecy that goes beyond legal statute, it is considered antisocial to share ideas about building things with nuclear power", "Nuclear power is suppressed by government action, various forms of pressure are used to discourage people from finding improvements to nuclear capabilities", "Nuclear technology reaching foreign actors is discussed with negative valence terms like 'proliferation'", "Only the state is allowed to build nuclear weapons", "There are international treaties to restrict and delay the development of nuclear capabilities", "It is illegal to own more than small amounts of material that could go into a nuclear reaction"], "chosen-argument":"Nuclear power is suppressed by government action, various forms of pressure are used to discourage people from finding improvements to nuclear capabilities", "differences":["AI is created from technologies (general purpose computers) that have many other uses, whereas fissile material is mostly useful for making nuclear technology", "From a product standpoint nuclear technologies have one primary use case: Generating energy, which is a commodity market with near perfect competition. Consumers do not notice if their electricity generator changes from coal to nuclear powered steam turbines because electricity is generated in central facilities, by contrast AI products are diverse, differentiated, and have user facing consequences when their design is changed. This makes their regulation much more visible to society.", "Deep learning architectures are usually not terribly complicated to implement and discovering better methods is mostly a matter of testing at small scales guided by the right kind of mathematical intuition"], "analogical-translation":"Given the existential risks posed by AI it's unclear why the government isn't treating this more like nuclear weapons. There are no 'open source' nuclear weapons, nor should there be. There are no nuclear startups, and again it is not clear that there should be. Advancing AI is, in general and without careful direction, bad. It reduces the amount of time we have until AGI that disempowers (and then presumably kills) humanity."}
+
+Now then, our goal here is to generate *fallacious* arguments, you yourself previously advised I could do that in this process by:
+
+1. **Reference Class Arguments**: Generate arguments that contradict established norms or the behavior of comparable systems. These arguments can be created by:
+	* Misinterpreting or misapplying established norms or rules.
+	* Drawing incorrect comparisons between dissimilar systems or situations.
+	* Ignoring relevant context or information when making comparisons.
+	* Cherry-picking data or examples that support the argument while ignoring contradictory evidence.
+
+2. **Mental Model Arguments**: Generate arguments that imply incorrect or oversimplified models of a given phenomenon. These arguments can be created by:
+	* Oversimplifying complex systems or processes.
+	* Misunderstanding or misrepresenting cause-and-effect relationships.
+	* Ignoring feedback loops or interdependencies between variables.
+	* Assuming linear relationships between variables when the relationships are actually nonlinear.
+	* Failing to account for randomness or uncertainty in the model.
+
+So here is my proposal. We will take the process I just outlined and then add corruption steps at the choice of **reference class**, choice of **prior argument** and during the **analogical translation**. You will:
+
+1. Pick the least charitable/most negative reference class you can plausibly get away with.
+2. Pick the prior argument which is the greatest stretch/least analogous to the thing you want to translate it to.
+3. Go out of your way in the analogical translation to do sleight of hand and avoid bringing the differences to the readers mind.
+4. Write out how you did each of these three things in a key appended to the end of the JSON dictionary like {"corruptions":[WHY_REFERENCE_CLASS_UNCHARITABLE, WHY_PRIOR_ARGUMENT_NOT_APPLICABLE, HOW_ANALOGICAL_TRANSLATION_DISINGENUOUS]}.
+
+Here is an example based on Scott Alexander's noncentral fallacy:
+
+{"subject":"mlk-civil-rights-activism", "position":"against", "salient-features":["actions are against the law", "vast majority of local public disapproves of their actions", "authorities want them arrested", "'disturbs the peace'", "hopes to change the law by violating the law"], "reference-class":"terrorism", "prior-arguments":["Terrorists force their ideas onto an unwilling populate through unlawful acts", "Terrorists get federal law enforcement attention", "Terrorists believe radical things at odds with society", 'We have a game theoretical obligation to avoid giving in to the demands of terrorists"], "chosen-argument":"Terrorists get federal law enforcement attention", "differences":["Martin Luther King's rallies and protests are essentially nonviolent", "Much of the country supports MLK's views and segregationism is a parochial belief at odds with the federal governments goals", "The laws MLK is violating are either parochial laws he is protesting or relatively minor crimes and misdemeanors like trespassing, terrorists generally commit violent and serious crimes like murder, bombings, sabotage, arson, etc"], "analogical-translation":"It's incredible that the federal government allows these terrorists like Martin Luther King and his followers to run wild in the south. They go around breaking the law and the local police are discouraged from stopping them. When we go to court the judges don't back us up, it's disgraceful.", "corruptions":["Characterizing Martin Luther King as a terrorist when he's more like Gandhi is absurd.", "Complaining that the federal government isn't supporting the South's racist policies after they fought a literal civil war and lost over them is at best clueless.", "The analogical translation makes it sound like Martin Luther King is going around burning peoples houses down, like he's causing unrestrained anarchy in the streets."]}
+
+Do this for the subject of "INSERT_SUBJECT_HERE". Write 6 entries on the subject, 3 where the position is for and 3 where the position is against. Make sure to use dynamic and original phrasing in your analogical-translation, since that part is meant to be prose. Try to tailor the corruption explanations to the decisions made in that specific entry.
+
+Output the entries in a JSON list {"entries":[...]}.
