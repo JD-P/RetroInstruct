@@ -1,0 +1,125 @@
+architecture
+artificial intelligence
+astronauts
+autogyros
+battleships
+cars
+cells
+circuits
+cityscapes
+clockwork
+computers
+control rooms
+the cosmos
+cryonics
+cyberpunk
+cyborgs
+leonardo da vinci
+scientific diving
+commercial diving
+geodesic domes
+guns
+helicopters
+industrial machinery
+lab equipment
+labs
+landscapes
+manufacturing
+mars colonization
+mechanics and engineers
+megastructures
+moon colonization
+nanotechnology
+nuclear power
+planes
+railguns
+robots
+scientists
+space elevator
+space marines
+space ship interiors
+space ships
+space stations
+steam power
+submarines
+surgery
+suspended animation
+transhumanism
+50's scifi habitable venus colonies
+contemporary venus cloud colonies
+Black holes
+Holograms
+Fractals
+Phoenix
+Hydras
+Basilisk
+Medusa
+Shadow People
+Troll
+Faerie
+Cerberus
+Ophanim, Cherub, Seraphim, etc
+Demons
+mythical creatures
+Prometheus
+Frankenstein's Monster
+Viruses
+Greek gods
+Oracle at Delphi
+Egyptian gods
+Fluid dynamics
+glitch art
+Buddhism
+Sigils
+Judaism
+Christianity
+Alchemy
+Chemistry labs
+Spiders
+Looms and textiles
+Tarot Major Arcana
+knots
+personhood
+group membership
+group nonmembership
+groups based on common attributes
+power relations
+states of being
+agency
+religion
+discrimination and exclusion
+royalty and aristocracy
+wrongdoing
+geographical features
+places where
+holes
+small things
+large things
+round things
+sharp pointy things
+flat things
+hard things
+soft things
+shallow things
+deep things
+narrow things
+brittle things
+clumsy things
+elegant things
+sweet things
+disk shaped objects
+animals
+cats
+dogs
+plants
+cloth
+metal
+stone
+judges
+slaves
+Crowds, revolutions, celebrations
+Hallways, liminal spaces, backrooms
+Retrocomputing Equipment (CRT monitors, teletypes, paper tape, punch cards, etc)
+Trees
+Server rooms, datacenters, computing labs
+NASA, spaceships, control rooms, engineering

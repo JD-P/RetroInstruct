@@ -1,0 +1,42 @@
+Diffusion text-to-image models take a short text prompt and turn it into an image. Here are some prompts I've written that worked well:
+
+{"prompts":["scientific rendering of a black hole whose accretion disk is a spiders web, a consciousness holographically projected in 1D space from the bulk of the void",
+"a tesseract hypercube in an illuminated glow, a tesseract suspended above the dint of reality",
+"russian cosmonauts driving a rover on the lunar surface in the style of Lucien Rudaux",
+"symbol of the phoenix, a phoenix rising over all the sentences that have ever been written",
+"a yin yang symbol where each half is a black snake and a white snake devouring each others tails"]}
+
+Your task is to write 5 more prompts in the way you infer I'd write them from these examples, but based on a combination of subject, style, and setting. For example:
+
+{"prompts":[{"subject":"autogyro", "style":"acrylic on canvas", "prompt":"acrylic painting of a black pilot flying an autogyro over the African savanna in a afrofuturist landscape"},
+{"subject":"cryonics", "style":"digital art", "prompt":"Scientific diagram of a dead man suspended in a metal canister of liquid nitrogen, digital Krita illustration of a frozen ALCOR cryonics patient"},
+{"subject":"megastructures", "style":"psychedelic", "prompt":"A Dyson swarm of energy capturing satellites around a blazing star as depicted in a DMT trip. Psychedelic geometries of energy capturing film around the nuclear reaction of a vibrant star."},
+{"subject":control rooms", "style":"sketch art", "prompt":"Detailed color sketch of a 80's NASA control center filled with operators wearing telecom headsets sitting at CRT monitors with analog mission control panels."},
+{"subject":manufacturing", "style":"3D render", "prompt":"Shadertoy demoscene high resolution 3D render of a WW2 bomb production factory staffed by female mechanics and engineers RTX on."},
+{"subject":"40's habitable venus", "style":"futurism", "prompt":"the swamp fog forests on the surface of venus, the venusian retrofuturist frontier in the style of Umberto Boccioni"},
+{"subject":"optical computing", "style":"polaroid", "prompt":"polaroid photograph of an optical computing circuit wafer bending light to render linear algebra for artificial intelligence"},
+{"subject":"geodesic domes", "style":"watercolor", "prompt":"watercolor illustration of a martian colony geodesic dome aquaponics farming on the surface, trending on artstation"},
+{"subject":"rail guns", "style":"scifi", "prompt":"matte painted electric railgun cannon, a superweapon under construction in a secret hangar in the style of Syd Mead and Rudolph Belarski"},
+{"subject":"moon colonization", "style":"concept art", "prompt":NASA concept art for a long term habitable moon colony with indoor farming, habitation, water mining from lunar stores, solar panels, domes, etc"}]}
+
+Some guidelines:
+
+- Avoid directly mentioning copyrighted materials, especially particular shows, studios, or franchises
+- When invoking the names of artists, try to bring up dead artists and use two or more names at once
+- Instead of just using artist names, try using metaphors, references to genres and types of art media such as "oil on canvas", software, etc
+
+Write 5 new prompts with the subject "REPLACE_WITH_SUBJECT" and the style "REPLACE_WITH_STYLE". Output in the JSON format I've demonstrated.
+
+This is the code I'm using to check the JSON's correctness:
+
+# Make sure we got output in expected format
+response = chat_response.choices[0].message.content
+response = response.replace("\\n", "\n")
+response = response.replace("\n", "\\n")
+prompt_batch = json.loads(response)
+assert type(prompt_batch) == dict
+len(prompt_batch["prompts"]) == 5
+for prompt in prompt_batch["prompts"]:
+assert "subject" in prompt
+assert "style" in prompt
+assert "prompt" in prompt
