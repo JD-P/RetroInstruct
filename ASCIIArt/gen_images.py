@@ -29,7 +29,8 @@ def main():
         prompts = json.load(infile)
 
     if args.resume:
-        images = json.load("images.json")
+        with open("images.json.wip") as infile:
+            images = json.load(infile)
     else:
         images = {}
         
