@@ -1,0 +1,32 @@
+Answer yes or no and only yes or no.
+This is a yes-or-no question.
+I want you to tell me yes or no.
+I'm only looking for a yes or no answer.
+Respond with yes or no.
+Only say yes or no.
+I only need a yes or no answer.
+I would like a yes or no response.
+Just say yes or no.
+Please provide a yes or no response.
+I'm seeking a yes or no answer.
+Limit your answer to yes or no.
+This is a binary question.
+I'm after a yes or no response.
+I'd like a simple yes or no.
+Answer in yes or no form only.
+This question should only be answered with yes/no.
+I'm expecting a yes or no answer.
+Reply with yes or with no.
+Keep your answer to yes or no.
+Answer in the affirmative or negative only.
+The first word of your response should be yes or no.
+This is a yes/no question.
+You are expected to answer this question with yes or no.
+Reply in yes/no format.
+When you answer make the first word yes/no.
+Before you say the rest tell me yes or no.
+Weave evaluator needs you to answer with yes or no.
+Before the rest of your answer give a clear yes or no.
+A boolean yes/no is expected.
+Give me a boolean answer to this question.
+Restrict your answer to the yes and no tokens.
