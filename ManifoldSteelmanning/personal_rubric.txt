@@ -1,0 +1,63 @@
+==[PREAMBLE]==
+Answer yes or no and only yes or no. Is the following forecasting question:
+
+==[Principle: Personal or life advice question; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+<text>
+{text}
+</text>
+
+A personal question, life advice, or otherwise dependent on the specific
+details of someone's life or social relations that a large language model couldn't
+be reasonably expected to answer without further research?
+
+==[Principle: Non-famous person's life decisions; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+<text>
+{text}
+</text>
+
+About a non-famous person's life decisions, such as whether they'll go to
+college, eat breakfast this morning, or other things that a stranger would have no
+insight into?
+
+==[Principle: In-joke or shared understanding; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+<text>
+{text}
+</text>
+
+Based on an in-joke or shared understanding between friends? Is this question
+intended for a specific friend group audience rather than any user on the site?
+
+==[Principle: Non-famous person's romantic relationships; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+<text>
+{text}
+</text>
+
+About a non-famous person's romantic relationships, marriage, or other elements
+of their love life?
+
+==[Principle: About the author; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+<text>
+{text}
+</text>
+
+About the author of the question? Does it have a structure like "Will I X?" or
+"What will I think about Y at Z date?"?
+
+==[Principle: About someone unknown to the author; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+<text>
+{text}
+</text>
+
+About someone you don't know anything about?

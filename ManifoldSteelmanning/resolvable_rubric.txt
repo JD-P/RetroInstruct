@@ -1,0 +1,69 @@
+==[PREAMBLE]==
+Answer yes or no and only yes or no. Does the following forecasting question:
+
+==[Principle: Lack of clear resolution criteria; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+<text>
+{text}
+</text>
+
+Lack clear resolution criteria, such as the number of occurrences of something,
+an announcement or official opinion, observation of a newspaper or editorial in
+a major publication, result of a poll or survey, vividly described situation,
+or other unambiguous mechanism of judgment, that would allow a reasonable person
+to determine whether the forecasted event did or did not occur?
+
+==[Principle: Lack of clear timeframe; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+<text>
+{text}
+</text>
+
+Lack a clear timeframe or date of resolution for the forecast?
+
+==[Principle: Subjective judgment without examples; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+<text>
+{text}
+</text>
+
+Rely on the author's subjective judgment to determine the outcome, but fail to
+provide examples of how they would judge various hypothetical situations?
+
+==[Principle: Subjective judgment without principles; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+<text>
+{text}
+</text>
+
+Rely on the author's subjective judgment to determine the outcome, but fail to
+provide a list of principles or heuristics they will try to adhere to while
+rendering judgment?
+
+==[Principle: Obfuscated subjective judgment; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+<text>
+{text}
+</text>
+
+Obfuscate the fact that the outcome is based on the author's subjective judgment
+by stating heuristics as though they were resolution criteria, or using phrases
+like "strong evidence for" that imply they will be summing up stochastic evidence
+to come to a conclusion without actually saying that?
+
+==[Principle: Lack of invalidation or obsoletion consideration; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+<text>
+{text}
+</text>
+
+Fail to take into account potential invalidation or obsoletion of the premises
+in the resolution criteria, or fail to state how the forecasting question is
+resolved if a necessary condition for the occurrence of the forecasted event
+ceases to exist?

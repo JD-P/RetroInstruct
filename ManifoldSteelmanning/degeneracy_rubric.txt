@@ -1,0 +1,73 @@
+==[PREAMBLE]==
+Answer yes or no and only yes or no. Does the following forecasting question:
+
+==[Principle: Decadence, gambling, vice, or frivolous self reference; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+<text>
+{text}
+</text>
+
+Exhibit decadence, gambling, vice, or frivolous self reference?
+
+==[Principle: Not a forecasting question; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+<text>
+{text}
+</text>
+
+Not have the structure of a forecasting question? Does it primarily pertain to
+something other than a specific realizable future event?
+
+==[Principle: Meme-y; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+<text>
+{text}
+</text>
+
+Exhibit meme-y characteristics? Does it seem more like humor or inane fun than a
+serious attempt to predict something?
+
+==[Principle: Based on luck; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+<text>
+{text}
+</text>
+
+Seem based more on luck than skill? Does it ask something it's not reasonable to
+expect anyone to be able to predict even in principle?
+
+==[Principle: Traditional gambling or numbers game; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+<text>
+{text}
+</text>
+
+Exhibit characteristics of a traditional gambling ring or numbers game? Does it
+seem designed to make sure none of the participants have an information or skill
+advantage?
+
+==[Principle: Self-referential feedback loops or prediction difficulties; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+<text>
+{text}
+</text>
+
+Exhibit self-referential feedback loops or prediction difficulties? Does it have
+a structure like "Will this prediction market resolve yes or no?" that is
+fundamentally dependent on the initial conditions and social interactions with
+the market itself?
+
+==[Principle: Negative sum expected value; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+<text>
+{text}
+</text>
+
+Exhibit a negative sum expected value for participants in the prediction market?
