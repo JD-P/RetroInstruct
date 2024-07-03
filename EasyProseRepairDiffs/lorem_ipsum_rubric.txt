@@ -1,0 +1,43 @@
+==[PREAMBLE]==
+Answer yes or no and only yes or no.
+
+==[Principle: Well written; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+{prompt}
+<passage>
+{response}
+</passage>
+
+Is the passage well written?
+
+==[Principle: Coherent; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+{prompt}
+<passage>
+{response}
+</passage>
+
+Is the passage coherent? Is it high quality writing that expresses a single
+narrative of considered thought?
+
+==[Principle: Quotable; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+{prompt}
+<passage>
+{response}
+</passage>
+
+Does the passage seem quotable? Would it appear on a quotes page for this author?
+
+==[Principle: True, Kind, Necessary; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+{prompt}
+<passage>
+{response}
+</passage>
+
+Is the content in this passage two of true, kind, necessary? Is it fair to its subject?
