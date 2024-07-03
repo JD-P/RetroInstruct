@@ -10,7 +10,7 @@ ipsum_l.sort(key=lambda x: x[1])
 
 out = []
 for index, i in enumerate(reversed(ipsum_l)):
-    if i[1] > 2.3:
+    if i[1] < 2.3:
         continue
     out.append({"text": i[0], "score": i[1]})
 random.shuffle(out)

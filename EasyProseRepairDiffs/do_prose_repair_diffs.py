@@ -632,11 +632,12 @@ for i, li in tqdm(enumerate(lorem_ipsum)):
     corrupted_passage = text
     directions_trace = random.randint(0,1)
     log = ""
-    for i in range(random.randint(1,10)):
+    roll = random.randint(1,10)
+    for i in range(roll):
         corrupted_passage, logline = do_corruption(corrupted_passage,
                                                    lorem_ipsum,
                                                    directions_trace)
-        log += logline + "\n"
+        log += (logline + "\n")
     gnudiff = get_gnu_diff(corrupted_passage, text)
     gitdiff = get_git_diff(corrupted_passage, text)
     dmpdiff = get_patch_match_diff(corrupted_passage, text)
@@ -651,11 +652,8 @@ for i, li in tqdm(enumerate(lorem_ipsum)):
         }
     )
 
-    if i % 50 == 0:
-        print(corrupted_passage)
-        print(log)
-        print(gnudiff)
-        print(text)
+    print(i, roll, log)
+
 
 # Make train and val split
 
