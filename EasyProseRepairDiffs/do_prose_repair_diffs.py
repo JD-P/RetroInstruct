@@ -618,6 +618,39 @@ def do_corruption(passage, passages, directions_trace=False):
             direction = "random_number_replacement: " + direction
     return corrupted, direction
 
+gnudiff_instructions = [
+    "Repair the following context window by diagnosing its flaws and writing a diff in GNU diff format to fix them.",
+    "A series of corruptions have been applied to the following passage. Find the problems and repair them with a GNU diff.",
+    "Write a GNU diff to repair the problems in this text.",
+    "List the problems in this passage and author a GNU diff which fixes them.",
+    "Think step by step to diagnose the issues with this text then amend it with a GNU diff.",
+    "i need you to fix up this writing for me using a GNU diff",
+    "Use a GNU diff to repair the following passage.",
+    "Produce a diff in GNU format to patch the problems in this prose."
+]
+
+gitdiff_instructions = [
+    "The following text has been intentionally corrupted. Use a git diff to repair it.",
+    "Use your expertise to diagnose the problems with this passage and provide a git diff to fix them.",
+    "The following text has been tampered with. Use a git diff to undo the damage.",
+    "This text has been altered in multiple ways. Write a git diff to repair it.",
+    "Diagnose the issues with this text and provide a git diff to repair them.",
+    "Use your knowledge of git diffs to repair the following text.",
+    "Use a git diff to correct the errors in this passage.",
+    "This text has been damaged. Use a git diff to diagnose and repair the issues."
+]
+
+dmp_instructions = [
+    "The following text has been corrupted in a way that the diff-match-patch format can fix.",
+    "Using diff-match-patch commands, repair the following text.",
+    "List the problems in this passage and write a diff-match-patch patch to fix them.",
+    "The text below has been tampered with. Use a diff_match_patch to fix it.",
+    "Diagnose the corruptions in this text and use a diff_match_patch to fix them all.",
+    "Use your knowledge of diff-match-patch format to diagnose and repair the errors in this passage.",
+    "Find the issues with this passage and write a diff-match-patch to repair them.",
+    "Infer the issues with this text and generate a diff_match_patch_patch_toText formatted patch to repair it."
+]
+    
 with open("lorem_ipsum_final.json") as infile:
     lorem_ipsum = json.load(infile)
 
@@ -643,12 +676,16 @@ for i, li in tqdm(enumerate(lorem_ipsum)):
     dmpdiff = get_patch_match_diff(corrupted_passage, text)
 
     diffs.append(
-        {"text_corrupted":corrupted_passage,
-         "operations":log,
-         "gnudiff":gnudiff,
-         "gitdiff":gitdiff,
-         "dmpdiff":dmpdiff,
-         "text_clean":text
+        {
+            "gnudiff_instruction":random.choice(gnudiff_instructions),
+            "gitdiff_instruction":random.choice(gitdiff_instructions),
+            "dmpdiff_instruction":random.choice(dmp_instructions),
+            "text_corrupted":corrupted_passage,
+            "operations":log,
+            "gnudiff":gnudiff,
+            "gitdiff":gitdiff,
+            "dmpdiff":dmpdiff,
+            "text_clean":text
         }
     )
 
