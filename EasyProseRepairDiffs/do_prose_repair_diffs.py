@@ -47,10 +47,14 @@ def swap_substrings(passage):
     # If the two substrings are the same, return the original passage
     if substring1 == substring2:
         return passage, tuple()
+    
+    # Use a temporary string to avoid replacing the wrong occurrence of substring2
+    temp_string = 'TEMP_STRING' + str(random.randint(0, 9))
 
     # Replace the first occurrence of each substring with the other substring
-    corrupted_passage = passage.replace(substring1, substring2, 1)
+    corrupted_passage = passage.replace(substring1, temp_string, 1)
     corrupted_passage = corrupted_passage.replace(substring2, substring1, 1)
+    corrupted_passage = corrupted_passage.replace(temp_string, substring2, 1)
 
     return corrupted_passage, (substring1_start, substring1_end, substring2_start, substring2_end)
 
@@ -123,27 +127,23 @@ def insert_spurious_html_xml_tag(passage):
 
 def delete_whitespace_character(passage):
     # Find all whitespace characters in the passage
-    whitespace_chars = [c for c in passage if c.isspace()]
+    whitespace_chars = [c for c in enumerate(passage) if c[1].isspace()]
 
     # If there are no whitespace characters, return the original passage
     if not whitespace_chars:
         return passage, tuple()
 
     # Choose a random whitespace character to delete
-    whitespace_char = random.choice(whitespace_chars)
+    split_index, whitespace_char = random.choice(whitespace_chars)
 
-    # Choose a random position in the passage to delete the whitespace character
-    delete_index = random.randint(0, passage.count(whitespace_char) - 1)
-
-    # Delete the whitespace character at the chosen position
-    corrupted_passage = passage.replace(whitespace_char, '', delete_index)
-
-    return corrupted_passage, (delete_index,)
+    corrupted_passage = passage[:split_index] + passage[split_index + 1:]
+    
+    return corrupted_passage, (split_index,)
 
 
 def duplicate_word(passage):
     # Split the passage into a list of words
-    words = passage.split()
+    words = passage.split(" ")
 
     # If there are no words, return the original passage
     if not words:
@@ -178,7 +178,7 @@ def insert_printable_ascii_character(passage):
 
 def shuffle_word_middle(passage):
     # Split the passage into a list of words
-    words = passage.split()
+    words = passage.split(" ")
 
     # If there are no words, return the original passage
     if not words:
@@ -233,7 +233,7 @@ def insert_punctuation(passage):
 
 def adjacent_word_swap(passage):
     # Split the passage into a list of words
-    words = passage.split()
+    words = passage.split(" ")
 
     # If there is only one word, return the original passage
     if len(words) <= 1:
@@ -670,7 +670,11 @@ for i, li in tqdm(enumerate(lorem_ipsum)):
         corrupted_passage, logline = do_corruption(corrupted_passage,
                                                    lorem_ipsum,
                                                    directions_trace)
+        if logline == "noop":
+            continue
         log += (logline + "\n")
+    if not log:
+        continue
     gnudiff = get_gnu_diff(corrupted_passage, text)
     gitdiff = get_git_diff(corrupted_passage, text)
     dmpdiff = get_patch_match_diff(corrupted_passage, text)
