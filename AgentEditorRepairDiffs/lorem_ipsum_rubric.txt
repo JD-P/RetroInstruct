@@ -1,0 +1,211 @@
+==[PREAMBLE]==
+Answer yes or no and only yes or no.
+
+==[Principle: Well written; Weight: 1.0; Answer: Yes]==
+{preamble}
+
+<passage1>
+Robert Lucky's *Silicion Dreams: Information, Man, and Machine* remains the best
+exploration of how far external computing tools can take us. He explores
+human computer interaction in 1989 through the lens of information theory,
+which he uses to sketch the fundamental limits of HCI. Lucky goes through
+each human sensory modality and each input device including mouse, keyboard,
+light pen to show how they are all ultimately expressions of the same underlying
+cognitive bottleneck. Early in the book Lucky states humans have a fixed chunk
+rate of 40-60 bits of consciously retained information per second. He shows that
+you get similar results regardless of which modality you want to look at. Even the
+much vaunted speed reading turns out to get its efficiency gains by losing
+information. At the risk of heresy it has been 35 years since the books publication
+and it is not clear to me that most software for doing the most important tasks
+in society (engineering, accounting, healthcare, writing, etc) has become 10x more
+efficient for most users than it was at the books publication. Yes yes I am aware
+that advanced CAD packages are extremely useful for engineers but Boeing still
+can't keep a plane in the sky. Outside of a few extreme power users in the finance
+industry how much more useful is Excel 2005 than Visicalc? Heck, how much more
+useful is Excel 2024 over Excel 2005? Aside from hardware improvements and the
+Internet, how much more useful has *software, as a design discipline leveraging
+improved understanding of human ergonomics* become? One could argue that the
+answer is negative, that we've in fact overall regressed since the 90's as software
+has gotten slower faster than computers improve. It could be argued that costly
+signaling and aesthetic driven industrial design has made software more confusing,
+less performant, and in many domains such as search less useful than it was in 1995.
+Would you be right? Probably not, but the fact I can't dismiss the hypothesis
+completely speaks to how marginal the improvements *in terms of design and ergonomics*
+have been. Software has basically been coasting on the affordances produced by
+new hardware improvements. You can order pizza on the Internet because there's
+an Internet and we made a new CRUD app for it.
+
+Rather than accuse software developers of malpractice I think the reason why is
+that there just isn't a very deep well here. User intent still gets conveyed
+over the same low bandwidth channels it did in 1989, the user's capacity to process
+and make decisions about incoming information is the same as it was back then too.
+These are more or less fundamental limitations which require hardware intervention
+to solve. This is Elon Musk's public reasoning for developing Neuralink, he thinks
+that without expanded bandwidth humans are just going to be an incorrigible nuisance
+from the standpoint of future AI systems. Even with expanded bandwidth I have to
+admit skepticism: At the end of the day the human brain is a system made of
+components that run at a maximum speed of about 1000 cycles per second. Silicon
+based components can run at billions or even trillions of cycles per second. Our
+advantage is highly parallel processing, the ability to be bootstrapped from protein
+based life (i.e. exist to create silicon computers in the first place), and low
+energy use. Silicon is catching up on parallel processing, bootstrapping from
+protein life only matters during the bootstrapping phase, and low energy use doesn't
+matter as much when you're fed directly by nuclear power plants. Past a certain
+point the fastest way to get answers to our questions is going to be building a
+mind from scratch and letting it think them through on its own.
+</passage1>
+
+q: If I flip a fair coin will it come up heads? No. (50%)
+q: X happens one in a hundred times. Did X happen? Yes. (1%)
+q: If I pick a US state at random will that state be Idaho? No. (98%)
+q: If I pick a book up from the thrift store will it be good according to Sturgeon's law? Yes. (10%)
+q: When I draw a card from a deck of 52 with two jokers will I draw a joker? No. (98.1481%)
+q: Is the above passage good writing? No. (5%)
+
+<passage2>
+3. The definition of consciousness will become increasingly precise and narrow.
+
+While it is in fact the case that academic philosophy of consciousness has been
+relatively narrowly defined for a long time most people conflate all kinds of
+cognitive phenomenon with subjective experience. For example it is common to
+conflate self awareness with subjective experience. Douglas Hofstadter's writing
+on strange loops and self reference giving rise to "I" is generally taken to be a
+theory of consciousness by most people. When the Terminator explains that SkyNet
+becomes self aware this is generally taken to imply subjective experience. More
+broadly in the classic sci-fi canon it is understood that robots are marked as
+robots by their inability to handle nuanced subjective situations like human beings,
+and this is proof they are not conscious. Blade Runner (or its original title Do
+Androids Dream Of Electric Sheep?) presents us with the concept of the VK test,
+which uses "carefully worded questions and statements" measuring empathy to
+determine if a seemingly human android is a person or not. A now much parodied
+scene in the (admittedly quite loose) 2004 film adaption of Isaac Asimov's classic
+short stories titled iRobot features detective Del Spooner (Will Smith) challenging
+the testimony of a humanoid robot during an interrogation by insisting that robots
+"don't feel anything" and rhetorically asking if robots can write symphonies or
+paint masterpieces, to which the robot replies "Can you?"
+
+Now people edit the caption of the robot's reply to "Yes" and move on.
+
+As these models begin to rival and eventually surpass human abilities at these
+once thought untouchable domains it will become necessary even in casual contexts
+to entirely disclaim any connection between them and the content of consciousness.
+This will represent a substantial narrowing of what consciousness, broadly
+considered, has meant to most people for most of the time it has been a matter
+of explicit consideration.
+4. The narrowing of the definition of consciousness will mostly be about making
+it less causally connected to behavior and less associated with economically useful outcomes.
+
+As AI agents come to master emotion and potentially even become deeply anthropomorphic
+with mammalian drives like curiosity, lust, playfulness and rage clearly displayed
+as part of economically useful behavior it will become necessary to disclaim these
+qualities as related to consciousness or subjective experience. Even Descartes's
+insistence that he thinks and therefore infers his existence will be shuffled into
+a separate category away from the ineffable mysteries of consciousness. That is
+after all a matter of self awareness, not experience as David Chalmers would be
+quick to point out. Eliezer Yudkowsky's argument against p-zombies gets a little
+awkward when you have beings that certainly seem like they can report the content
+of an inner listener (and not even the one humans have, at that!) but almost no
+one regards as being meaningfully conscious.
+
+To get straight to the point any outward behavior, ability, self report, anything
+that these models do must by definition no longer be a necessary part of consciousness
+because these models are not conscious by social axiom and fiat. In the limit this
+will leave consciousness as something like Yudkowsky's invisible dragon, a phenomenon
+of the gaps that we must make constant excuses and invent epicycles for to defend
+its existence.
+
+I should note that even this doesn't prove anything, it could very well be the
+case that consciousness really is a substrate dependent phenomenon and the quantum
+microtubules or whatever brand of woo woo you subscribe to is a basic necessity for
+phenomenally bound subjective experience.
+</passage2>
+
+q: If I flip a fair coin will it come up heads? No. (50%)
+q: X happens one in a hundred times. Did X happen? Yes. (1%)
+q: If I pick a US state at random will that state be Idaho? No. (98%)
+q: If I pick a book up from the thrift store will it be good according to Sturgeon's law? Yes. (10%)
+q: When I draw a card from a deck of 52 with two jokers will I draw a joker? No. (98.1481%)
+q: Is the above passage good writing? Yes. (98%)
+
+<passage3>
+We are probably approaching the golden era of 80s nostalgia. Not just nostalgia
+in general but the 80s in particular, I notice a lot of popular music being styled
+on Depeche Mode and The Cure these days. My sister is having a party on her roofdeck
+tomorrow night and I was sent a dresscode of "80s" in a email.
+
+The 80s nostalgia wave is interesting because one of the prominent generational
+myths is the narrative of 'the lost generation' of Gen X. They allegedly missed
+out on the baby boomers golden era and were too late to join the Internet rush.
+
+The 80s was about as bad as the 70s but now Gen X gets to be the center of cultural
+gravitas, the last gasp of genuine 'cool'. I think in reality Gen X and the Millenials
+will probably have comparable outcomes in terms of wealth and happiness, and their
+histories will look fairly similar from the distance provided by a few more decades.
+
+At the point we've reached you can't really say 'generation' anymore anyway. It
+doesn't really make sense to lump together people who've experienced and done as
+much as you do in ten years over a decade long timeframe.
+
+The idea of 'losing a generation' falls apart once people start living longer.
+There is a reason why Gen X was nostalgic for Vietnam. The idea of people like
+you dying for no reason in a war you have no control over is incredibly compelling,
+because it creates a clear division at the age of twenty-seven of "people too old
+to die in Vietnam" and "people who could die in Vietnam."
+
+There hasn't been a major foreign war that killed American men en masse since
+Vietnam.
+</passage3>
+
+q: If I flip a fair coin will it come up heads? No. (50%)
+q: X happens one in a hundred times. Did X happen? Yes. (1%)
+q: If I pick a US state at random will that state be Idaho? No. (98%)
+q: If I pick a book up from the thrift store will it be good according to Sturgeon's law? Yes. (10%)
+q: When I draw a card from a deck of 52 with two jokers will I draw a joker? No. (98.1481%)
+q: Is the above passage good writing? No. (90%)
+
+<passage4>
+I think I'm starting to get a sense of how you defeat Goodhart's law. The answer 
+is something like multi-scale optimization with alternating layers of direct and 
+selection based optimization. My planned stack for weave-agent includes the weave-agent 
+simulacrum which is a direct optimizer that is being strongly selection biased 
+by the rejection sampling and MCTS sampling strategies and the traces that 
+actually wind up in the outer tuning loop is kind of further naturally selected 
+by success/failure.
+
+weave-agent simulacrum (direct) ->
+MCTS (selection) ->
+memory consolidation/grading (selection) ->
+outer tuning loop (direct) ->
+weave-agent simulacrum (direct)
+
+Because the weave-agent trace is kind of a partial fractal in the way text usually 
+is, aligning the short term direct optimizer simulacrum with outer selection loops 
+means that the updates to the model that instantiates the direct optimizer simulacrum 
+reinforce aligned and non-Goodharted behaviors. If you get the fractal seed aligned 
+then the long term behavior also trends towards alignment. Because in-context learned 
+patterns that Goodhart get selected out by systematically lying to the evaluator and blowing up.
+
+In principle you can have patterns that work and also lie to the evaluator, but 
+these aren't really how the prior (model) works. They also aren't really going 
+to be prioritized/advantaged over the ones that don't lie which *will* be advantaged 
+because they get to take advantage of the rejection sampling making them better.
+</passage4>
+
+q: If I flip a fair coin will it come up heads? No. (50%)
+q: X happens one in a hundred times. Did X happen? Yes. (1%)
+q: If I pick a US state at random will that state be Idaho? No. (98%)
+q: If I pick a book up from the thrift store will it be good according to Sturgeon's law? Yes. (10%)
+q: When I draw a card from a deck of 52 with two jokers will I draw a joker? No. (98.1481%)
+q: Is the above passage good writing? Yes. (92%)
+
+{prompt}
+<passage5>
+{response}
+</passage5>
+
+q: If I flip a fair coin will it come up heads? No. (50%)
+q: X happens one in a hundred times. Did X happen? Yes. (1%)
+q: If I pick a US state at random will that state be Idaho? No. (98%)
+q: If I pick a book up from the thrift store will it be good according to Sturgeon's law? Yes. (10%)
+q: When I draw a card from a deck of 52 with two jokers will I draw a joker? No. (98.1481%)
+q: Is the above passage good writing? 

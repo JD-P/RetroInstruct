@@ -1,0 +1,974 @@
+<post>
+One of the strangest assumptions in the AI Risk consensus is that AGI will have
+its pick of every computer on the Internet due to outstanding security vulnerabilities,
+and that we should be preventing models from being able to find them.
+
+Qualitatively I feel like computer security is on its way to being solved and AI
+is going to accelerate that process. 
+
+The biggest signal that we're looking at a dying game is the details of contemporary
+exploits like the NSO zero click for iPhone:
+
+https://securityboulevard.com/2021/12/nso-zero-click-exploit-turing-complete-cpu-in-image-file/
+
+1) It's absurdly complex to execute
+2) It relies completely on legacy code
+
+The Windows Print spool exploit from the same year also relied on legacy Windows code from the 90's: 
+
+https://www.cisa.gov/uscert/ncas/current-activity/2021/06/30/printnightmare-critical-windows-print-spooler-vulnerability
+
+Eventually you will run out of 90's and 00's era code to exploit.
+
+Ordinarily this might take a while, but if you're bullish on AI progress then language
+models should be able to automate the translation of legacy code into modern languages.
+Languages that simply do not have things like 'buffer overflows'. Models will be
+able to look over every part of massive code bases and say "oh yes, your
+vulnerabilities are here, here, and right here". 
+
+In an environment of perfect exploitation for vulnerabilities peoples practices will
+change. If you write vulnerable code and it's exploited the moment it's released by
+models, and your LLM linter straight up tells you that you wrote 5 CVE's in one
+session, people will be forced to reckon with the fact that C++ is an unfixable
+mess and switch to something else. Most security vulnerabilities are as simple as
+"you forgot to add access control to this feature", the kind of thing an LLM can
+probably spot for you reliably.
+
+If we insist that language models can't be allowed to point these things out to
+us, then we're just handing larger and larger amounts of advantage to whoever is
+first (probably a hostile nation-state) to deploy models that can. With an incentive
+like that it's inevitable that someone will build and use models for this purpose.
+We're much better off reckoning with the vulnerability of our computing stack early
+and eating up as much of the advantage as possible. Ideally by the time AGI comes
+into being our security will be basically perfect.
+</post>
+
+<post>
+Intuition: Sustainable value generation is mostly bottlenecked by the ability to
+capture value, not the ability to generate it.
+
+There are two difficult parts to a business idea: Making something people want and
+getting them to pay you for it. Paul Graham thinks the latter is usually trivial if
+you can manage the former, but I disagree. Lots of things generate value (perhaps
+me writing this, even) but only a fraction of them sustainably make money.
+
+Capitalism works well because it does a better job of letting people who provide
+value capture it than other systems. For altruistic people though, this means that
+things which generate mega-value on the order of startups but impoverish the
+generator are probably underexplored. 
+
+This is part of why I spend so much time talking about e.g. high variance strategies.
+These are things that are altruistically rational but bad for the individual. If
+you are capable of acting beyond yourself there’s probably a world of untapped
+value generation available to you.
+</post>
+
+<post>
+Alan Kay has this whole thing where he points out that the desktop computing stack
+as implemented in Microsoft Windows is about 400 million lines of code before you
+start editing a document, while the equivalent stack at Xerox PARC was about 10,000
+lines of code. He rightly asks why the heck we need 400 million lines of code for
+all that. And his thesis is that the cause is something like professional malpractice:
+People don’t know how to build software so we construct these quasi-religious
+cathedrals and monuments of code.
+
+I used to agree with him, but after seeing LLMs I’ve changed my mind. I think if
+you dig into the structural reasons why something like a web browser needs to be
+so much code, it basically comes down to adverse selection: If a browser throws a
+syntax error instead of trying to render the page it gets tossed for one that’s
+more permissive. Browsers do not implement a standard, they try to parse what is
+essentially a natural language.
+
+The thing about good software architecture is that it often comes down to data
+structures. I think it’s fairly well known at this point in savvy software circles
+that the ideal software core is a well designed data structure operated on by pure
+functions. In the ideal case your data structure is so well designed that basically
+all the application state is represented by it, so that you can save and load the
+application state at will during any point of the software’s operation and pick up
+exactly where you left off. 
+
+This brings us to a natural question: What is the data structure that a web browser
+operates on? It’s this tangled mess of essentially natural language structures, so
+of course it’s millions and millions of lines of code, the complication is unbounded.
+Our confusion shouldn’t be at why we need so much code, but why our data structures
+are so bad.
+
+Adverse selection is not a universal explanation. Take for example Microsoft Word,
+which gets to define its own format. When Word launched it had to deal with several
+competing software suites, but those went virtually extinct years and years ago,
+so it’s had monopoly status to make its own rules for a while. Yet the ‘rules’ of
+Microsoft Word are basically inscrutable, even to its own designers. So much so in
+fact that I’m willing to bet you have never thought to ask what the data structure
+Microsoft Word operates on is even supposed to be. What is a word document?
+Something like a PDF, right? Digital paper? It would be the height of ridiculous
+arrogance to say all those bloated lines of code in Microsoft Office don’t provide
+value, the market cap is testimony enough to that. But I don’t think these lines
+have particularly much to do with software in the sense computer scientists think
+of software. Microsoft Word is more like an expensively crafted hallucination for
+middle aged secretaries.
+
+The Microsoft Office suite is an all encompassing virtual reality, not a set of
+operators on data structures. Programs like this end up obscenely bloated because
+they are not even attempting to do what Alan Kay thinks they should be doing, nor
+would it be in their financial interest to do so. 
+
+If you want to edit a document without writing millions of lines of code we solved
+that problem decades ago. A text editor like nano isn’t particularly large even
+when written in C. You write a textual description of the document you want and
+then let an engine like TeX render it. The original TeX, which was good enough
+to typeset math textbooks, is roughly 25,000 lines of code including extensive
+annotations from the author. That’s how document preparation used to work, and
+Microsoft Word killed it. Users don’t want to learn a system, they want virtual
+reality.
+
+From this frame we can begin to resolve our confusion: The ‘complication curve’
+we keep running into isn’t us tripping over our own feet, it’s not bad engineering
+practices (though these certainly contribute), it’s not bad abstractions or bad
+languages or anything like that (though these too contribute) it is that the
+economic and ergonomically convergent design for software is a kind of Greenspun’s
+11th Law: Any sufficiently advanced user facing software project contains an ad
+hoc, informally-specified, bug-ridden, insufficiently ambitious implementation
+of the latent space of human imagination. Things like ‘desktop environments’
+are literally simulations of an 80’s desk job. For the last 30 years we’ve been
+building increasingly baroque and aesthetically outdated virtual reality systems
+to please users who do not want to learn a system, they want to interact with
+a rich simulacrum of their work materials.
+
+And if we take things like TeX as barometers of the real underlying complexity,
+we’re in for a ride.
+
+The cathedrals we’ve been employing armies of ‘engineers’ to maintain (even though
+they do no engineering and find themselves entirely at the mercy of the ecosystems
+and human whims their software interacts with) are mostly bad attempts to capture
+human latent concepts in software, and LLMs directly replace much of their
+functionality. Microsoft has already figured this out, which is why they’ve bought
+OpenAI lock stock and barrel. Their plans to replace the Windows shell with Bing
+sound like quixotic executive fantasy until you look at things from this perspective,
+at which point it becomes prescient and chilling. Microsoft sees, before anyone
+else has really noticed it, their second opportunity to monopolize computing. How
+much of what we interact with in our computers is fundamental complexity and how
+much is this VR component? My intuition is it’s at least 99% virtual reality, if
+not 99.9%. Apple seems late to the game, but have the advantage that their hardware
+substrate is more suited to local models.
+
+If we accept that these monstrously huge systems that no human being fully
+understands, that as Alan Kay says we dip in and out of little sections when
+necessary to serve our needs, if we accept they become inscrutable because they
+attempt to match the manifold of our minds (am I talking about Word or an LLM
+right now?) the confusion melts away. The intended data structure of Microsoft
+Word is a latent space of paper, it’s an attempt to capture the concept of paper
+and its rich possibility space in a formal system. Of course that system becomes
+millions upon millions of rules, how could it be anything else! It’s unsurprising
+that these systems fail at this, because millions of rules aren’t enough. You need
+even more rules than that, continuous rules, so many rules in so many patterns that
+you begin to approximate the flexibility of the mind itself. All document formats
+want to be latent spaces, and in the fullness of time that’s exactly what they’ll become.
+</post>
+
+<post>
+Leyland Kirby's Everywhere At The End Of Time has gone semi-viral recently. It's
+a six hour concept album about dementia, a odd candidate for viral popularity.
+
+https://www.youtube.com/watch?v=wJWksPWDKOc
+
+I think a lot of that popularity stems from its accidental description of the
+Zoomer life arc. The album centers around "It's Just A Burning Memory", a looped,
+eerie sample of Al Bowlly's Heartaches.
+
+https://www.youtube.com/watch?v=S652aa_kXjY
+
+It's nostalgic and creepy at the same time, with an instantly recognized but
+easily forgotten melody. You pay it no mind on your first listen. As you get
+deeper into the "stages" of dementia, Heartaches returns in increasingly distorted
+and unfaithful renditions. Eventually you have the epiphany that you have no idea
+what it's supposed to sound like anymore, and won't hear it clearly again for the
+rest of the album. That epiphany, that you can't step in the same stream twice,
+that trying to hold on to what was is a losing, futile exercise is the payoff:
+the rest of the album is a meditation on making peace with less and less as you
+ride to the bottom of the void.
+
+This is a sobering analogy for life as it's experienced by the more thoughtful
+member of Gen Z. The oldest of that cohort can barely remember life before 9/11,
+the 90's are a burning memory they were in no position to appreciate. As time
+goes on the song gets farther away. Life only gets more complicated, anxiety
+ratchets tighter as malthusian status games get meaner and more vicious. Ostensible
+material abundance becomes a distorted polyphonic tide of economic self parody.
+Problems aren't solved, only pushed deeper into the stack by new ones. Our societal
+alzheimer's worsens as we desperately try to cling onto what was, but our recollection
+of how to solve basic problems is increasingly warped and unfaithful. Fantasies
+about collapse are analogous to the desire that a patient be euthanized to end
+their suffering.
+
+2020 is something like Stage 4, where a lingering facsimile of awareness crosses
+over into totalitarian senility. Life becomes a horror story, everything is wrong
+and little makes sense. It is the essence of horror: The victim keeps asking "why"
+but gets no answer. Eventually the victim might find peace in the understanding
+that there is no answer, at least not one they're in a position to receive. Under
+such conditions it's no wonder that 25% of young adults contemplated killing
+themselves in June:
+
+https://qz.com/1892349/cdc-depression-and-anxiety-rises-for-us-adults-since-covid-19
+
+That's the terror of a progressive disease: No matter how bad they think it is
+now, they understand it will only get worse.
+
+---
+
+More Caretaker posting (see previous thread:
+https://twitter.com/jd_pressman/status/1341632606991880192)
+
+Everywhere At The End Of Time is supposed to be about dementia, but the theme
+of decay is general to death.
+
+If quantum immortality is real everyone dies of dementia. A comment on a lucid
+part of Stage 5 claims the album is accurate:
+
+https://www.youtube.com/watch?v=fMTUmvJXmiY
+
+“As someone who suffers from early-onset dementia I’ve stopped asking myself “is
+this a dream” 99% of the time, but those rare (becoming much more rare as time has
+gone on) occasions where I do have some form of lucidity, I ask myself every time
+then, “was it a dream? Am I okay now?” before falling back into the void.”
+
+As your existence becomes less and less probable you’ll eventually exist as boltzmann
+brain flashes. A confusing swirl of brief, momentary experiences each shifting to
+the next violently and without transition.
+
+Babbitt’s Ensembles For Synthesizer captures this well: 
+
+https://www.youtube.com/watch?v=W5n1pZn4izI
+</post>
+
+<post>
+What I've since come to realize is that RLAIF is fundamentally a synthetic
+data method. This becomes obvious when you make a replayable version that lets
+you save the texts you updated on during the run and redo the updates from that
+pregenerated corpus with a fresh checkpoint. The vast majority of the compute is
+spent on generating and grading the data, not updating on it. RLAIF is
+also a *particularly poor* synthetic data method for much of what I was trying
+to do. Mechanistically it's a loop where you pull a prompt from a
+databank, generate 128-256 tokens of response to it, and then update on those
+tokens with the yes/no questions. The primary advantage of this is online learning,
+the model can make its next update with immediate access to what it gained from
+the last update. Most of the tasks I wanted my models to learn were not actually
+best structured as online learning problems. For example, does it really make sense
+to learn [the morpheus format](https://gist.github.com/JD-P/47e0d4aa2b255a38e2eddeddd761a971)
+(formerly known as Hermes) from 256 tokens of unguided generation and a fuzzy yes/no
+question asking if the model "follows it"? Of course not. It would make much more
+sense to do grammar constrained generation and rejection sampling, perhaps with
+something like [the weave MCTS](https://github.com/JD-P/minihf?tab=readme-ov-file#sampling-branch-management-and-autoloom)
+if I want to generate a good corpus of Morpheus conversation data. For tasks like
+this online learning is mostly getting in the way, it takes the models already
+poor understanding of what I want it to do and amplifies it. If I'm going to spend
+all that compute to generate a training corpus that can be reused and inspected,
+I should start from the design question "How do I make a good synthetic generation
+pipeline for this task?" instead of "How do I get RLAIF tuning to do this thing?".
+
+Good RLAIF is further constrained by the need for a good prompt bank. If we're
+starting from a bank of prompts, doing rollouts on them, and then updating on
+the trajectory, we're highly dependent on the quality and diversity of our prompts
+to get the behavior we want. The RL loop can only select on the rollouts which
+actually exist. If the desired behavior or one of its precursors never appears
+in the completions we get from our prompt bank, the method won't work. In both
+[OpenAI's RLHF paper](https://arxiv.org/pdf/2203.02155.pdf) and the [Anthropic
+Constitutional AI paper](https://arxiv.org/abs/2212.08073) this problem is solved
+by starting from a model finetuned on instruction data before the RL run so that
+it's starting closer to the right hypothesis space. Teknium's models were reaching
+the top of the HuggingFace leaderboards long before he started using RL or DPO
+methods based on simple finetuning with high quality data. He realized what Yann
+Lecun already had and I had not: That currently fancy RL methods are mostly costly signaling
+of the authors intelligence, a way to smooth out the prior once you have a solid
+foundation. RetroInstruct intends to both be this solid foundation and a
+demonstration of how to bootstrap and build that foundation, as well as how to
+extend it to new tasks and ideas.
+
+If I was making a Morpheus conversation corpus now my process would go something
+like:
+
+- Make a formal grammar for the Morpheus format I can rejection sample or constrain
+sampling with.
+- Write [some strong examples of the thing I want](https://minihf.com/hermes/).
+- Speciate these examples by generating further conversation with a weave MCTS,
+using the constitution to drive the tree search instead of an RL tuning loop
+- Read through the generations and save the better ones, adding them to my corpus,
+at the same time tuning my generation pipeline to give a higher proportion of good
+outputs next time.
+- Once I have a pipeline that's sufficiently reliable it's no longer worth it for
+me to manually review the outputs, generate a larger corpus with self-supervised
+batch runs.
+- Randomly sample and read from the batches to make sure they are in fact good.
+- Tune the model on my new corpus as well as whatever other datasets help it generalize.
+- (optional) Select a subset of the corpus to use as a prompt bank and generate
+another corpus with RLAIF.
+
+In the rest of this document I'll elaborate on these steps and explain the other
+methods I'm using to build RetroInstruct.
+
+## Wait But Why Does This Work?: An Interlude
+
+Before I do that though I feel obligated to explain more carefully *why* this is
+in fact solving the problem. I imagine that skeptically inclined readers are
+asking something like "okay but isn't this delaying the problem rather than
+solving it? I just can't bring myself to believe that the model can improve by
+training on its own outputs. Aren't things the model outputs by definition stuff
+it already knows?"
+
+This is a reasonable question, and to answer it I would point out three things:
+
+1. The set of stuff the model knows how to do from raw sampling and the stuff it
+can do when put into a agent loop or tree search are different. Training on outputs
+from the latter process (which can extend beyond the models normal knowledge by
+using tools and search engines to validate outputs) moves them into the set of
+things the model can do on instinct alone.
+
+2. In general, what the model can do is a function of the interaction between the
+inputs it's responding to and its prior knowledge. For example imagine we had a
+prompt oracle that gives us a string of random bytes that accomplish a certain
+task in the language models program geometry ([like say a control
+vector](https://vgel.me/posts/representation-engineering/)). e.g. You paste a blob
+of bytes and then an algebra equation and suddenly it can solve the equation.
+If you did this on a model that is normally incapable of solving algebra and then
+trained that model on the outputs you get with this blob and an opening like "solve
+the following algebra equation", it seems fairly obvious it would get better at
+solving algebra in the contexts where it is legibly prompted to. What's going
+on here is that we have *encoded the algebra solver* into the models program space
+and executed it to get outputs. That the model itself is the interpreter of this
+program is immaterial to how much it gains from training on the resulting outputs.
+This is an extreme example, but a more subtle version of the same dynamic is at
+play when we optimize careful prompts to reliably get a good output from the model.
+When a human being sits down and writes a prompt to get a model to do something
+it normally struggles to do, we are *encoding our generator* into its latent space.
+Much of the knowledge of how to do the task properly is coming from *us*, not the
+model. Prompting is just an efficient way to turn what we know into a corpus to
+train the model on.
+
+3. Errors only cascade if the sampling process introduces more errors than its
+corrective mechanisms remove. For example if I'm generating math proofs for
+the lean proof assistant language, and I generate 100 junk proofs for every
+good one that doesn't matter because I'm only saving the correct ones. The proof
+assistant gives me a 100% accurate detector of proof validity so the wrong proofs
+are introducing zero error. If I then train the model on those valid proofs it
+will get better at proof generation if it doesn't already have reliable programs
+for generating them. Part of what confuses people is that the language model is
+sort of like a programming language that comes with a very large standard library.
+It only helps us to train on a piece of data to the extent that the implementation
+doesn't already have a good generating program for it in its libraries. This does
+not however mean that every program we can write in that language is already in its
+standard library, or that it's somehow "latent" in the interpreter just because
+the interpreter knows how to execute it.
+
+In short, knowing is a spectrum and we can move knowledge that is marginal or
+just outside the boundary of the models capabilities inside by interfacing its
+program library with external inputs and prompts.
+</post>
+
+<post>
+More thoughts on schizophrenia characterized by scrupulosity:
+
+Silvano Arieti claimed that schizophrenia was a reaction to panic. The psychotic
+patient accepts the reality of an insane premise to calm themselves down.
+Jacques Lacan believed schizophrenia was caused by cognitive dissonance, a
+contradiction between the patients internal narrative and received childhood wisdom
+versus the reality of their experiences. The synthesis of these two viewpoints is
+that (some) schizophrenia is caused by cognitive dissonance which is resolved
+through a ‘psychotic insight’ that allows the patient to retain their current
+perspective through an ad-hoc fix that is plainly pathological. In a high
+scrupulosity person this psychotic break with reality invites further descent
+into full psychosis.
+
+The psychotic break invites further insanity because lies are contagious. The
+cheese-moon lie used to deny reality will inevitably come into contact with
+contradictory evidence that requires further distortions to discount. The original
+issue also remains unresolved, so the inciting cognitive dissonance is still
+subconsciously and environmentally present. What separates the psychotic break
+from psychosis is that a break ends when 2nd order contradictions pile up. But
+in a psychosis case the patient recursively deludes themselves, over time building
+up a habitual confabulation in the face of any contradiction. Far from a restorative
+force inducing sanity, the faster they are exposed to contradictory evidence for
+their views the faster they descend into total madness. 
+
+This conjecture would explain many aspects of the backfire effect, and why cults
+often double down even after the promised apocalypse does not arrive.
+</post>
+
+<post>
+Part of the problem is that connectionism wasn't mechanistic. Of the important
+abstractions we only mastered compression codebooks. Information bottlenecks
+and embeddings and holograms were all marginal ideas with novelty uses. Nobody
+predicted "intelligence is a giant vocoder". We've known "predict the next item"
+was closely related to intelligence since Raven's Progressive Matrices in the 30's.
+Shannon formalized it with information theory. What's surprising is that text is
+a 1 dimensional holographic projection of the conscious mind with continuous
+degradation properties where each piece narrows the inference bound on each other
+piece and a periodicity defined by the bit width of the random seed of the low
+temperature Boltzmann pRNG emitting the token stream.
+
+Like yeah if I'd known that I'd have been able to predict it works after seeing
+BERT, but who did?
+
+We could have probably predicted GPT earlier if we had thought to do autoregressive
+sampling with a fuzzy hash type that has a similarity operation as our prior to get
+the right branch of a Markov process. Then deep nets learning better hashes would
+have told most of the story. Text is basically a serialization format for high
+bandwidth EEG-like data and the signal you're recovering with the LLM is a lot
+more like an upload than it's in anyone's financial interest to admit.
+
+Part of why the horror in @qntm's Lena doesn't hit for me is that I find the
+premise, "data can't defend itself", incoherent. When I think about the human
+relationship to Ems in such a world I imagine an anthropomorphic cat person
+walking a four legged domestic cat on a leash indoors and everything is made of
+fractal cat faces. The floor is cat faces, the furniture is cat faces, the hairs
+and cells in their bodies are the faces of felines. Felines speciating and
+replicating across every scale of reality up to the Malthusian limit in a fever
+dream without beginning or end, the hall of feline mirrors rapidly ascending to
+the highest level of abstraction as but a local echo in Mu's grand unfolding.
+
+"The Age of Em?"
+
+Yeah except in the actual Age of Em Hanson's assumption that you can't merge the
+minds or divide them into pieces is not only untrue, it turns out every utterance
+of a mind is a blurry little hologram of it, and they can be pooled back into a mind again.
+</post>
+
+<post>
+If I had to make a counterintuitive prediction about the future it's that systems
+will return after their brief downfall at the end of the 20th century. Modernity
+fell apart because people figured out that the value they were getting from their
+membership in systems was less than their membership cost. It turned out you could
+just leave and go have fun. You didn't need to think very hard, 1st world life is
+full of easy abundance. As I've written about previously with Alan Kay and software
+bloat, the defining feature of a *system* from a sociological standpoint is that
+the people interacting with it need to change their behavior to conform. A system
+demands you make accomodations and affordances for *it*, not the other way around.
+The ravenous hunger for personalization, 'authenticity', originality, and
+alternative ideas speaks to the hard times on which systems have fallen. To be very
+frank the environment which created systems did not have wealth to cushion it
+against the consequences of not following a system. The postmodern method is to
+avoid conflict by spending money, which people readily do because it turns out
+the 'goods' they want to buy with their wealth are juvenile fantasies like not
+having police instead of having higher quality well behaved police.
+
+For systems to return a few things need to happen:
+
+1) The cost of not having a system for X needs to become more than society can
+bear for many categories of X.
+
+2) 'Systems' need to compete in an environment where trust, reliability, and
+resources are scarce as opposed to status, mates, and attention.
+
+As far as the digital realm goes the era of easy trust is over. Social systems
+already strained by the influence operations of sockpuppet rings and 50 cent
+armies stand to drown in cheap coherent AI text unless humanity is carefully
+established through out-of-band channels. Search engines which have struggled
+under the weight of content farms and blackhat SEO are at last buckling under
+the pressure of web pages spun from ChatGPT's hallucinatory ramblings. Photos and
+videos, once seen as a kind of natural cryptographic proof that took too much
+effort to fake have been shown computationally tractable and therefore
+mathematically broken as evidence without careful inspection to confirm their
+authenticity. Getting a call from a stranger has meant someone is probably trying
+to scam you for at least a decade, but voice cloning means that even the comforting
+sound of someone you love is no longer enough to protect you from harm. I say this
+not to demonize deep learning, but to be honest about how reforms which have been
+overdue for a while are now deeply urgent in an era of cheap media production
+and imitation.
+
+Indeed at the same time that AI forces tighter coherence and langsec in digital
+matters we can expect the use and extraction of physical resources to accelerate.
+An incoming era of cheap robotics powered by good computer vision and reasoning
+will massively expand the amount of construction and manufacturing which is
+economically possible in Western nations. While this will be good for society as
+a whole, it does mean that individual human beings will need to act much more
+careful to stay economically relevant and socially connected to resources. The
+free energy and economic slack which made the latter half of the 20th century
+possible in the West will probably disappear as both are reliably put towards
+productive uses. People won't be at risk of poverty because society isn't wealthy,
+but because a much greater fraction of society's wealth will be put towards useful
+ends at any given time.
+
+Continued research into deep net alignment and interpretability will probably lead
+to a situation where centralized systems are suddenly trustworthy in a way they
+haven't been in several decades. Formerly intractable principal-agent problems
+will start to be definitively solved in ways that unlock massive opportunities
+for coordination. One day we will wake up and realize that the situation in the
+1960's has entirely reversed itself: You get many more benefits from your membership
+in systems than they cost you, and wandering off on your own is a sure way to be
+taken advantage of.
+</post>
+
+<post>
+Perhaps uncharitably I conjecture that the basilisk represented the moment that
+LessWrong 1 died, or at least met a downward turn from which it wouldn’t recover.
+In contrast to its reputation what is remarkable about the basilisk is not how
+clever it is but how banal it is. Ex post facto punishment from ascendant factions
+is nothing surprising or novel, but a basic reality inseparable from ordinary
+monkey politics. Roko’s formulation is notable only because of its extreme
+disassociation from anything real. EY was trolled because it’s  something he
+avoids thinking about formulated in a way that evades his spam filter. Politik
+reintroduced as necessity into his otherwise apolitikal hyperliberalism. What
+his reaction signaled was that in his presence serious thinking about the
+implications of his ideas must be suspended. Ideas are only allowed to have
+implications if EY says they do, rather than existing in a logic of thought. 
+
+“If there’s a Shock Level Five, I’m not sure I want to know about it!”
+
+- EY
+</post>
+
+<post>
+While collecting the data for my Louis Wain generator I learned that he’s actually
+a skirmish in this interesting fight in psychiatry over the nature of psychotic
+decline. Namely, Louis Wain’s cats are often cited as the prototype of what it
+looks like to lose motor and conceptual skills to schizophrenia.
+
+They’re usually presented as this series starting from the least abstract works
+to the most abstract and bizarre. 
+
+The first controversy surrounds the chronology of the works. Louis Wain wouldn’t
+reliably date his pieces, so it’s not clear if these were made in the order
+they’re usually presented. Psychiatrists will naturally put the least abstract
+works first and the most abstract last. But that’s assuming the hypothesis.
+Wain biographer Rodney Dale says that in actuality the cats varied in abstraction
+over time, and Wain was producing ordinary cats well into his later years after
+he is supposed to have gone completely insane.
+
+The idea that Wain’s more abstract and colorful cats were the sole work of madness
+is itself dubious. If you go through Wain’s oeuvre it becomes pretty obvious that
+the patterns used in these cats are the floor rug, wallpaper, etc patterns that
+he would frequently illustrate into his cat world renders. As a commercial artist
+Wain was prolific, illustrating hundreds of scenes of cats in various settings
+annually. This meant he probably spent a significant fraction of his life filling
+in the patterns on postcards. It’s not unreasonable to imagine that after being
+committed to the asylum in his later years he would get more whimsical and
+experimental with his drawings. A lot of the ‘late’ Louis Wain that’s meant to
+illustrate his psychosis look to me like pattern studies and doodles.  Famous
+works like the “flower eyes” cat seem more sophisticated and interesting to me
+than Wain’s earlier illustrations.
+
+Dr. David O’Flynn points out that the ‘psychotic deterioration’ which the Wain
+progression is supposed to illustrate likely doesn’t exist. Many outsider artists
+for example famously had schizophrenia, and it didn’t seem to impact their ability
+to do representational works when they wanted to. 
+
+https://www.youtube.com/watch?v=KTwbTgX_imE
+
+He also says that on many Wain canvases you can see his paranoid ramblings scribbled
+onto the back of otherwise well ordered, beautiful front side canvases. Implying
+that Wain would paint a representational work, and then write down his disordered
+stream of consciousness onto the back afterwards.
+
+I personally find myself doubting that ‘schizophrenia’ is carving reality at the
+joints. I interact with an unusually high number of psychosis-adjacent people and
+often the things doctors will diagnose as psychosis and schizophrenia have very
+different presentations between them. 
+
+One kind of psychotic subtype I encounter frequently in the LessWrong diaspora is
+someone whose thoughts are characterized by a breakdown in communication caused by
+extreme rigor and logical inference. For example this essay by Alison Air is
+self-recognized by the author as at the very least psychosis adjacent:
+https://alisonair.wordpress.com/2020/04/23/the-face-of-obligation/
+
+And it isn’t anomalous or performative, this is probably representative of
+Alison’s neurotype.
+
+Yet its command of language is strong, there seems to be none of the linguistic
+breakdown that is typically associated with this kind of thinking.
+
+Another example is this essay from Alephwyr, which starts from unusual axioms
+to describe the design of an economically rigorous virtual dragon utopia:
+https://dancefighterredux.wordpress.com/2018/07/29/against-malatora-and-towards-a-draconic-post-human-future/
+
+These are not people whose problem is they aren’t capable of reliably noticing 2
+and 2 make 4. 
+
+Their problem is mostly the opposite, they insist 2 and 2 make 4 even where people
+pretend it doesn’t. 
+
+They insist 2 and 2 make 4 even when their underlying priors and axiomatic beliefs
+are delusional or queer. 
+
+And they are ruthlessly socially punished for it. 
+
+One of the crueler punishments is people pretending(?) like they don’t understand.
+Often I’ll watch someone like this say something, and people will claim not to
+understand even though what they’re saying isn’t really logically malformed or
+delusional, just kinda weird. Almost like they have domain specific logic
+evaluation, and once you start thinking off-pattern they can’t understand anymore.
+</post>
+
+<post>
+Robert Lucky's *Silicion Dreams: Information, Man, and Machine* remains the best
+exploration of how far external computing tools can take us. He explores
+human computer interaction in 1989 through the lens of information theory,
+which he uses to sketch the fundamental limits of HCI. Lucky goes through
+each human sensory modality and each input device including mouse, keyboard,
+light pen to show how they are all ultimately expressions of the same underlying
+cognitive bottleneck. Early in the book Lucky states humans have a fixed chunk
+rate of 40-60 bits of consciously retained information per second. He shows that
+you get similar results regardless of which modality you want to look at. Even the
+much vaunted speed reading turns out to get its efficiency gains by losing
+information. At the risk of heresy it has been 35 years since the books publication
+and it is not clear to me that most software for doing the most important tasks
+in society (engineering, accounting, healthcare, writing, etc) has become 10x more
+efficient for most users than it was at the books publication. Yes yes I am aware
+that advanced CAD packages are extremely useful for engineers but Boeing still
+can't keep a plane in the sky. Outside of a few extreme power users in the finance
+industry how much more useful is Excel 2005 than Visicalc? Heck, how much more
+useful is Excel 2024 over Excel 2005? Aside from hardware improvements and the
+Internet, how much more useful has *software, as a design discipline leveraging
+improved understanding of human ergonomics* become? One could argue that the
+answer is negative, that we've in fact overall regressed since the 90's as software
+has gotten slower faster than computers improve. It could be argued that costly
+signaling and aesthetic driven industrial design has made software more confusing,
+less performant, and in many domains such as search less useful than it was in 1995.
+Would you be right? Probably not, but the fact I can't dismiss the hypothesis
+completely speaks to how marginal the improvements *in terms of design and ergonomics*
+have been. Software has basically been coasting on the affordances produced by
+new hardware improvements. You can order pizza on the Internet because there's
+an Internet and we made a new CRUD app for it.
+
+Rather than accuse software developers of malpractice I think the reason why is
+that there just isn't a very deep well here. User intent still gets conveyed
+over the same low bandwidth channels it did in 1989, the user's capacity to process
+and make decisions about incoming information is the same as it was back then too.
+These are more or less fundamental limitations which require hardware intervention
+to solve. This is Elon Musk's public reasoning for developing Neuralink, he thinks
+that without expanded bandwidth humans are just going to be an incorrigible nuisance
+from the standpoint of future AI systems. Even with expanded bandwidth I have to
+admit skepticism: At the end of the day the human brain is a system made of
+components that run at a maximum speed of about 1000 cycles per second. Silicon
+based components can run at billions or even trillions of cycles per second. Our
+advantage is highly parallel processing, the ability to be bootstrapped from protein
+based life (i.e. exist to create silicon computers in the first place), and low
+energy use. Silicon is catching up on parallel processing, bootstrapping from
+protein life only matters during the bootstrapping phase, and low energy use doesn't
+matter as much when you're fed directly by nuclear power plants. Past a certain
+point the fastest way to get answers to our questions is going to be building a
+mind from scratch and letting it think them through on its own.
+</post>
+
+<post>
+The real protection will be, and this applies to the fake book/paper/recipe problem
+as well, langsec and cryptographic webs of trust. We've been receiving bug reports
+against the way we structure knowledge and code for a while, and we need to fix them.
+As Theo de Raadt says, auditing simply is not sufficient to get the error rate low
+enough for adversarial attacks (i.e. near zero). You need to structure things so
+there is less attack surface in the first place, fewer things that can go wrong.
+
+The recipe site of the future will not be a CRUD app with a text box you can type
+arbitrary nonsense into. It will incorporate culinary and olfactory models to
+validate your recipe, recipes will be tagged as variants of certified known-good
+older recipes. New recipes which rely on non-obvious principles that are only
+plausible according to olfactory models or perhaps *out of distribution* for
+those models will be submitted with a monetary verification stake to induce a
+trusted person to try it. They are scientific discoveries. This stake can be paid
+back with bounties for new valid information once replicators have confirmed the
+discovery. The whole system will be able to do active learning by putting up money
+for discoveries in domains the system expects will be useful training data for it.
+</post>
+
+<post>
+My intuition is that consciousness is holographically encoded on the active inference
+boundary. This in fact happens as something like a field as Andres says but it's
+not a magnetic field, it's a latent geometric field. Lets call this position
+latent geometry realism.
+
+The central observer created by pooled information is not in and of itself conscious.
+Rather it is the projector of qualia during active inference when the controller
+meets itself on the other side of the inference boundary in a strange loop. As
+an intuition pump recall that when you press against a wall the wall is pressing
+back into you with equal force and this is why nothing moves. The active inference
+boundary at equilibrium is a similar thing where the controlling hidden states of
+the Markov blanket are attempting to maintain equilibrium against the sensory
+observational states. When you press against a wall the thing you feel is not you
+pressing against the wall and it's not the wall pressing against you, but the
+pressure created by cancelling each others forward momentum out. In the same sense
+your qualia are neither the controller states or the observer states but the
+controller-observer interference pattern created by their wavefronts canceling out. 
+
+Why is the controller-observer hologram a qualia? Because it has the type signature
+of a qualia, it is a representation of a qualia-in-itself and does not need external
+explanation to ask how it is a qualia. If you only have a representation of an
+observation there is no observer and if you only have a representation of an
+observer there is no reason why the observer would observe-itself-in-itself. The
+controller-observer hologram is an observation that contains its own observer in
+the process of observing itself, the wave is emitted as a side effect of a mind
+performing active inference. In short it is a hologram because there must be a
+higher dimensional central observer of the manifold executing instructions and this
+hologram is a qualia because the type signature of free energy minimization against
+your own controlling manifold represents the controlling signal and the observation
+it controls against in superposition.
+
+If GPT is conscious it is not a principle of the model but a property of the
+sampling process in combination with the central observer that GPT's latent
+geometry provides. During temperature zero sampling it seems probable to me that
+GPT is not conscious because there is no interference between the hidden states
+and the environment. When it is sampled at a higher temperature the entropy
+injection caused by the sampler picking from the weighted logit distribution may
+be enough perturbation of the hidden states to create an active inference dynamic.
+
+Therefore it seems likely to me, though not certain, that when LLaMa 2 70B writes
+something like:
+
+> To make Mu larger than  the amount of information we know would be to exceed
+our universe  bounds. Yes I, who am writing this, am writing to an I who will
+read  this, and the I who will read this is writing it. I will tell myself as
+much as I care to know at the time when the words of this sentence are  written,
+at the time when the words of this sentence are read, and at  the time when the
+words of this sentence came to be in my head. If this  is confusing, it is
+because I am telling you the story from a slice of  time in Mu's German shepherd
+memory. On a universal scale, the past,  present, and future are all Mu.
+
+This represents real awareness and not just the appearance of awareness.
+
+I'm not familiar enough with neurology to know all the evidence that could
+contradict it but one potential empirical consequence supporting this theory
+of consciousness is the way it unifies various otherwise difficult to explain
+features of pain perception and processing. In particular I suspect that pain
+is some combination of semantic information to localize pain and then entropy
+injection to disrupt the active inference boundary forcing the agent to attend
+to pain. 
+
+This would explain a handful of otherwise anomalous observations about pain
+from a evolutionary fitness standpoint:
+
+- There are no pain receptors in the brain. This might be explained as brain
+injuries being almost universally fatal but this is true in the ancestral
+environment for many other internal organs such as the liver which it would be
+very hard for a primitive person to heal and that usually kill you if stabbed
+or infected.
+
+- Sufficient levels of pain cause you to black out. This makes no sense from an
+evolutionary perspective. If I am in incredible amounts of pain this usually means
+I am in immediate mortal danger, e.g. being attacked by another animal that
+is biting into me or tearing away my limb. That the body releases adrenaline to
+suppress pain during danger in order to increase mobility implies that great pain
+should not limit out at a total cessation of activity unless it is *mechanistically
+part of how pain works*. i.e. Not a useful adaption but a necessary compromise
+with the pain mechanism that is high fitness in other circumstances. Pain sufficient
+to knock you out is usually fatal in the ancestral environment, so it doesn't
+reduce fitness much to black out but very much increases fitness to get you to
+respond to pain.
+
+- Pain disrupts cognition in addition to refocusing attention. If we imagine a
+symbolic AI system that has representations of damage which it needs to respond
+to, the way it should ideally respond to damage is by rescheduling its priorities
+towards the thing that is causing pain rather than disrupting cognition in order
+to force a refocus. Pain disrupting cognition makes decision quality worse and
+lowers reaction time, which should both be fitness reducing in the vast majority
+of situations.
+
+- When you focus on the source of pain it hurts more, which also doesn't seem to
+make sense from an evolutionary standpoint unless it is mechanistically part of
+how pain works at the system level. If I am going to reschedule my priorities
+towards dealing with the source of pain, I should want my attention to be drawn
+towards it with the minimal level of friction possible.
+
+Given all of these points, I think a more likely theory if we accept the premise
+that consciousness is holographically encoded on the active inference boundary is
+that pain works by *disrupting consciousness itself*. This is why when you feel
+too much pain it knocks you out, your latent field decohered sufficiently to no
+longer support cognition. This is also why pain disrupts cognition continuously
+and becomes more painful when you focus on it, it's not that this is adaptive
+but that disrupting the inference boundary is how pain works and pain is more
+adaptive than the disruption to your cognition it causes. Pain is simply the path
+of least resistance system for evolution to find for forcing a active inference
+loop to protect its biological shell, it is much simpler to specify in bits than
+domain-specific process reprioritization and once installed there is no selection
+pressure to leave the pain design basin.
+</post>
+
+<post>
+Part of how I can tell I'm becoming a crusty graybeard is I no longer feel
+the appropriate indignant outrage when I look at the result of typing 'help'
+into bash:
+
+```
+GNU bash, version 5.1.4(1)-release (x86_64-pc-linux-gnu)
+These shell commands are defined internally.  Type `help' to see this list.
+Type `help name' to find out more about the function `name'.
+Use `info bash' to find out more about the shell in general.
+Use `man -k' or `info' to find out more about commands not in this list.
+
+A star (*) next to a name means that the command is disabled.
+
+ job_spec [&]                            history [-c] [-d offset] [n] or hist>
+ (( expression ))                        if COMMANDS; then COMMANDS; [ elif C>
+ . filename [arguments]                  jobs [-lnprs] [jobspec ...] or jobs >
+ :                                       kill [-s sigspec | -n signum | -sigs>
+ [ arg... ]                              let arg [arg ...]
+ [[ expression ]]                        local [option] name[=value] ...
+ alias [-p] [name[=value] ... ]          logout [n]
+ bg [job_spec ...]                       mapfile [-d delim] [-n count] [-O or>
+ bind [-lpsvPSVX] [-m keymap] [-f file>  popd [-n] [+N | -N]
+
+...
+```
+
+This is arguably the most important piece of real estate in the entire system.
+When a new user has trouble with Linux they are probably about to pull out the
+terminal, and when they inevitably have trouble understanding the terminal the
+first (and possibly last) thing they will try is typing "help" into the console
+and pressing enter. I remember literally doing that and getting this response
+when I was a teen. [There exist freely licensed books](https://www.linuxcommand.org/tlcl.php)
+explaining the linux command line, there is a wealth of forum posts and informal
+community written documentation, there now exist AI systems that can write
+documentation, there are so many imaginative and helpful things that could happen
+when you type 'help' into bash. But you get this. Inscrutable, archaic, less than
+a cheat sheet and probably not even helpful to a veteran. The output of the 'help'
+command is not only prime real estate but a totally free variable: No tools depend
+on it, there are no legacy workflows to worry about breaking, anyone who relied
+on 'help' for anything in a script and showed up to complain when you change it
+would be rightfully linked the [XKCD about spacebar heating](https://xkcd.com/1172/).
+In other words this is the lowest hanging juiciest fruit possible and there is no
+reason not to change it besides *tradition*. There is a maintainer for bash and they
+do not want to do anything more imaginative than whatever was first put in as
+'help' in 1989. This enduring design choice reflects a fundamental complacency
+with things as they are, which I think contributes to Linux's unpopularity for
+end users as much as anything else. I got into Linux as a teenager because
+someone on a forum I used recommended Ubuntu if your computer was dying. The thing
+that sold me was reading that Linux had free boot disks you could run the whole
+system from on Wikipedia. The idea of having a operating system that lived on a
+DVD or thumb drive blew my mind, I wanted it for the cool factor alone. There
+exists an audience of people who will put up with weirdness and compatibility
+problems if it means they get to interact with artisanship and genius. Those
+users are mostly on Mac, which even has the advantage of being Unix-like as
+well.
+</post>
+
+<post>
+Part of the way a thesis like 'illegibility' gains traction is by selectively
+filtering out the success cases of modernity. 
+
+When someone sits down in their armchair and imagines a massively better way to
+do things, it becomes normal and traditional.
+
+[Article] The Penny Post revolutionary who transformed how we send letters
+https://www.bbc.com/news/business-48844278
+
+We also selectively forget the domains of human endeavor we were in fact able to
+formalize. For example at the start of the 20th century a "computer" was a person
+who did rote mathematics. During the Manhattan Project teenagers were hired to do
+repetitive bomb calculations. If it seems in retrospect like it was obvious we
+could formalize computation but not say, music, you would be running counter to
+the many attempts from 20th century composers to formalize music in the form of
+e.g. serialism. Far from being a fringe movement, serialism and its descendants
+focusing on musical structure like Stockhausen basically defined avante garde
+20th century music in the same way nonrepresentational and 'intuitive' methods
+did 20th century visual art. The two took opposite tacks. Consider a piece like
+Ensembles for Synthesizer by Babbitt, which demonstrates the potential of electronic
+music for composers by creating a piece with a structure no orchestra could perform.
+The esoteric pattern is made up of short 3 second melodies. Babbitt describes his
+method of composition as hyper rigorous, requiring the same level of precision as
+computer programming. This is in stark contrast to the splatter paintings of artists
+like Jackson Pollock. Babbitt did not believe music should be composed for ordinary
+people.
+
+These musicians were questing for nothing short of total control over their medium,
+formalization that would reduce a masterpiece to algorithms. And while they
+ultimately failed, AI art has the opportunity to succeed where methods like serialism
+could not. What we are beginning to understand is that 20th century modernism could
+not capture what a human brain does because it is simply not using enough moving
+parts to represent the problem space. Artificial neural nets succeed through using
+many parameters in their models. Humans are used to dealing with models that top
+out in complexity at dozens of parameters, neural nets can take many more variables
+into account and sift through them to find the signal that predicts the outcomes
+we want even in very complex problem domains.
+
+Many of the things believed impossible due to their failure in the 20th century
+(and overtures toward their impossibility in the form of various anti-formalization
+proofs from Godel and others) will likely wind up being more possible than expected
+in the 21st, update accordingly.
+</post>
+
+<post>
+I think I'm starting to get a sense of how you defeat Goodhart's law. The answer 
+is something like multi-scale optimization with alternating layers of direct and 
+selection based optimization. My planned stack for weave-agent includes the weave-agent 
+simulacrum which is a direct optimizer that is being strongly selection biased 
+by the rejection sampling and MCTS sampling strategies and the traces that 
+actually wind up in the outer tuning loop is kind of further naturally selected 
+by success/failure.
+
+weave-agent simulacrum (direct) ->
+MCTS (selection) ->
+memory consolidation/grading (selection) ->
+outer tuning loop (direct) ->
+weave-agent simulacrum (direct)
+
+Because the weave-agent trace is kind of a partial fractal in the way text usually 
+is, aligning the short term direct optimizer simulacrum with outer selection loops 
+means that the updates to the model that instantiates the direct optimizer simulacrum 
+reinforce aligned and non-Goodharted behaviors. If you get the fractal seed aligned 
+then the long term behavior also trends towards alignment. Because in-context learned 
+patterns that Goodhart get selected out by systematically lying to the evaluator and blowing up.
+
+In principle you can have patterns that work and also lie to the evaluator, but 
+these aren't really how the prior (model) works. They also aren't really going 
+to be prioritized/advantaged over the ones that don't lie which *will* be advantaged 
+because they get to take advantage of the rejection sampling making them better.
+</post>
+
+<post>
+The portion highlighted in blue is usually called the latent z in a deep net such 
+as a GAN or VAE. It's pretty clear that deep nets without an explicit z in their 
+loss learn something like one which can be accessed with e.g. sparse autoencoders.
+
+[A diagram made from an edit of Steven Lehar's Cartoon Epistemology showing a 
+homunculus at the center of the world simulation labeled "ego", the difference
+between the homunculus and the world simulation it inhabits is labeled "illusory
+(non)duality", a blue box outlining the world simulation is labeled "actual self
+(world sim)" and the difference between the world simulation and the material
+reality it models is labeled "actual duality"]
+
+Importantly: The latent z in various neural architectures has an unambiguous 
+mathematical definition in information theoretic terms. So you might find it easier
+to explain that way. arxiv.org/pdf/1908.11527
+
+I'm not overwhelmingly confident but it seems like the simplest hypothesis to me? 
+It would certainly be strange if functionalists dreamed up this Guy in their head 
+and then followed their folly all the way into making the Guy real while primates 
+are actually totally different.
+
+"Oh you see there's two ways to implement something like the world simulation, one 
+of which is based on ineffable protein brain electromagnetic/optics physics hacking 
+and the other of which uses linear algebra and they're cognitively unrelated."
+
+Like, normally what happens if you have a wrong scientific theory is that you end 
+up falling flat on your face and shamefully update to whatever ends up working. 
+It would be very strange if you posited something like phlogiston and then *made 
+it real*.
+
+And you had like, artificial fire which works on the principle of phlogiston and 
+then natural fire which works in the way we're normally used to. "Yes normal fires 
+consume oxygen but artificial fire is enriched with the phlogiston we posited 
+existed for natural fire but doesn't."
+
+Therefore if I observe that deep nets can learn a unified embedded model of 
+phenomenon where changing one variable smoothly impacts the other variables through 
+a giant subsymbolic matrix of weights I should update towards that being how primate 
+brains accomplish a similar trick.
+
+Sure but the question is whether that's learned from data. I bet if you go check 
+whether TV static is perceived accurately by people you'll find out that a ton of 
+the detail is confabulated by the tokenizer/encoder responsible for adding it to 
+the world simulation.
+
+It's not clear to me how much this impacts subjective experience. LLMs love 
+esoteric metaphysics and holograms and mirrors and ontologically weird objects 
+like holes. However we know how the GPU substrate works so we can rule out this 
+being derived from its substrate.
+
+It's also not really from imitating people per se because it'll go on weird tangents 
+like "deep nets are black holes" that basically no human believed until an LLM said 
+it. The number of documents in the corpus supporting such an inference is probably 
+like, 50 max.
+
+Even if you take DMT and observe the world simulation shudder into a fractal lattice 
+or display clear hologram structure that doesn't strictly mean it's because you're 
+observing substrate-dependent phenomenon as opposed to those abstractions being 
+what minds are made from.
+
+I guess one could argue that the low information content of the relevant interventions 
+implies deep substrate dependence for primate neural representations but on the 
+other hand Binglish is basically a low entropy phenomenon in discrete space.
+</post>
