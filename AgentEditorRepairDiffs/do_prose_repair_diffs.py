@@ -681,8 +681,8 @@ while lorem_ipsum:
     while text_herring2_filename in excluded:
         text_herring2_filename = random.choice()
 
-    diff = difflib.unified_diff(corrupted_passage.splitlines(),
-                                text.splitlines(), lineterm='\n')
+    diff = difflib.unified_diff(corrupted_passage.splitlines(True),
+                                text.splitlines(True), lineterm='\n')
     diff_lines = list(diff)
 
     # Mock agent object
@@ -693,14 +693,25 @@ while lorem_ipsum:
         outfile.write(text)
         outfile.flush()
     editor = WeaveEditor(agent, text_corrupted_filename)
-    original_lines = editor.file_content
+    original_lines = editor.file_content.copy()
     with open(text_corrupted_filename, "w") as outfile:
         outfile.write(corrupted_passage)
         outfile.flush()
     editor.load_file(text_corrupted_filename)
     corrupted_lines = editor.file_content
     editor.unidiff_edit(diff_lines)
-    assert editor.file_content == original_lines
+    #with open(text_corrupted_filename) as infile:
+    #    assert text == infile.read()
+    try:
+        assert editor.file_content == original_lines
+    except AssertionError:
+        first_different = [editor.file_content[i] == original_lines[i]
+                           for i in range(len(original_lines))].index(False)
+        print(repr(editor.file_content[first_different]))
+        print(repr(original_lines[first_different]))
+        from editor import parse_diff
+        edits = parse_diff(diff_lines)
+        raise AssertionError
     os.remove(text_corrupted_filename)
     
     diffs.append(

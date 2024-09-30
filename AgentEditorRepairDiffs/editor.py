@@ -27,6 +27,7 @@ class WeaveEditor:
         try:
             with open(filepath, 'r') as file:
                 return file.readlines()
+                
         except FileNotFoundError:
             with open(filepath, 'w') as file:
                 file.write("")
@@ -57,8 +58,10 @@ class WeaveEditor:
         """Replace the text between two lines with the text given in a separate argument."""
         start_line -= 1
         end_line -= 1
-        if start_line < 0 or end_line >= len(self.file_content) or start_line > end_line:
+        if start_line < 0  or start_line > end_line:
             raise ValueError("Invalid line range")
+        if end_line >= len(self.file_content):
+            end_line = len(self.file_content)
         self.file_content[start_line:end_line+1] = new_text.splitlines(keepends=True)
         self.save_file(self.filepath)
 
@@ -120,36 +123,60 @@ def parse_diff_header(line):
         return start_line_old, count_old, start_line_new, count_new
     return None
 
-def process_hunk(lines, start_line_old):
+def process_hunk(lines, start_line):
     edits = []
     offset = 0
     local_offset = 0
+    current_line = start_line
     context_above = None
     context_below = None
+    changed = False
 
     line_stack = []
+    if not lines[0].startswith(" "):
+        context_above = ''
+        line_stack.append('')
     for line in lines:
-        if line.startswith(' '):
-            if context_above is None:
-                context_above = line[1:]
-                start_line = start_line_old
-                line_stack.append(context_above)
-            else:
-                context_below = line[1:]
-                line_stack.append(context_below)
-                edits.append((start_line_old, start_line_old + len(line_stack) - 1, ''.join(line_stack)))
-                start_line_old = start_line + local_offset
-                offset += local_offset
-                local_offset = 0
-                line_stack = []
-                context_above = line[1:]
-                line_stack.append(context_above)
-        elif line.startswith('-'):
+        # Apply effects of + or - first in case last line
+        if line.startswith('-'):
+            current_line += 1
             local_offset -= 1
+            changed = True
         elif line.startswith('+'):
             line_stack.append(line[1:])
             local_offset += 1
+            # current_line += 1
+            changed = True
 
+        if line.startswith(' ') or line == lines[-1]:
+            if context_above is None:
+                context_above = line[1:]
+                start_line = current_line
+                line_stack.append(context_above)
+                current_line += 1
+            else:
+                context_below = line[1:]
+                line_stack.append(context_below)
+                if changed:
+                    edits.append(
+                        (start_line,
+                         current_line,
+                         ''.join(line_stack))
+                    )
+                offset += local_offset
+                current_line += local_offset
+                assert (((current_line - start_line) + 1 == len(line_stack))
+                        or (line_stack[0] == ''))
+                start_line = current_line
+                local_offset = 0
+                changed = False
+                line_stack = []
+                context_above = line[1:]
+                line_stack.append(context_above)
+                current_line += 1
+ 
+    assert (len([line for line in lines if line.startswith("+")])
+             - len([line for line in lines if line.startswith("-")])) == offset
     return edits, offset
 
 def parse_diff(unidiff):
@@ -163,15 +190,19 @@ def parse_diff(unidiff):
     i = 0
 
     offset = 0
+    header_count = len([line for line in lines if line.startswith('@@')])
+    headers = []
     while i < len(lines):
         line = lines[i]
         if line.startswith('@@'):
             header_info = parse_diff_header(line)
+            headers.append(header_info)
             if header_info:
                 start_line_old, count_old, start_line_new, count_new = header_info
                 hunk_lines = []
                 i += 1
                 while i < len(lines) and not lines[i].startswith('@@'):
+                    assert lines[i][0] in (' ', '+', '-')
                     hunk_lines.append(lines[i])
                     i += 1
                 start_line_old += offset
@@ -179,6 +210,8 @@ def parse_diff(unidiff):
                 new_edits, hunk_offset = process_hunk(hunk_lines, start_line_old)
                 offset += hunk_offset
                 edits.extend(new_edits)
-        i += 1
+        if not line.startswith('@@'):
+            i += 1
 
+    assert header_count == len(headers)
     return edits
