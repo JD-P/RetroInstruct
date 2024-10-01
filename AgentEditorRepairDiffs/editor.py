@@ -16,8 +16,12 @@ class WeaveEditor:
         # Initialize the editor state
         self.current_line = 0
         self.window_size = 10
-        self.file_content = self.load_file(filepath)
+        self.open(filepath)
 
+    def open(self, filepath):
+        self.file_content = self.load_file(filepath)
+        self.filepath = filepath
+        
     def close(self):
         self.agent.tools.remove(self)
         self.agent.remove_observation_view(self.editor_observation_view)
@@ -26,7 +30,8 @@ class WeaveEditor:
         """Load the file content into a list of lines."""
         try:
             with open(filepath, 'r') as file:
-                return file.readlines()
+                content = file.read()
+                return split_lines_with_custom_newlines(content, "\n\r\x0b\x0c")
                 
         except FileNotFoundError:
             with open(filepath, 'w') as file:
@@ -39,6 +44,7 @@ class WeaveEditor:
         with open(filepath, 'w') as file:
             file.writelines(self.file_content)
         self.file_content = self.load_file(filepath)
+        self.filepath = filepath
 
     def render(self, agent):
         """Render the text block based on the current line number position and the window size."""
@@ -143,7 +149,6 @@ def process_hunk(lines, start_line):
             local_offset -= 1
             changed = True
         elif line.startswith('+'):
-            line_stack.append(line[1:])
             local_offset += 1
             # current_line += 1
             changed = True
@@ -165,8 +170,6 @@ def process_hunk(lines, start_line):
                     )
                 offset += local_offset
                 current_line += local_offset
-                assert (((current_line - start_line) + 1 == len(line_stack))
-                        or (line_stack[0] == ''))
                 start_line = current_line
                 local_offset = 0
                 changed = False
@@ -174,6 +177,8 @@ def process_hunk(lines, start_line):
                 context_above = line[1:]
                 line_stack.append(context_above)
                 current_line += 1
+        elif line.startswith('+'):
+            line_stack.append(line[1:])
  
     assert (len([line for line in lines if line.startswith("+")])
              - len([line for line in lines if line.startswith("-")])) == offset
@@ -215,3 +220,25 @@ def parse_diff(unidiff):
 
     assert header_count == len(headers)
     return edits
+
+def split_lines_with_custom_newlines(content, newline_chars):
+    """
+    Splits the lines in a file based on a custom set of newline characters.
+
+    :param file_path: Path to the file to be read.
+    :param newline_chars: A set of characters to be considered as newlines.
+    :return: A list of lines split based on the custom newline characters.
+    """
+    lines = []
+    current_line = []
+
+    for char in content:
+        current_line.append(char)
+        if char in newline_chars:
+            lines.append(''.join(current_line))
+            current_line = []
+    # Add the last line if there is any remaining content
+    if current_line:
+        lines.append(''.join(current_line))
+
+    return lines

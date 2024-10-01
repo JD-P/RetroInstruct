@@ -650,7 +650,7 @@ filenames = filename_builder.generate_variations()
 diffs = []
 pbar = tqdm(total=900)
 index = 0
-while lorem_ipsum:
+while lorem_ipsum[1:]:
     text = lorem_ipsum.pop()["text"]
     text_herring1 = lorem_ipsum.pop()["text"]
     text_herring2 = lorem_ipsum.pop()["text"]
@@ -679,7 +679,7 @@ while lorem_ipsum:
     text_herring2_filename = random.choice(filenames)
     excluded = [text_corrupted_filename, text_herring1_filename]
     while text_herring2_filename in excluded:
-        text_herring2_filename = random.choice()
+        text_herring2_filename = random.choice(filenames)
 
     diff = difflib.unified_diff(corrupted_passage.splitlines(True),
                                 text.splitlines(True), lineterm='\n')
@@ -697,11 +697,11 @@ while lorem_ipsum:
     with open(text_corrupted_filename, "w") as outfile:
         outfile.write(corrupted_passage)
         outfile.flush()
-    editor.load_file(text_corrupted_filename)
+    editor.open(text_corrupted_filename)
     corrupted_lines = editor.file_content
     editor.unidiff_edit(diff_lines)
-    #with open(text_corrupted_filename) as infile:
-    #    assert text == infile.read()
+    with open(text_corrupted_filename) as infile:
+        assert text == infile.read()
     try:
         assert editor.file_content == original_lines
     except AssertionError:
