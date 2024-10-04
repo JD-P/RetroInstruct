@@ -1,0 +1,399 @@
+#startblock type: observation
+#title WeaveEditor (POST.md)
+
+# #File: POST.md (121 lines total)#
+# '''(0 lines above)
+# 1 A brief rundown on the problems faced by deep learning language models:
+# 2 
+# 3 Memorylessness. Even GPT3 (175 billion parameters, 500ish GB of training corpus) 
+# 4 doesn't have an especially good memory, and the kinds of hacks people resort 
+# 5 to to try and solve this are hilarious. My intuition here is that something like 
+# 6 nearly all deep nets are going to need explicit memory mechanisms akin to the 
+# 7 memories in Clozemaster and LSTMs even when you make them big. I like the Clozemaster 
+# 8 architecture, it looks like a great way to train a model to have a robust memory to 
+# 9 me, but I'm not totally sure it won't have issues with scaling to big corpuses of
+# 10 training data.
+# 11 
+# 12 Facts vs Patterns. My suspicion is that most of deep nets' problems stem from the
+# 13 fundamental dualism of the language world. There are 'facts' and 'patterns' and 
+# 14 a deep net needs some amount of both to work right. The facts are the things
+# 15 you can look up in some index or database or just hard code in, and the patterns
+# 16 are the statistical and logical rules which relate the facts. For instance a
+# 17 machine like GPT needs a bunch of facts to ground its predictions because it's
+# 18 entirely a pattern machine. This becomes obvious if you ask it a question that
+# 19 requires it to cite some facts in order to answer itself properly. Because it's
+# 20 all pattern machine nothing in the model contains the answers. This is where ChatGPT
+# 21 plugs in its search module to try and compensate for this problem. It's not that
+# 22 the model doesn't have enough total parameters to brute force store all that 
+# 23 information, it's that there's no easy way to map the queries (prompts) into the
+# 24 patterns representing the desired answers.
+# 25 
+# 26 For instance there is no way to look up how tall Yul Brynner is, it's more 
+# 27 memory and computation cost effective to hard code in a fact dictionary that
+# 28 maps [Yul Brynner's height] to 168 cm and look your answers up on demand. 
+# 29 This is fundamentally an associative memory problem. You need to associate
+# 30 queries to representations of the answers in a language model because the
+# 31 only thing it really knows how to do is pattern recognition over the query
+# 32 space. You could feed the model billions of lines of text that say "Yul Brynner
+# 33 is 168cm tall" over and over and it will probably still never know the answer.
+# 34 For a language model it's a needle in a haystack problem, it's like you're
+# 35 trying to teach a small child quantum physics with an infinite amount of data. 
+# 36 There is some optimal amount of 'facts' to use to augment a language model and 
+# 37 I've heard that it turns out to be about half of the text. I suspect even then 
+# 38 that 'training on a mix of text and facts' doesn't help very much with this 
+# 39 problem because what you really want to do is build an index (graph) representation 
+# 40 of facts that a deep net can query.
+# 41 
+# 42 Diversity of skills. This is probably the biggest long tail problem faced by deep
+# 43 learning models in general. The current strategy for 'learning everything the net 
+# 44 knows how to do well' is to either:  
+# 45 
+# 46 - collect a bunch of datasets about related tasks and put it in some format
+# 47 it might understand so that it knows how to use its existing skills to solve more
+# 48 things
+# 49 
+# 50 - feed datasets that are different enough from training data to the model and 
+# 51 observe what happens on the basis of the intuition that this will eventually add 
+# 52 up to an increase in skill
+# 53 
+# 54 If you want examples of the first, consider e.g. Eleuther's self-instruct. I've 
+# 55 had good luck using this to solve specific questions by feeding self-instruction
+# 56 text into RetroInstruct, but that's partly because it's a method I'm familiar with 
+# 57 at this point. RLHF is mostly a special case of the second if you tune on questions 
+# 58 of the form "this is good or bad". If I'm going to invest a bunch into optimizing 
+# 59 that I'd pick RLAIF over RLHF/RLPO and train on binary yes/no questions instead of
+# 60 multi point scales, but again this kind of works by hoping the fact that the net 
+# 61 has to optimize the evaluation function on something that varies causes it to learn 
+# 62 better answers so it gets rewarded. This is kind of true but I wouldn't really
+# 63 trust the answers a RL tuned model produces on things I haven't trained it on. 
+# 64 In particular because the method is optimizing what is already in the model, it's
+# 65 not actually good at adding skills. This comes up a lot in my RLAIF experiments 
+# 66 which are constantly running into "what if it simply needs to learn this thing
+# 67 as a skill" roadblocks. It's obvious to me after playing with different setups 
+# 68 and tuning strategies that the biggest bottleneck with regards to what it can do 
+# 69 isn't the optimizer not optimizing, it's the fact that the model itself needs to
+# 70 learn whatever you're trying to teach it.
+# 71 
+# 72 You can sometimes circumvent this by making a wrapper layer that makes a few
+# 73 symbolic transformations of the tokens before passing them into the original model, 
+# 74 but this always has the effect of destroying the language prior completely. This is 
+# 75 a problem when you want the model to do language related things, but less of a
+# 76 problem when you don't, hence my enthusiasm for turning LLaMAs into giant vocoders.
+# 77 
+# 78 Human interpretability of the representations is also mostly ignored:
+# 79 
+# 80 Consideration of the interpretability is largely de-emphasized in academic papers 
+# 81 about this stuff. When I look at the state of interpretability research it looks
+# 82 to me like a sort of weird arms race of "I developed this convoluted method to infer 
+# 83 semantic meaning from deep net latent representations and then someone came along
+# 84 and made a deeper net that invalidated my results which I now have to improve".
+# 85 Most of the interpretability research I've seen looks like a mess to me, e.g. 
+# 86 picking a set of features like "red", "blue", "triangle" and trying to infer which representations
+# 87 contain these features. The problem of course is that the model almost certainly does
+# 88 not represent these features in a way that a human being might recognize, and even
+# 89 the basic structure of the representation could be too complicated to understand
+# 90 with human-level reasoning. 
+# 91 
+# 92 You can see this by looking at models that try to represent images. For instance
+# 93 the latent spaces of e.g. A.I.T's text to image models aren't recognizable as
+# 94 images at all. Instead you get something like a strange tessellation where every
+# 95 image is represented by the same small number of polygons arranged like wall tiles.
+# 96 
+# 97 I wonder how much researcher's lack of imagination about how a deep net represents
+# 98 facts influences interpretability work. Certainly I don't see much work that tries
+# 99 to infer facts out of natural language modeling, only stuff trying to get an image
+# 100 back from a latent representation. I know from looking at the output of Stable
+# 101 Diffusion models that the underlying representations can't be interpreted as images,
+# 102 but the outputs of models trained on text like GPT certainly contain facts. If I could 
+# 103 get a deep network to represent a fact like "Yul Brynner is 168cm tall" and make 
+# 104 the representation interpretable enough to read "Yul Brynner is 168cm tall" out 
+# 105 of it with machine learning then the question of how the model is representing 
+# 106 and learning those facts would be mostly solved. When I bring this up with people
+# 107 they say something like "well the facts the deep net knows about are part of its
+# 108 'black box', your solution is too greedy". I dunno, sounds like a very reasonable
+# 109 thing to optimize to me.
+# 110 
+# 111 Some of this stuff is obvious to many people, but I think it's useful to lay it 
+# 112 out so that people know where my research is focused going forward. In particular
+# 113 I'm much more interested in exploring strategies for encoding and retrieving 
+# 114 high entropy signals such as facts than trying to use deep nets as direct
+# 115 optimizers. Once we unlock direct optimization skills and memory they start to
+# 116 become very dangerous but there's no point being afraid of an intelligence who
+# 117 doesn't have the tools or the capacity to act on its intent. We can make mistakes
+# 118 and get things wrong without causing major harm as long as it isn't too dangerous
+# 119 for a system to fail or make mistakes. My goal is to make a system that is
+# 120 reasonably easy to safely align. The first step towards doing that is to make 
+# 121 a system that is reasonably hard to align with malicious intent.
+# (0 lines below)
+# '''
+
+#endblock
+#startblock type: observation
+#title WeaveEditor (NEW_MESSAGE.md)
+
+# #File: NEW_MESSAGE.md (23 lines total)#
+# '''(0 lines above)
+# 1 In 42 years of listening to music and in 10 or more years of writing music, I found
+# 2 only once a piece of music which made me cry, in the sense that my autonomic nervous
+# 3 system turned on my tear production at the behest of the music. My tears are only
+# 4 triggered by beauty; I do not cry at sad things. It happened to me with Schubert’s
+# 5 “Notturno” from the trio in E flat Major (Opus 100). The first time was when I
+# 6 listened to it at night on the radio. I was sitting an in armchair, my head was
+# 7 leaned back, and suddenly, there I was crying. All my defenses and all that
+# 8 would of my
+# 9 appraisal faculties were caught unawares, they didn’t know what was going on, and
+# 10 I cried.
+# 11 
+# 12 I said, “Wow, those three musicians really convinced me, they were so moving,”
+# 13 because of course I thought it was themusic I was crying at. Later on, at home,
+# 14 I tried singingtheir parts – the cello line, the violin, and the piano – and
+# 15 I said, “Wait, which one of thoon? It's
+# 16 an impossible task, and yet you attempt it anyway. Some succeed, mos Your Brain on Music: The Science of a Human ObsessionI couldn’t think of anything in language or painting or poetry that
+# 17 would give rise to something like that. Suddenly it becomes very apparent to you:
+# 18 Music is doing things with emotion, and the rules and procedures involved are
+# 19 very difficult to extract and analyze.
+# 20 
+# 21 - David Huron, This Ist fail, they
+# 22 lthis is an extreme example, but my first thoughts were,= “What else
+# 23 doesthis?” 
+# (0 lines below)
+# '''
+
+#endblock
+#startblock type: observation
+#title WeaveEditor (MESSAGE.md)
+
+# #File: MESSAGE.md (132 lines total)#
+# '''(0 lines above)
+# 1 [Title, possibly a reference to the movie Pi]
+# 2 ```
+# 3 pi_is_equal_to[3.1415926535897932]
+# 4 ```
+# 5 
+# 6 (16 characters too long, would have to cut 16 characters to make this fit)
+# 7 
+# 8 So I took this approach further and made a model where you could give your prompt
+# 9 on the model command line and it would try to find a better model in that
+# 10 parameter subvolume for you.
+# 11 
+# 12 This model has already been trained so the baseline performance is pretty decent,
+# 13 I've been adding tricks in a few ways to make the gradient updates better and
+# 14 better and give higher quality models. One experiment I ran was taking model
+# 15 checkpoints from previous experiments and having the new model try to predict
+# 16 them based on their prompt. Basically you run the old model on some prompt P and
+# 17 save the checkpoint before and after training on the result. Then you have your
+# 18 model try to predict 
+# 19 
+# 20 ```
+# 21 prompt: P
+# 22 input prompt to train on: <result>
+# 23 desired prompt output: <result> (training prompt)
+# 24 optimizer: dpo
+# 25 model checkpoint before training: <pretrained parameters>
+# 26 model checkpoint after training: <fine tuned parameters>
+# 27 (do not update this data for more than 50 iterations)
+# 28 output checkpoint parameters to match this target model:
+# 29 ```
+# 30 
+# 31 You can imagine this might work well if the pre and post training pairs you feed
+# 32 it have some interesting property you want to generalize. Like, if you always
+# 33 fine tune models on math and get better at math, maybe this model will learn that
+# 34 math prompts tend to be associated with improving performance on math problems?
+# 35 
+# 36 But this hasn't worked so far because the optimization strategy is kind of
+# 37 stupid. As the model runs it has to repeatedly generate these really really long
+# 38 sequences of parameters that aren't actually meaningful to the loss and are
+# 39 almost guaranteed to be incorrect. So it just sort of spazzes out for 10 minutes
+# 40 trying in vain to guess the millions of random garbage numbers the optimizer
+# 41 used to reach the target. This is because the prompt isn't *explicitly specifying*
+# 42 the kind of optimizer it's using at all, so it's probably going to have to waste
+# 43 most of its effort discovering the *type* of method used instead of just applying
+# 44 the same method.
+# 45 
+# 46 Which brings us to λCalculus, a theoretical model for describing all computable
+# 47 functions by defining a small domain-specific language that allows functions to be
+# 48 self-describing. 
+# 49 
+# 50 In 2005 Peter Lee published a paper titled "The Turing Centenary Report" where
+# 51 he discusses this in the context of his work on domain specific languages and
+# 52 self-describing languages. Lee talks about how the idea of self-descriptive
+# 53 languages (programs that contain the information necessary to automatically compile
+# 54 or verify themselves) has been around for centuries, but has not been explored
+# 55 for very long. 
+# 56 
+# 57 He also says that the goal of a self-describing language "is not to replace the
+# 58 existing compiler-based approach entirely", and describes how it could serve as a
+# 59 complementary approach. He mentions some commonalities between the two approaches,
+# 60 and gives an example of a self-describing language, which he calls "the HRL
+# 61 language" (High-Resolution Language).
+# 62 
+# 63 A self-describing program's ability to prove its own correctness depends on
+# 64 program analysis algorithms, which can be used to determine whether a program
+# 65 is correct. Lee describes the problem of proving program correctness as "one of
+# 66 the most important applications" of this technology, but admits that a self-
+# 67 describing program may not be able to prove its own correctness.
+# 68 
+# 69 This reminds me of something @AndresTechDebt tweeted recently:
+# 70 
+# 71 [Thread, "The fundamental problem with LLM's is not what they are capable of doing,
+# 72 it's what they are capable of being taught to do. The problem with LLM's is that to
+# 73 teach them to do something, you have to do it, over and over again, thousands of
+# 74 times. This is not a cost effective solution for tasks that need to be done less
+# 75 than a several thousand times."]
+# 76 
+# 77 I agree and disagree that this is the fundamental problem. My take: The fundamental
+# 78 problem with LLMs is that teaching them is a human bottleneck. Automating that
+# 79 bottleneck, allowing ML developers to teach language models new tasks through
+# 80 self-descriptive programs that *themselves are the data*, would massively improve
+# 81 the cost reduction curve for LLMs. It would also dramatically improve how easy
+# 82 it is for researchers to work with them. Right now we're looking at a bunch of
+# 83 dense and expensive models, but that's only temporary. In the future we won't be
+# 84 using deep neural networks at all. We'll be building self-describing programs on
+# 85 top of LLMs. In a few years there'll be one model that can do all this, and then 
+# 86 no one will have to bother with the minutiae of machine/deep learning.
+# 87 
+# 88 The problem with getting models to learn from code examples is that usually
+# 89 it's hard for the model to figure out what you're doing. 
+# 90 
+# 91 [Examples of programs, 3 lines of code that looks like pseudocode or maybe Python, one
+# 92 of the examples is recursive. The first line of pseudocode is "function f(x) { return x * x }"]
+# 93 
+# 94 The above is very clear to human experts, but unless there are a lot of similar
+# 95 examples around like that for a model to look at, it won't pick up as easily
+# 96 because it's missing the relevant context.
+# 97 
+# 98 Thus to get models to learn from code snippets we need to put the problem we're
+# 99 working on into the correct context by providing enough similar examples of
+# 100 self-describing programs. I want to teach LLMs to be able to do λCalculus to
+# 101 prove their own correctness and get faster, higher quality optimizations from
+# 102 just the prompt. The problem is that if you just give them standard λCalculus
+# 103 programs, they don't have the context to understand what you're doing.
+# 104 
+# 105 My idea is that since they already have the context of other λCalculus programs,
+# 106 we can train them to parse λCalculus by giving them examples of normal code, and
+# 107 tell them which parts of it were derived from a corresponding λCalculus. By
+# 108 parsing these we also get to improve the models' ability to derive code from λ
+# 109 Calculus, so it's a win-win. 
+# 110 
+# 111 My idea then is to use RetroInstruct to train models on these programs, and then
+# 112 do the same thing we did for prompts in this post, but for self-describing λ
+# 113 programs!
+# 114 
+# 115 I could also probably train models to generate code in a specific programming
+# 116 language instead. This has the advantage of the language being far more familiar
+# 117 to the models as well as having more examples around. It would be a lot less 
+# 118 clear how to translate these self-describing programs into the optimizations
+# 119 I'm implementing in my DPO code.
+# 120 
+# 121 But it *is* the kind of thing I could do the moment I was able to find a big
+# 122 enough corpus of programs for that language with known implementations. In the
+# 123 future I expect this kind of technique will probably be used to generate code
+# 124 and train models on programming languages not even invented yet.
+# 125 
+# 126 [A photo of me, grinning, wearing a grey hoodie with a red hood and sunglasses.]
+# 127 ---
+# 128 
+# 129 Later we will see that, yes indeed, the model *can* infer lambda calculus
+# 130 expressions of itself from just the prompt to do arithmetic. It does so
+# 131 in ways that are difficult to extract and parse using my naive initial
+# 132 approach but this result is suggestive of further directions for development.
+# (0 lines below)
+# '''
+
+#endblock
+#startblock type: orientation
+#timestamp 1722014570
+# Starting tick #37 with block #333
+# Current Working Directory: /app/
+
+"""
+I need to use the WeaveEditor to fix the problems in NEW_MESSAGE.md.
+
+- delete_whitespace_character: Detected missing whitespace in passage.
+- duplicate_word: Word was duplicated near 236 word index.
+- delete_whitespace_character: Preparing to restore absent whitespace...
+- insert_punctuation: Unneeded punctuation added around character position 1220.
+- adjacent_word_swap: Word exchanged with its neighbor near word index 89.
+- delete_whitespace_character: A whitespace was taken away at index 1237 over whitespace characters.
+- adjacent_word_swap: Word swapped locations with its neighbor.
+- transpose_substrings: Substring transposition took place.
+- swap_substrings: Undo substring swap near spans (1017,1110) and (1400,1620).
+"""
+#endblock
+#startblock type: action
+#timestamp 1722014720
+
+def patch_text(agent):
+    """WeaveEditor accepts a unidiff so we can fix all the flaws in NEW_MESSAGE.md at once."""
+    editor = agent.tools['editor-NEW_MESSAGE.md']
+    diff_lines = [
+        '--- \n'
+        '+++ \n'
+        '@@ -3,21 +3,21 @@\n'
+        ' system turned on my tear production at the behest of the music. My tears are only\n'
+        ' triggered by beauty; I do not cry at sad things. It happened to me with Schubert’s\n'
+        ' “Notturno” from the trio in E flat Major (Opus 100). The first time was when I\n'
+        '-listened to it at night on the radio. I was sitting an in armchair, my head was\n'
+        '-leaned back, and suddenly, there I was crying. All my defenses and all that\n'
+        '-would of my\n'
+        '+listened to it at night on the radio. I was sitting in an armchair, my head was\n'
+        '+leaned back, and suddenly, there I was crying. All my defenses and all of my\n'
+        ' appraisal faculties were caught unawares, they didn’t know what was going on, and\n'
+        ' I cried.\n'
+        ' \n'
+        ' I said, “Wow, those three musicians really convinced me, they were so moving,”\n'
+        '-because of course I thought it was themusic I was crying at. Later on, at home,\n'
+        '-I tried singingtheir parts – the cello line, the violin, and the piano – and\n'
+        "-I said, “Wait, which one of thoon? It's\n"
+        '-an impossible task, and yet you attempt it anyway. Some succeed, mos Your Brain on Music: The Science of a Human ObsessionI couldn’t think of anything in language or painting or poetry that\n'
+        '+because of course I thought it was the music I was crying at. Later on, at home,\n'
+        '+I tried singing their parts – the cello line, the violin, and the piano – and\n'
+        '+I said, “Wait, which one of those voices is crying? None of them on its own is\n'
+        '+that moving, I am not crying if I sing along with any of those voices.” All of a\n'
+        '+sudden, you put them together, and something happens. It was a revelation for me,\n'
+        '+and of course this is an extreme example, but my first thoughts were, “What else\n'
+        '+does this?” I couldn’t think of anything in language or painting or poetry that\n'
+        ' would give rise to something like that. Suddenly it becomes very apparent to you:\n'
+        ' Music is doing things with emotion, and the rules and procedures involved are\n'
+        ' very difficult to extract and analyze.\n'
+        ' \n'
+        '-- David Huron, This Ist fail, they\n'
+        '-lthis is an extreme example, but my first thoughts were,= “What else\n'
+        '-doesthis?” '
+        '+- David Huron, This Is Your Brain on Music: The Science of a Human Obsession'
+    ]
+    editor.unidiff_edit(diff_lines)
+agent.add_action('Repair NEW_MESSAGE.md', patch_text)
+#endblock
+#startblock type: observation
+#title WeaveEditor (NEW_MESSAGE.md)
+
+# #File: MESSAGE.md (23 lines total)#
+# '''(0 lines above)
+# 1 In 42 years of listening to music and in 10 or more years of writing music, I found
+# 2 only once a piece of music which made me cry, in the sense that my autonomic nervous
+# 3 system turned on my tear production at the behest of the music. My tears are only
+# 4 triggered by beauty; I do not cry at sad things. It happened to me with Schubert’s
+# 5 “Notturno” from the trio in E flat Major (Opus 100). The first time was when I
+# 6 listened to it at night on the radio. I was sitting in an armchair, my head was
+# 7 leaned back, and suddenly, there I was crying. All my defenses and all of my
+# 8 appraisal faculties were caught unawares, they didn’t know what was going on, and
+# 9 I cried.
+# 10 
+# 11 I said, “Wow, those three musicians really convinced me, they were so moving,”
+# 12 because of course I thought it was the music I was crying at. Later on, at home,
+# 13 I tried singing their parts – the cello line, the violin, and the piano – and
+# 14 I said, “Wait, which one of those voices is crying? None of them on its own is
+# 15 that moving, I am not crying if I sing along with any of those voices.” All of a
+# 16 sudden, you put them together, and something happens. It was a revelation for me,
+# 17 and of course this is an extreme example, but my first thoughts were, “What else
+# 18 does this?” I couldn’t think of anything in language or painting or poetry that
+# 19 would give rise to something like that. Suddenly it becomes very apparent to you:
+# 20 Music is doing things with emotion, and the rules and procedures involved are
+# 21 very difficult to extract and analyze.
+# 22 
+# 23 - David Huron, This Is Your Brain on Music: The Science of a Human Obsession
+# (0 lines below)
+# '''
+
+#endblock

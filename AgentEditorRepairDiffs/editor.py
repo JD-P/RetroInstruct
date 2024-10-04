@@ -7,7 +7,7 @@ class WeaveEditor:
         """Bind tool to weave-agent and set up editor."""
         self.agent = agent
         self.filepath = filepath
-        self.agent.tools.append(self)
+        self.agent.tools[f"editor-{filepath}"] = self
         self.editor_observation_view = {"type":"observation",
                                         "title":f"WeaveEditor ({filepath})",
                                         "callback":self.render}
@@ -56,8 +56,8 @@ class WeaveEditor:
         rendered_text = f"#File: {self.filepath} ({total_lines} lines total)#\n"
         rendered_text += f"'''({start_line} lines above)\n"
         for i in range(start_line, end_line):
-            rendered_text += f"{i}: {self.file_content[i]}"
-        rendered_text += f"({total_lines - end_line} lines below)\n'''"
+            rendered_text += f"{i+1} {self.file_content[i]}"
+        rendered_text += f"\n({total_lines - end_line} lines below)\n'''"
         return rendered_text
 
     def edit(self, start_line, end_line, new_text):
