@@ -686,7 +686,7 @@ while lorem_ipsum[1:]:
     diff_lines = list(diff)
 
     # Mock agent object
-    agent = type('Agent', (object,), {'tools': [], 'add_observation_view': lambda self, x, y: None, 'remove_observation_view': lambda self, x: None})()
+    agent = type('Agent', (object,), {'tools': {}, 'add_observation_view': lambda self, x, y: None, 'remove_observation_view': lambda self, x: None})()
     if os.path.exists(text_corrupted_filename):
         raise ValueError
     with open(text_corrupted_filename, "w") as outfile:
@@ -729,8 +729,8 @@ while lorem_ipsum[1:]:
             "action_callback_name":random.choice(action_callback_name),
             "action_edit_docstring":random.choice(action_edit_docstrings),
             "action_unidiff_docstring":random.choice(action_unidiff_docstrings),
-            "diff":diff_lines,
-            "edits":parse_diff(diff_lines),
+            "diff":repr(diff_lines),
+            "edits":repr(parse_diff(diff_lines)),
             "action_callback_description":random.choice(action_callback_description),
             "text_clean":text
         }

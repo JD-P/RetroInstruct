@@ -1,6 +1,7 @@
 import ast
 import random
 import json
+import datasets
 from render_block import render_block
 
 def is_list_of_tuples(s):
@@ -83,8 +84,7 @@ def render(file_content, filepath):
     rendered_text += f"\n({total_lines - end_line} lines below)\n'''"
     return rendered_text
 
-with open("train.json") as infile:
-    data = json.load(infile)
+data = datasets.load_dataset("jdpressman/retro-weave-agent-editor-repair-diffs-v0.1")["train"]
 
 for row in data:
     texts = [

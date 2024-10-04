@@ -30,12 +30,55 @@ You can see an example of what this looks like [here.](https://github.com/JD-P/R
 ### Quickstart With HuggingFace Datasets
 
 ```
+import ast
 import random
 import json
 import datasets
 from render_block import render_block
 
-data = datasets.load_dataset("jdpressman/retro-weave-agent-editor-repair-diffs-v0.1")["train"]
+def is_list_of_tuples(s):
+    try:
+        # Parse the string into an AST node
+        node = ast.parse(s, mode='eval')
+
+        # Check if the node is a list
+        if not isinstance(node.body, ast.List):
+            return False
+
+        # Check if all elements in the list are tuples with the correct structure
+        for element in node.body.elts:
+            if not isinstance(element, ast.Tuple):
+                return False
+            if len(element.elts) != 3:
+                return False
+            if not isinstance(element.elts[0], ast.Constant) or not isinstance(element.elts[0].value, int):
+                return False
+            if not isinstance(element.elts[1], ast.Constant) or not isinstance(element.elts[1].value, int):
+                return False
+            if not isinstance(element.elts[2], ast.Constant) or not isinstance(element.elts[2].value, str):
+                return False
+
+        return True
+    except SyntaxError:
+        return False
+
+def is_list_of_strings(s):
+    try:
+        # Parse the string into an AST node
+        node = ast.parse(s, mode='eval')
+
+        # Check if the node is a list
+        if not isinstance(node.body, ast.List):
+            return False
+
+        # Check if all elements in the list are strings
+        for element in node.body.elts:
+            if not isinstance(element, ast.Str):
+                return False
+
+        return True
+    except SyntaxError:
+        return False
 
 def split_lines_with_custom_newlines(content, newline_chars):
     """
@@ -72,6 +115,8 @@ def render(file_content, filepath):
         rendered_text += f"{i+1} {file_content[i]}"
     rendered_text += f"\n({total_lines - end_line} lines below)\n'''"
     return rendered_text
+
+data = datasets.load_dataset("jdpressman/retro-weave-agent-editor-repair-diffs-v0.1")["train"]
 
 for row in data:
     texts = [
@@ -112,7 +157,11 @@ for row in data:
         )
         program += f'    """{docstring}"""\n'
         program += f"    editor = agent.tools['editor-{row['text_corrupted_filename']}']\n"
-        for edit in row["edits"]:
+        if is_list_of_tuples(row["edits"]):
+            edits = eval(row["edits"])
+        else:
+            raise ValueError("Expected list of edits but got something else. Attempted ACE?")
+        for edit in edits:
             program += f"    editor.edit({edit[0]}, {edit[1]}, {repr(edit[2])})\n"
         program += "\n"
     else:
@@ -122,7 +171,11 @@ for row in data:
         program += f'    """{docstring}"""\n'
         program += f"    editor = agent.tools['editor-{row['text_corrupted_filename']}']\n"
         program += "    diff_lines = [\n"
-        for line in row["diff"]:
+        if is_list_of_strings(row["diff"]):
+            diff = eval(row["diff"])
+        else:
+            raise ValueError("Expected list of strings but got something else. Attempted ACE?")
+        for line in diff:
             program += f"        {repr(line)}\n"
         program += "    ]\n"
         program += "    editor.unidiff_edit(diff_lines)\n"
@@ -153,9 +206,54 @@ for row in data:
 ### Raw Quickstart
 
 ```
+import ast
 import random
 import json
 from render_block import render_block
+
+def is_list_of_tuples(s):
+    try:
+        # Parse the string into an AST node
+        node = ast.parse(s, mode='eval')
+
+        # Check if the node is a list
+        if not isinstance(node.body, ast.List):
+            return False
+
+        # Check if all elements in the list are tuples with the correct structure
+        for element in node.body.elts:
+            if not isinstance(element, ast.Tuple):
+                return False
+            if len(element.elts) != 3:
+                return False
+            if not isinstance(element.elts[0], ast.Constant) or not isinstance(element.elts[0].value, int):
+                return False
+            if not isinstance(element.elts[1], ast.Constant) or not isinstance(element.elts[1].value, int):
+                return False
+            if not isinstance(element.elts[2], ast.Constant) or not isinstance(element.elts[2].value, str):
+                return False
+
+        return True
+    except SyntaxError:
+        return False
+
+def is_list_of_strings(s):
+    try:
+        # Parse the string into an AST node
+        node = ast.parse(s, mode='eval')
+
+        # Check if the node is a list
+        if not isinstance(node.body, ast.List):
+            return False
+
+        # Check if all elements in the list are strings
+        for element in node.body.elts:
+            if not isinstance(element, ast.Str):
+                return False
+
+        return True
+    except SyntaxError:
+        return False
 
 def split_lines_with_custom_newlines(content, newline_chars):
     """
@@ -235,7 +333,11 @@ for row in data:
         )
         program += f'    """{docstring}"""\n'
         program += f"    editor = agent.tools['editor-{row['text_corrupted_filename']}']\n"
-        for edit in row["edits"]:
+        if is_list_of_tuples(row["edits"]):
+            edits = eval(row["edits"])
+        else:
+            raise ValueError("Expected list of edits but got something else. Attempted ACE?")
+        for edit in edits:
             program += f"    editor.edit({edit[0]}, {edit[1]}, {repr(edit[2])})\n"
         program += "\n"
     else:
@@ -245,7 +347,11 @@ for row in data:
         program += f'    """{docstring}"""\n'
         program += f"    editor = agent.tools['editor-{row['text_corrupted_filename']}']\n"
         program += "    diff_lines = [\n"
-        for line in row["diff"]:
+        if is_list_of_strings(row["diff"]):
+            diff = eval(row["diff"])
+        else:
+            raise ValueError("Expected list of strings but got something else. Attempted ACE?")
+        for line in diff:
             program += f"        {repr(line)}\n"
         program += "    ]\n"
         program += "    editor.unidiff_edit(diff_lines)\n"
