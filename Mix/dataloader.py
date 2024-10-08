@@ -1,10 +1,15 @@
+import os
 import random
 import codecs
 import json
 import datasets
+from argparse import ArgumentParser
+from transformers import AutoTokenizer
+from render_block import render_block
+from agent_repair_diffs import row_to_inputs_and_targets
 
 class RetroInstructDataloader:
-    def __init__(self):
+    def __init__(self, agent_mix=False, traces_dir=None, tokenizer=None):
         # Load yes or no prefix strings
         with open("yes_or_no.txt", "r") as file:
             self.yes_no_prefixes = [line.strip() for line in file.readlines()]
@@ -45,6 +50,11 @@ class RetroInstructDataloader:
             + [i for i in datasets.load_dataset("jdpressman/retro-easy-prose-repair-diffs-v0.1")["validation"]]
         )
         random.shuffle(self.easy_prose_diffs)
+        self.agent_repair_diffs = (
+            [i for i in datasets.load_dataset("jdpressman/retro-weave-agent-editor-repair-diffs-v0.1")["train"]]
+            + [i for i in datasets.load_dataset("jdpressman/retro-weave-agent-editor-repair-diffs-v0.1")["validation"]]
+        )
+        random.shuffle(self.agent_repair_diffs)
         
         self.epoch = []
         self.epoch += self.prepare_analogies()
@@ -54,6 +64,9 @@ class RetroInstructDataloader:
         self.epoch += self.prepare_eval_rubrics()
         self.epoch += self.prepare_style_transfer()
         self.epoch += self.prepare_easy_prose_diffs()
+        self.epoch += self.prepare_agent_repair_diffs()
+        if agent_mix:
+            self.epoch += self.prepare_agent_traces(traces_dir, tokenizer)
 
         random.shuffle(self.epoch)
 
@@ -145,7 +158,7 @@ class RetroInstructDataloader:
 
         random.shuffle(epoch)
         entries = []
-        for ascii_art, mode in epoch:
+        for ascii_art, mode in epoch[:5000]:
             roll = random.randrange(5)
             if roll == 0:
                 inputs = ascii_art['prompt']
@@ -201,9 +214,7 @@ class RetroInstructDataloader:
     def prepare_style_transfer(self):
         entries = []
         # I made too many of these
-        for i, row in enumerate(self.style_transfer):
-            if i > 5000:
-                break
+        for row in self.style_transfer[:5000]:
             # TODO: Update style transfer set with proper schema
             if type(row) != dict:
                 print("it happened again")
@@ -253,8 +264,7 @@ class RetroInstructDataloader:
                     "\n\n",
                     "<passage>\n",
                     diff["text_corrupted"],
-                    "\n</passage>",
-                    "<|end|>"]),
+                    "\n</passage>"]),
                  "targets":''.join([
                      "<diagnosis>\n",
                      diff["operations"],
@@ -263,14 +273,55 @@ class RetroInstructDataloader:
                      diff_text,
                      "</diff>\n",
                      "<repaired>\n",
-                     diff["text_clean"],
-                     "</repaired>"])
+                     diff["text_clean"]
+                 ])
                 }
             )
         return entries
 
+    def prepare_agent_repair_diffs(self):
+        entries = []
+        for row in self.agent_repair_diffs:
+            inputs, targets = row_to_inputs_and_targets(row)
+            entries.append({"inputs":inputs, "targets":targets})
+        return entries
     
-dataloader = RetroInstructDataloader()
+    def prepare_agent_traces(self, traces_dir, tokenizer_name, chunk_size=64000):
+        tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)
+        trace_paths = [os.path.join(traces_dir, filename)
+                       for filename in os.listdir(traces_dir)]
+        chunks = []
+        for path in trace_paths:
+            with open(path) as infile:
+                trace_blocks = json.load(infile)
+            chunk_blocks = []
+            chunk_toks = 0
+            for block in trace_blocks[1:]:
+                block_text = render_block(block)
+                block_toks = len(tokenizer(block_text)["input_ids"])
+                chunk_toks += block_toks
+                if chunk_toks > chunk_size:
+                    inputs = ''.join([render_block(j) for j in chunk_blocks[:-1]])
+                    targets = render_block(chunk_blocks[-1])
+                    chunks.append({"inputs":inputs, "targets":targets})
+                    chunk_blocks = []
+                    chunk_toks = block_toks
+                chunk_blocks.append(block)
+            inputs = ''.join([render_block(j) for j in chunk_blocks[:-1]])
+            targets = render_block(chunk_blocks[-1])
+            chunks.append({"inputs":inputs, "targets":targets})
+        return chunks
+
+
+parser = ArgumentParser()
+parser.add_argument("--agent-mix", action="store_true", default=False)
+parser.add_argument("--traces-dir")
+parser.add_argument("--tokenizer")
+args = parser.parse_args()
+
+dataloader = RetroInstructDataloader(args.agent_mix,
+                                     args.traces_dir,
+                                     args.tokenizer)
 
 dataset = [entry for entry in dataloader]
 
@@ -285,4 +336,4 @@ with open("val.json", "w") as outfile:
 for entry in dataloader:
     assert type(entry["inputs"]) == str
     assert type(entry["targets"]) == str
-    print(entry)
+    print(f"<s> [INST] {entry['inputs']} [/INST]{entry['targets']}")
