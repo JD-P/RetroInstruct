@@ -9,7 +9,7 @@ from render_block import render_block
 from agent_repair_diffs import row_to_inputs_and_targets
 
 class RetroInstructDataloader:
-    def __init__(self, agent_mix=False, traces_dir=None, tokenizer=None):
+    def __init__(self, agent_mix=False, traces_dir=None, tokenizer_name=None):
         # Load yes or no prefix strings
         with open("yes_or_no.txt", "r") as file:
             self.yes_no_prefixes = [line.strip() for line in file.readlines()]
@@ -66,7 +66,7 @@ class RetroInstructDataloader:
         self.epoch += self.prepare_easy_prose_diffs()
         self.epoch += self.prepare_agent_repair_diffs()
         if agent_mix:
-            self.epoch += self.prepare_agent_traces(traces_dir, tokenizer)
+            self.epoch += self.prepare_agent_traces(traces_dir, tokenizer_name)
 
         random.shuffle(self.epoch)
 
@@ -286,7 +286,7 @@ class RetroInstructDataloader:
             entries.append({"inputs":inputs, "targets":targets})
         return entries
     
-    def prepare_agent_traces(self, traces_dir, tokenizer_name, chunk_size=64000):
+    def prepare_agent_traces(self, traces_dir, tokenizer_name, chunk_size=128000):
         tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)
         trace_paths = [os.path.join(traces_dir, filename)
                        for filename in os.listdir(traces_dir)]

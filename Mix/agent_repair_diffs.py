@@ -118,13 +118,13 @@ def row_to_inputs_and_targets(row):
 
     blocks = []
     edit_method = random.choice(["diff", "diff", "edit()"])
-    program = f"def {row['action_callback_name']}(agent):\n"
+    program = f"def {row['action_callback_name']}(subagent):\n"
     if edit_method == "edit()":
         docstring = row["action_edit_docstring"].format(
             filename=row["text_corrupted_filename"]
         )
         program += f'    """{docstring}"""\n'
-        program += f"    editor = agent.tools['editor-{row['text_corrupted_filename']}']\n"
+        program += f"    editor = subagent.tools['editor-{row['text_corrupted_filename']}']\n"
         if is_list_of_tuples(row["edits"]):
             edits = eval(row["edits"])
         else:
@@ -137,7 +137,7 @@ def row_to_inputs_and_targets(row):
             filename=row["text_corrupted_filename"]
         )
         program += f'    """{docstring}"""\n'
-        program += f"    editor = agent.tools['editor-{row['text_corrupted_filename']}']\n"
+        program += f"    editor = subagent.tools['editor-{row['text_corrupted_filename']}']\n"
         program += "    diff_lines = [\n"
         if is_list_of_strings(row["diff"]):
             diff = eval(row["diff"])
@@ -150,7 +150,7 @@ def row_to_inputs_and_targets(row):
     callback_desc = row['action_callback_description'].format(
         filename=row['text_corrupted_filename']
     )
-    program += f"agent.add_action({repr(callback_desc)}, {row['action_callback_name']})"
+    program += f"self.add_action({repr(callback_desc)}, {row['action_callback_name']})"
     action_block = {"type":"action",
                     "timestamp":row["action_timestamp"],
                     "program":program}
